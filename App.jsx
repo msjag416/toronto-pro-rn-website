@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Stethoscope, Activity, Phone, MapPin, CheckCircle, Search, Menu, X, ChevronRight, Star, HeartPulse, UserCheck, CircleHelp, MessageCircle, Mail } from 'lucide-react';
+// Removed unused 'Phone' import to fix Netlify build error
+import { Shield, Stethoscope, Activity, MapPin, CheckCircle, Search, Menu, X, ChevronRight, Star, HeartPulse, UserCheck, CircleHelp, MessageCircle, Mail } from 'lucide-react';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
