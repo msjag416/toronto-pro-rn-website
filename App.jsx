@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
-// Removed unused 'Phone' import to fix Netlify build error
-import { Shield, Stethoscope, Activity, MapPin, CheckCircle, Search, Menu, X, ChevronRight, Star, HeartPulse, UserCheck, CircleHelp, MessageCircle, Mail } from 'lucide-react';
+import { 
+  Shield, 
+  Stethoscope, 
+  Activity, 
+  MapPin, 
+  CheckCircle, 
+  Search, 
+  Menu, 
+  X, 
+  ChevronRight, 
+  Star, 
+  HeartPulse, 
+  UserCheck, 
+  CircleHelp, 
+  MessageCircle, 
+  Mail 
+} from 'lucide-react';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -184,7 +199,7 @@ const App = () => {
           <div className="prose prose-blue max-w-none">
             <p className="mb-4">Families in Toronto, Ontario often face a gap between hospital discharge and standard home care, and that’s a scary place to be. When a loved one has high acuity needs or requires ventilator support, standard Personal Support Worker help is simply not enough. You can’t afford to guess about critical care.</p>
             <p className="mb-4">Our network connects you with experienced Registered Nurses (RNs) who specialize in Critical Care, meaning they know exactly what they’re doing when the pulse ox drops. Whether you need reliable answers to complex medical questions or a skilled bedside nurse to manage a ventilated loved one, we bridge the skill gap that exists outside the hospital walls. We don't just provide care, we provide peace of mind.</p>
-            <p>We prioritize transparency because your trust is essential. We encourage all clients to verify nursing credentials via the official <a href="https://registry.cno.org" target="_blank" rel="noreferrer" className="text-blue-600 hover:underline font-semibold">CNO Registry</a>, making sure your nurse is licensed and authorized to practice in Ontario without any restrictions.</p>
+            <p>We prioritize transparency because your trust is essential. We encourage all clients to verify nursing credentials via the official <a href="https://registry.cno.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">CNO Registry</a>, making sure your nurse is licensed and authorized to practice in Ontario without any restrictions.</p>
           </div>
         </div>
       </section>
@@ -303,20 +318,20 @@ const App = () => {
             <div>
               <h4 className="text-white font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#services" onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="hover:text-blue-400 transition-colors">Our Services</a></li>
-                <li><a href="#verification" onClick={(e) => { e.preventDefault(); scrollToSection('verification'); }} className="hover:text-blue-400 transition-colors">Verify a Nurse</a></li>
-                <li><a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className="hover:text-blue-400 transition-colors">About</a></li>
-                <li><a href="#faq" onClick={(e) => { e.preventDefault(); scrollToSection('faq'); }} className="hover:text-blue-400 transition-colors">FAQ</a></li>
-                <li><a href="https://registry.cno.org" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">CNO Registry</a></li>
-                <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="hover:text-blue-400 transition-colors">Contact Us</a></li>
+                <li><button onClick={() => scrollToSection('services')} className="hover:text-blue-400 transition-colors">Our Services</button></li>
+                <li><button onClick={() => scrollToSection('verification')} className="hover:text-blue-400 transition-colors">Verify a Nurse</button></li>
+                <li><button onClick={() => scrollToSection('about')} className="hover:text-blue-400 transition-colors">About</button></li>
+                <li><button onClick={() => scrollToSection('faq')} className="hover:text-blue-400 transition-colors">FAQ</button></li>
+                <li><a href="https://registry.cno.org" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">CNO Registry</a></li>
+                <li><button onClick={() => scrollToSection('contact')} className="hover:text-blue-400 transition-colors">Contact Us</button></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" onClick={(e) => openModal('privacy', e)} className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" onClick={(e) => openModal('terms', e)} className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
-                <li><a href="#" onClick={(e) => openModal('disclaimer', e)} className="hover:text-blue-400 transition-colors">Disclaimer</a></li>
+                <li><button onClick={(e) => openModal('privacy', e)} className="hover:text-blue-400 transition-colors text-left">Privacy Policy</button></li>
+                <li><button onClick={(e) => openModal('terms', e)} className="hover:text-blue-400 transition-colors text-left">Terms of Service</button></li>
+                <li><button onClick={(e) => openModal('disclaimer', e)} className="hover:text-blue-400 transition-colors text-left">Disclaimer</button></li>
               </ul>
             </div>
           </div>
