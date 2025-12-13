@@ -1,13 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toronto Pro RN</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/main.jsx"></script>
-  </body>
+    <title>Experienced ICU Nurse Toronto | Private Ventilator Care & Medical Advocacy</title>
+    <!-- Tailwind CSS (No build step required) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .modal-open { overflow: hidden; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-white selection:bg-blue-100 selection:text-blue-900 relative">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded-lg">
+                        <i data-lucide="heart-pulse" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span id="nav-brand" class="text-xl font-bold tracking-tight text-slate-900">
+                        Toronto<span class="text-blue-600">ProRN</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Services</a>
+                    <a href="#verification" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Verification</a>
+                    <a href="#about" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">FAQ</a>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-600/20">Hire a Nurse</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="text-slate-700 p-2">
+                        <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-100 shadow-xl">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#services" onclick="toggleMenu()" class="block w-full text-left text-lg font-medium text-slate-600 py-2 border-b border-slate-50">Services</a>
+                <a href="#verification" onclick="toggleMenu()" class="block w-full text-left text-lg font-medium text-slate-600 py-2 border-b border-slate-50">Verification</a>
+                <a href="#about" onclick="toggleMenu()" class="block w-full text-left text-lg font-medium text-slate-600 py-2 border-b border-slate-50">About</a>
+                <a href="#faq" onclick="toggleMenu()" class="block w-full text-left text-lg font-medium text-slate-600 py-2 border-b border-slate-50">FAQ</a>
+                <a href="#contact" onclick="toggleMenu()" class="block w-full text-center bg-blue-600 text-white py-3 rounded-lg font-semibold mt-4">Hire a Nurse</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-90"></div>
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-teal-50 rounded-full blur-3xl opacity-50"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-6">
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        </span>
+                        <span class="text-xs font-semibold text-blue-800 uppercase tracking-wide">Serving Greater Toronto Area</span>
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6">Hospital-Grade <span class="text-blue-600">ICU Care</span> at Home.</h1>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-lg">Don't settle for basic care. Hire EXPERIENCED ICU nurses in Toronto for ventilated loved ones, high acuity needs, and complex medical answers.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30">Find a Nurse Now</a>
+                        <a href="#verification" class="inline-flex justify-center items-center px-8 py-4 bg-white text-slate-700 border border-slate-200 font-semibold rounded-lg hover:bg-slate-50 transition-all">Verify Credentials</a>
+                    </div>
+                    <div class="mt-10 flex items-center space-x-4 text-sm text-slate-500">
+                        <div class="flex -space-x-2">
+                             <!-- Avatars -->
+                            <div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400">RN</div>
+                            <div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400">RN</div>
+                            <div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400">RN</div>
+                            <div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400">RN</div>
+                        </div>
+                        <p>Trusted by 50+ Toronto families this year.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/10 bg-slate-100 aspect-[4/3] group">
+                        <!-- Replaced URL with local file assumption or keep external -->
+                        <img src="hero.jpg" onerror="this.src='https://lh3.googleusercontent.com/d/1-sDTqxsvAncbOK4-hALcS4vZvRhXKJyt'" alt="Specialized ICU nurse in blue scrubs adjusting ventilator mask" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end p-8">
+                            <div class="bg-white/95 backdrop-blur rounded-lg p-4 max-w-xs shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                                    <span class="font-bold text-slate-900">Verified Professional</span>
+                                </div>
+                                <p class="text-xs text-slate-600">Registered with College of Nurses of Ontario (CNO).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <section class="bg-slate-900 py-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><div class="text-3xl font-bold text-blue-400 mb-1">100%</div><div class="text-slate-400 text-sm">CNO Registered</div></div>
+                <div><div class="text-3xl font-bold text-blue-400 mb-1">24/7</div><div class="text-slate-400 text-sm">High Acuity Support</div></div>
+                <div><div class="text-3xl font-bold text-blue-400 mb-1">ICU</div><div class="text-slate-400 text-sm">Specialized Experience</div></div>
+                <div><div class="text-3xl font-bold text-blue-400 mb-1">GTA</div><div class="text-slate-400 text-sm">Toronto & Area</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-3">Our Expertise</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Specialized Care for Complex Needs</h3>
+                <p class="text-lg text-slate-600">General care isn't enough for ventilated or high-acuity patients. You need an expert who understands the machines, the numbers, and the subtle signs of change.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-50 rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-xl border border-slate-100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6"><i data-lucide="activity" class="w-7 h-7 text-blue-600"></i></div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Ventilator & Trach Care</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">Specialized support for loved ones dependent on mechanical ventilation. We manage airway clearance, cuff pressures, and emergency troubleshooting.</p>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i> Tracheostomy Hygiene</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i> Suctioning & O2 Management</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i> Emergency Protocol Ready</li>
+                    </ul>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-slate-50 rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-xl border border-slate-100">
+                    <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6"><i data-lucide="stethoscope" class="w-7 h-7 text-teal-600"></i></div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">High Acuity ICU Nursing</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">Bring the ICU skill set home. We monitor hemodynamics, manage complex medication regimens (IVs, PICC lines), and provide critical assessments.</p>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-teal-500 mr-2"></i> PICC & Central Line Care</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-teal-500 mr-2"></i> Wound & Ostomy Mgmt</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-teal-500 mr-2"></i> Vital Signs Interpretation</li>
+                    </ul>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-slate-50 rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-xl border border-slate-100">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6"><i data-lucide="shield" class="w-7 h-7 text-indigo-600"></i></div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Consultation & Advocacy</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">Got questions? We provide <strong>clear</strong> answers. We act as your medical translator and advocate during hospital visits or care planning meetings.</p>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-indigo-500 mr-2"></i> Care Plan Review</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-indigo-500 mr-2"></i> Family Education</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-indigo-500 mr-2"></i> System Navigation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-24 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-slate-700">
+            <h2 class="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-3 text-center">Our Commitment</h2>
+            <h3 class="text-3xl font-bold text-slate-900 mb-6 text-center">Why Hire a Private ICU Nurse in Toronto?</h3>
+            <div class="prose prose-blue max-w-none">
+                <p class="mb-4">Families in Toronto, Ontario often face a gap between hospital discharge and standard home care, and that’s a scary place to be. When a loved one has high acuity needs or requires ventilator support, standard Personal Support Worker help is simply not enough. You can’t afford to guess about critical care.</p>
+                <p class="mb-4">Our network connects you with experienced Registered Nurses (RNs) who specialize in Critical Care, meaning they know exactly what they’re doing when the pulse ox drops. Whether you need reliable answers to complex medical questions or a skilled bedside nurse to manage a ventilated loved one, we bridge the skill gap that exists outside the hospital walls. We don't just provide care, we provide peace of mind.</p>
+                <p>We prioritize transparency because your trust is essential. We encourage all clients to verify nursing credentials via the official <a href="https://registry.cno.org" target="_blank" rel="noreferrer" class="text-blue-600 hover:underline font-semibold">CNO Registry</a>, making sure your nurse is licensed and authorized to practice in Ontario without any restrictions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-3">Quick Answers</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h3>
+            </div>
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <h4 class="flex items-center text-lg font-bold text-slate-900 mb-2"><i data-lucide="circle-help" class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0"></i>What is the difference between an ICU Nurse and a regular RN?</h4>
+                    <p class="text-slate-600 pl-7">An ICU Nurse has specialized training and experience working in Intensive Care Units, which means they are highly skilled in managing life-support equipment like ventilators, interpreting complex patient data (hemodynamics), and rapidly responding to medical emergencies. A regular RN might have general training, but ICU care is a specialized skill set crucial for high-acuity patients.</p>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <h4 class="flex items-center text-lg font-bold text-slate-900 mb-2"><i data-lucide="circle-help" class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0"></i>Are your services covered by OHIP?</h4>
+                    <p class="text-slate-600 pl-7">No, our private nursing services are not directly covered by OHIP, as they fall outside the scope of publicly funded home care. However, many private insurance plans or employer health spending accounts may cover the costs, so we recommend you check your policy details. We operate on a private contract basis to ensure the highest standard of one-on-one care is delivered promptly.</p>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <h4 class="flex items-center text-lg font-bold text-slate-900 mb-2"><i data-lucide="circle-help" class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0"></i>How quickly can you staff a nurse?</h4>
+                    <p class="text-slate-600 pl-7">For urgent, high-acuity needs like ventilator management, we aim to match you with a qualified RN within 24 to 48 hours within the Greater Toronto Area. Non-urgent consultations or staffing for less critical needs can typically be arranged within three to five business days. We understand time is often critical when dealing with complex health issues, and we prioritize speed without sacrificing quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification -->
+    <section id="verification" class="py-24 bg-blue-600 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+                <div class="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full mb-6"><i data-lucide="user-check" class="w-8 h-8 text-blue-700"></i></div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Verify Your Nurse's License</h2>
+                <p class="text-slate-600 mb-8 max-w-2xl mx-auto">Safety is paramount. Every nurse we refer is in good standing. Use the College of Nurses of Ontario (CNO) registry to confirm the status of any nursing professional.</p>
+                <form onsubmit="handleVerification(event)" class="max-w-md mx-auto">
+                    <div class="flex flex-col space-y-4">
+                        <div class="text-left">
+                            <label htmlFor="nurse-name" class="block text-sm font-medium text-slate-700 mb-1 ml-1">Nurse's Last Name</label>
+                            <div class="relative">
+                                <input type="text" id="nurse-name" placeholder="e.g. Smith" class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-shadow" />
+                                <i data-lucide="search" class="absolute left-3 top-3.5 w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2 ml-1">*This will open the official CNO Registry "Find a Nurse" page.</p>
+                        </div>
+                        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center">
+                            Search CNO Registry <i data-lucide="chevron-right" class="ml-2 w-4 h-4"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Get Immediate Answers</h2>
+                    <p class="text-lg text-slate-600 mb-8">Tell us about your loved one's needs. We respond within 1 hour for urgent ICU requests in the Toronto area.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4"><i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i></div>
+                            <div><h4 class="font-bold text-slate-900">Service Area</h4><p class="text-slate-600">Toronto, North York, Scarborough, Etobicoke, Mississauga.</p></div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4"><i data-lucide="message-circle" class="w-6 h-6 text-green-600"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Secure WhatsApp</h4>
+                                <a href="https://wa.me/13433015061?text=Hi%20I%20found%20you%20on%20your%20Toronto%20ProRNInc%20website" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors">Message us on WhatsApp</a>
+                                <p class="text-sm text-slate-500 mt-2">Direct chat without exposing your number.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 p-6 bg-slate-50 rounded-xl border border-slate-100">
+                        <div class="flex items-center space-x-2 mb-2">
+                             <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                             <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                             <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                             <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                             <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                        </div>
+                        <p class="italic text-slate-700 mb-4">"Finding a nurse who actually understood my father's ventilator settings was a nightmare until we found this team. Professional, calm, and incredibly skilled."</p>
+                        <p class="font-bold text-slate-900">— Sarah J., Etobicoke</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-8">
+                    <div class="mb-6 border-b border-slate-100 pb-4">
+                        <div class="inline-flex items-center justify-center p-2 bg-blue-100 rounded-full mb-3"><i data-lucide="mail" class="w-6 h-6 text-blue-600"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">Contact Us via Email</h3>
+                        <p class="text-slate-600 text-sm">Fill out the form below to send us a secure email instantly.</p>
+                    </div>
+                    <form action="https://formsubmit.co/prorninc@gmail.com" method="POST" class="space-y-6">
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input type="hidden" name="_next" value="https://torontoprorn.com" /> 
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div><label class="block text-sm font-semibold text-slate-700 mb-2">Your Name</label><input type="text" name="Name" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
+                            <div><label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label><input type="tel" name="Phone" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
+                        </div>
+                        <div><label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label><input type="email" name="Email" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Patient Needs (Check all that apply)</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Ventilator / Trach" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Ventilator / Trach</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Palliative Care" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Palliative Care</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Post-ICU Rehab" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Post-ICU Rehab</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Medication Mgmt" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Medication Mgmt</span></label>
+                            </div>
+                        </div>
+                        <div><label class="block text-sm font-semibold text-slate-700 mb-2">Message</label><textarea rows="4" name="Message" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Tell us about the patient's condition and your specific needs..."></textarea></div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Request a Consultation</button>
+                        <p class="text-xs text-center text-slate-400">Your information is HIPAA/PHIPA compliant and strictly confidential © 2026.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4"><i data-lucide="heart-pulse" class="w-6 h-6 text-blue-500"></i><span class="text-xl font-bold text-white">Toronto<span class="text-blue-500">ProRN</span></span></div>
+                    <p class="text-slate-400 max-w-sm mb-4">Providing expert, licensed ICU nursing care for families in Toronto, Ontario. Specialized in ventilation, tracheostomy, and high-acuity patient support at home.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="hover:text-blue-400 transition-colors">Our Services</a></li>
+                        <li><a href="#verification" class="hover:text-blue-400 transition-colors">Verify a Nurse</a></li>
+                        <li><a href="#about" class="hover:text-blue-400 transition-colors">About</a></li>
+                        <li><a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a></li>
+                        <li><a href="https://registry.cno.org" target="_blank" rel="noreferrer" class="hover:text-blue-400 transition-colors">CNO Registry</a></li>
+                        <li><a href="#contact" class="hover:text-blue-400 transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="openModal('privacy'); return false;" class="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openModal('terms'); return false;" class="hover:text-blue-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" onclick="openModal('disclaimer'); return false;" class="hover:text-blue-400 transition-colors">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-center text-sm text-slate-500">Your information is HIPAA/PHIPA compliant and strictly confidential © 2026.</div>
+        </div>
+    </footer>
+
+    <!-- Modals (Hidden by default) -->
+    <div id="modal-backdrop" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl p-8 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-slate-600"></i>
+            </button>
+            
+            <div id="modal-content-privacy" class="hidden modal-panel">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Privacy Policy</h2>
+                <div class="prose text-slate-600 text-sm space-y-3">
+                    <p><strong>Last Updated: 2026</strong></p>
+                    <p>At TorontoProRN, we are committed to protecting the privacy and confidentiality of your personal health information. We adhere strictly to the Personal Health Information Protection Act (PHIPA) of Ontario and all relevant Canadian privacy laws.</p>
+                    <h4 class="font-bold text-slate-800 mt-4">Information Collection</h4>
+                    <p>We collect only the information necessary to provide safe, competent nursing care. This may include your name, contact details, and relevant medical history necessary for triage and care planning.</p>
+                </div>
+            </div>
+
+            <div id="modal-content-terms" class="hidden modal-panel">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Terms of Service</h2>
+                <div class="prose text-slate-600 text-sm space-y-3">
+                    <p><strong>Agreement to Terms</strong></p>
+                    <p>By accessing our website and requesting our services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+                </div>
+            </div>
+
+            <div id="modal-content-disclaimer" class="hidden modal-panel">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Disclaimer</h2>
+                <div class="prose text-slate-600 text-sm space-y-3">
+                    <p><strong>Not Medical Advice</strong></p>
+                    <p>The content on this website is for informational purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment.</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal()" class="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-md', 'py-3');
+                nav.classList.remove('bg-transparent', 'py-5');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-md', 'py-3');
+                nav.classList.add('bg-transparent', 'py-5');
+            }
+        });
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // Handle CNO Verification
+        function handleVerification(e) {
+            e.preventDefault();
+            // Just opens the CNO page as per original logic, ignoring the input since CNO requires manual entry
+            window.open('https://registry.cno.org', '_blank');
+        }
+
+        // Modal Logic
+        function openModal(type) {
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+            // Hide all panels
+            document.querySelectorAll('.modal-panel').forEach(el => el.classList.add('hidden'));
+            // Show specific panel
+            document.getElementById('modal-content-' + type).classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-backdrop').classList.add('hidden');
+        }
+    </script>
+</body>
 </html>
