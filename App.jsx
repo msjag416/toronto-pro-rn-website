@@ -269,7 +269,7 @@ const App = () => {
               </div>
               <form action="https://formsubmit.co/prorninc@gmail.com" method="POST" className="space-y-6">
                 <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://torontoprorn.com" /> 
+                <input type="hidden" name="_next" value="https://torontoprorn.com" />
                 <div className="grid md:grid-cols-2 gap-6">
                   <div><label className="block text-sm font-semibold text-slate-700 mb-2">Your Name</label><input type="text" name="Name" required className="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
                   <div><label className="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label><input type="tel" name="Phone" required className="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
@@ -383,5 +383,3 @@ const App = () => {
 };
 
 export default App;
-
-
