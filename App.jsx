@@ -250,7 +250,7 @@ const App = () => {
                   <div className="bg-green-100 p-3 rounded-lg mr-4"><MessageCircle className="w-6 h-6 text-green-600" /></div>
                   <div>
                     <h4 className="font-bold text-slate-900">Secure WhatsApp</h4>
-                    <a href="https://wa.me/13433015061?text=Hi%20I%20found%20you%20on%20your%20website" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors">Message us on WhatsApp</a>
+                    <a href="https://wa.me/13433015061?text=Hi%20I%20found%20you%20on%20your%20Toronto%20ProRNInc%20website" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors">Message us on WhatsApp</a>
                     <p className="text-sm text-slate-500 mt-2">Direct chat without exposing your number.</p>
                   </div>
                 </div>
@@ -383,4 +383,5 @@ const App = () => {
 };
 
 export default App;
+
 
