@@ -250,7 +250,7 @@
                 <form onsubmit="handleVerification(event)" class="max-w-md mx-auto">
                     <div class="flex flex-col space-y-4">
                         <div class="text-left">
-                            <label htmlFor="nurse-name" class="block text-sm font-medium text-slate-700 mb-1 ml-1">Nurse's Last Name</label>
+                            <label for="nurse-name" class="block text-sm font-medium text-slate-700 mb-1 ml-1">Nurse's Last Name</label>
                             <div class="relative">
                                 <input type="text" id="nurse-name" placeholder="e.g. Smith" class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-shadow" />
                                 <i data-lucide="search" class="absolute left-3 top-3.5 w-5 h-5 text-slate-400"></i>
@@ -314,20 +314,32 @@
                         <input type="hidden" name="_template" value="table" />
                         
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div><label class="block text-sm font-semibold text-slate-700 mb-2">Your Name</label><input type="text" name="Name" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
-                            <div><label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label><input type="tel" name="Phone" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
+                            <div>
+                                <label for="contact-name" class="block text-sm font-semibold text-slate-700 mb-2">Your Name</label>
+                                <input type="text" id="contact-name" name="Name" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+                            </div>
+                            <div>
+                                <label for="contact-phone" class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
+                                <input type="tel" id="contact-phone" name="Phone" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+                            </div>
                         </div>
-                        <div><label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label><input type="email" name="Email" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" /></div>
+                        <div>
+                            <label for="contact-email" class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                            <input type="email" id="contact-email" name="Email" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+                        </div>
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Patient Needs (Check all that apply)</label>
                             <div class="grid grid-cols-2 gap-3">
-                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Ventilator / Trach" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Ventilator / Trach</span></label>
-                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Palliative Care" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Palliative Care</span></label>
-                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Post-ICU Rehab" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Post-ICU Rehab</span></label>
-                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs[]" value="Medication Mgmt" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Medication Mgmt</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs" value="Ventilator / Trach" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Ventilator / Trach</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs" value="Palliative Care" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Palliative Care</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs" value="Post-ICU Rehab" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Post-ICU Rehab</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="Needs" value="Medication Mgmt" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Medication Mgmt</span></label>
                             </div>
                         </div>
-                        <div><label class="block text-sm font-semibold text-slate-700 mb-2">Message</label><textarea rows="4" name="Message" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Tell us about the patient's condition and your specific needs..."></textarea></div>
+                        <div>
+                            <label for="contact-message" class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                            <textarea id="contact-message" rows="4" name="Message" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Tell us about the patient's condition and your specific needs..."></textarea>
+                        </div>
                         
                         <!-- Status Messages -->
                         <div id="form-status" class="hidden rounded-lg p-4 text-sm"></div>
@@ -336,7 +348,7 @@
                             <span>Request a Consultation</span>
                         </button>
                         
-                        <p class="text-xs text-center text-slate-400">Your information is HIPAA/PHIPA compliant and strictly confidential © 2026.</p>
+                        <p class="text-xs text-center text-slate-400">Your information is HIPAA/PHIPA compliant and strictly confidential © <span id="form-year"></span>.</p>
                     </form>
                 </div>
             </div>
@@ -371,13 +383,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="pt-8 border-t border-slate-800 text-center text-sm text-slate-500">Your information is HIPAA/PHIPA compliant and strictly confidential © 2026.</div>
+            <div class="pt-8 border-t border-slate-800 text-center text-sm text-slate-500">Your information is HIPAA/PHIPA compliant and strictly confidential © <span id="footer-year"></span>.</div>
         </div>
     </footer>
 
     <!-- Modals (Hidden by default) -->
-    <!-- UPDATED: Added onclick handler to the backdrop -->
-    <div id="modal-backdrop" onclick="handleBackdropClick(event)" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm cursor-pointer">
+    <!-- UPDATED: Added ARIA attributes and role -->
+    <div id="modal-backdrop" role="dialog" aria-modal="true" onclick="handleBackdropClick(event)" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm cursor-pointer">
         <!-- UPDATED: Added cursor-default to content to indicate it is not the close trigger -->
         <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl p-8 relative cursor-default">
             <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
@@ -385,7 +397,8 @@
             </button>
             
             <div id="modal-content-privacy" class="hidden modal-panel">
-                <h2 class="text-2xl font-bold text-slate-900 mb-4">Privacy Policy</h2>
+                <!-- Added ID for ARIA label reference -->
+                <h2 id="modal-title-privacy" class="text-2xl font-bold text-slate-900 mb-4">Privacy Policy</h2>
                 <div class="prose text-slate-600 text-sm space-y-3">
                     <p><strong>Last Updated: 2026</strong></p>
                     <p>At TorontoProRN, we are committed to protecting the privacy and confidentiality of your personal health information. We adhere strictly to the Personal Health Information Protection Act (PHIPA) of Ontario and all relevant Canadian privacy laws.</p>
@@ -395,7 +408,8 @@
             </div>
 
             <div id="modal-content-terms" class="hidden modal-panel">
-                <h2 class="text-2xl font-bold text-slate-900 mb-4">Terms of Service</h2>
+                <!-- Added ID for ARIA label reference -->
+                <h2 id="modal-title-terms" class="text-2xl font-bold text-slate-900 mb-4">Terms of Service</h2>
                 <div class="prose text-slate-600 text-sm space-y-3">
                     <p><strong>Agreement to Terms</strong></p>
                     <p>By accessing our website and requesting our services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
@@ -403,7 +417,8 @@
             </div>
 
             <div id="modal-content-disclaimer" class="hidden modal-panel">
-                <h2 class="text-2xl font-bold text-slate-900 mb-4">Disclaimer</h2>
+                <!-- Added ID for ARIA label reference -->
+                <h2 id="modal-title-disclaimer" class="text-2xl font-bold text-slate-900 mb-4">Disclaimer</h2>
                 <div class="prose text-slate-600 text-sm space-y-3">
                     <p><strong>Not Medical Advice</strong></p>
                     <p>The content on this website is for informational purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment.</p>
@@ -424,6 +439,16 @@
             
             // Initialize Validation
             setupFormValidation();
+
+            // DYNAMIC YEAR LOGIC
+            const currentYear = new Date().getFullYear();
+            // Update Footer Year
+            const footerYear = document.getElementById('footer-year');
+            if(footerYear) footerYear.textContent = currentYear;
+            
+            // Update Form Disclaimer Year
+            const formYear = document.getElementById('form-year');
+            if(formYear) formYear.textContent = currentYear;
         });
 
         // Navbar Scroll Effect
@@ -469,7 +494,11 @@
 
         // Modal Logic
         function openModal(type) {
-            document.getElementById('modal-backdrop').classList.remove('hidden');
+            const backdrop = document.getElementById('modal-backdrop');
+            backdrop.classList.remove('hidden');
+            // UPDATED: Dynamic ARIA label reference
+            backdrop.setAttribute('aria-labelledby', `modal-title-${type}`);
+
             // Hide all panels
             document.querySelectorAll('.modal-panel').forEach(el => el.classList.add('hidden'));
             // Show specific panel
@@ -538,7 +567,7 @@
 
             const formData = new FormData(form);
 
-            fetch("https://formsubmit.co/ajax/prorninc@gmail.com", {
+            fetch("https://formsubmit.co/ajax/58889c1dddb0e0f0b1f59ab88c96d5bd", {
                 method: "POST",
                 headers: { 
                     'Accept': 'application/json'
