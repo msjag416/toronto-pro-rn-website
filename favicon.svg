@@ -1,23 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-heart-pulse">
-  <path d="M19 14h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1"></path>
-  <path d="M10 21.2v-1.2"></path>
-  <path d="M12 18h.8c.7 0 1.4-.4 1.7-1a2 2 0 0 0 0-2c-.3-.6-1-1-1.7-1H12V8h2.3c.7 0 1.4-.4 1.7-1a2 2 0 0 0 0-2c-.3-.6-1-1-1.7-1H10v12Z"></path>
-  <path d="M4 14h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H4"></path>
-  <path d="M17 14h-7c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 10h-7c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h7"></path>
-  <path d="M4 10h1a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4"></path>
-  <path d="M17 6h-7c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2h7"></path>
-  <path d="M4 6h1a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4"></path>
-  <path d="M17 2h-7c-1.1 0-2-.9-2-2H4"></path>
-  <path d="M17 2h-7c-1.1 0-2-.9-2-2H4"></path>
-  <path d="M17 6h-7c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 6h-7c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 10h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 10h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 14h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 14h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 18h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 18h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 22h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
-  <path d="M17 22h-7c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h7"></path>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background: Rounded Square Blue -->
+  <rect x="0" y="0" width="64" height="64" rx="12" fill="#2563eb"/>
+  
+  <!-- Heart Shape -->
+  <path d="M32 54.6l-4.35-3.96C12.2 36.6 2 27.3 2 15.5 2 6.5 9.5 0 17.5 0c4.3 0 8.5 2 11.5 5.5C32 2 36.2 0 40.5 0 48.5 0 56 6.5 56 15.5c0 11.8-10.2 21.1-25.65 35.14L32 54.6z" transform="translate(3, 5) scale(0.9)" fill="#ffffff"/>
+  
+  <!-- Pulse Line Cutout (Simulated by Blue Stroke) -->
+  <path d="M14 28h8l5-12 6 18 5-6h8" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(3, 5) scale(0.9)"/>
 </svg>
