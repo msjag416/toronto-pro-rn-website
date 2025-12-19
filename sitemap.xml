@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://torontoprorninc.com/</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 
+    ============================================
+    ADD ADDITIONAL PAGES HERE AS YOU CREATE THEM
+    ============================================
+    
+    Template for new pages:
+    
+    <url>
+        <loc>https://torontoprorninc.com/your-page-url</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    Recommended pages to create (based on SEO guide):
+    - /ventilator-care-toronto (priority: 0.9)
+    - /tracheostomy-care-toronto (priority: 0.9)
+    - /post-icu-nursing-toronto (priority: 0.8)
+    - /private-nursing-rates (priority: 0.8)
+    - /about (priority: 0.7)
+    - /faq (priority: 0.7)
+    - /contact (priority: 0.8)
+    - /blog (priority: 0.6)
+    - /blog/individual-post-url (priority: 0.5)
+    
+    Priority guide:
+    1.0 = Homepage (most important)
+    0.9 = Critical service pages
+    0.8 = Important pages (contact, key services)
+    0.7 = Secondary pages (about, FAQ)
+    0.5-0.6 = Blog posts and articles
+    
+    Changefreq guide:
+    always = Changes every time it's accessed
+    hourly = Changes every hour
+    daily = Changes daily
+    weekly = Changes weekly (good for service pages)
+    monthly = Changes monthly (good for static pages)
+    yearly = Changes once a year
+    never = Archived content that won't change
+    -->
+
+</urlset>
