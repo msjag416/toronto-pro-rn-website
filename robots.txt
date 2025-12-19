@@ -24,7 +24,7 @@ Allow: /hero.jpg
 
 # Sitemap location (update this URL to match your actual domain)
 # Replace torontoprorninc.com with your actual domain name
-Sitemap: https://torontoprorninc.com/sitemap.xml
+Sitemap: https://torontoprorn.com/sitemap.xml
 
 # Crawl delay (optional - only add if you're experiencing server issues)
 # Crawl-delay: 1
