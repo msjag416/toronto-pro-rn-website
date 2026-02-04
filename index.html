@@ -14,67 +14,203 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MedicalBusiness",
-      "name": "Toronto ProRN - Private ICU Nursing Care",
-      "description": "Private ICU nursing services specializing in ventilator care at home, tracheostomy management, and complex respiratory support for ventilator-dependent patients in Toronto and Greater Toronto Area",
-      "url": "https://torontoprorn.com",
-      "telephone": "+1-343-301-5061",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Toronto",
-        "addressRegion": "ON",
-        "addressCountry": "CA"
-      },
-      "areaServed": [
-        "Toronto",
-        "North York",
-        "Scarborough",
-        "Etobicoke",
-        "Mississauga",
-        "Markham",
-        "Richmond Hill",
-        "Vaughan",
-        "Brampton",
-        "Yorkville, Old Toronto, Toronto, ON, Canada",
-        "Rosedale, Old Toronto, Toronto, ON, Canada",
-        "Oakville, ON, Canada",
-        "Bridle Path, North York, Toronto, ON, Canada",
-        "Forest Hill, Old Toronto, Toronto, ON, Canada",
-        "Lawrence Park South, Old Toronto, Toronto, ON, Canada",
-        "Kingsway South, Etobicoke, ON, Canada",
-        "Leaside-Bennington, Toronto, ON, Canada",
-        "York Mills, North York, ON, Canada"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Private ICU Nursing Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Ventilator Care at Home",
-              "description": "Specialized nursing care for ventilator-dependent patients including invasive ventilation support, tracheostomy care, and airway management"
-            }
+      "@graph": [
+        {
+          "@type": "MedicalBusiness",
+          "@id": "https://torontoprorn.com/#business",
+          "name": "Toronto ProRN - Private ICU Nursing Care",
+          "description": "Private ICU nursing services specializing in ventilator care at home, tracheostomy management, and complex respiratory support for ventilator-dependent patients in Toronto and Greater Toronto Area",
+          "url": "https://torontoprorn.com",
+          "telephone": "+1-343-301-5061",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Toronto",
+            "addressRegion": "ON",
+            "addressCountry": "CA"
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Complex Respiratory Home Care",
-              "description": "High-acuity respiratory support including suctioning, oxygen management, and 24-hour ventilator monitoring"
-            }
+          "founder": {
+            "@id": "https://www.andreagomez.com/#person"
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Post-ICU Home Nursing",
-              "description": "Transitional care for patients discharged from ICU requiring continued critical care monitoring and support"
+          "areaServed": [
+            "Toronto",
+            "North York",
+            "Scarborough",
+            "Etobicoke",
+            "Mississauga",
+            "Markham",
+            "Richmond Hill",
+            "Vaughan",
+            "Brampton",
+            "Oakville",
+            "Yorkville",
+            "Rosedale",
+            "Bridle Path",
+            "Forest Hill",
+            "Lawrence Park South",
+            "Kingsway South",
+            "Leaside-Bennington",
+            "York Mills"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Private ICU Nursing Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Ventilator Care at Home",
+                  "description": "Specialized nursing care for ventilator-dependent patients including invasive ventilation support, tracheostomy care, and airway management"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Complex Respiratory Home Care",
+                  "description": "High-acuity respiratory support including suctioning, oxygen management, and 24-hour ventilator monitoring"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Post-ICU Home Nursing",
+                  "description": "Transitional care for patients discharged from ICU requiring continued critical care monitoring and support"
+                }
+              }
+            ]
+          },
+          "knowsAbout": [
+            "Ventilator Care",
+            "Tracheostomy Management",
+            "ICU Nursing",
+            "Complex Respiratory Care",
+            "Home Ventilation",
+            "Critical Care Nursing",
+            "BiPAP and CPAP Management",
+            "Post-ICU Care",
+            "ALS Home Nursing",
+            "Spinal Cord Injury Care"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.andreagomez.com/#person",
+          "name": "Andrea Gomez",
+          "jobTitle": "ICU Nurse, Author, and Healthcare Consultant",
+          "description": "Registered Nurse with 27+ years of clinical experience including 12+ years in Trauma-Neuro ICU at major Toronto hospitals. Founder of Toronto ProRN specializing in complex respiratory care and ventilator management.",
+          "url": "https://www.andreagomez.com/",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Nebraska",
+            "sameAs": "https://www.unl.edu/"
+          },
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "Professional License",
+              "name": "Registered Nurse (RN)",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "College of Nurses of Ontario",
+                "url": "https://www.cno.org/"
+              }
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "degree",
+              "name": "Bachelor of Arts in Psychology",
+              "recognizedBy": {
+                "@type": "CollegeOrUniversity",
+                "name": "University of Nebraska"
+              }
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "degree",
+              "name": "Bachelor of Arts in English",
+              "recognizedBy": {
+                "@type": "CollegeOrUniversity",
+                "name": "University of Nebraska"
+              }
             }
-          }
-        ]
-      }
+          ],
+          "hasOccupation": [
+            {
+              "@type": "Occupation",
+              "name": "Trauma-Neuro ICU Nurse",
+              "skills": ["Critical Care Nursing", "Ventilator Management", "Trauma Care", "Neurological Assessment", "Complex Respiratory Care"]
+            },
+            {
+              "@type": "Occupation",
+              "name": "Private ICU Nursing Provider",
+              "skills": ["Home Ventilator Care", "Tracheostomy Management", "Post-ICU Transition Care", "ALS Patient Care"]
+            }
+          ],
+          "knowsAbout": [
+            "ICU Nursing",
+            "Ventilator Management",
+            "Tracheostomy Care",
+            "Critical Care",
+            "Complex Respiratory Care",
+            "Nursing Burnout",
+            "Healthcare Systems",
+            "Home Ventilation Programs"
+          ],
+          "sameAs": [
+            "https://medium.com/@msjag416",
+            "https://www.instagram.com/msjag_writer/",
+            "https://www.linkedin.com/in/jag416/",
+            "https://burnouttobalanceguide.com/"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the difference between an ICU nurse and a regular home care nurse?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An ICU nurse has specialized training in critical care including mechanical ventilation, hemodynamic monitoring, and life-support equipment management. They have worked in Intensive Care Units where patients are on ventilators, vasopressors, and continuous telemetry. A regular home care RN might have excellent wound care skills but will not know how to troubleshoot a ventilator alarm or recognize early respiratory decompensation. For ventilator-dependent patients or high-acuity needs, you need someone who has managed similar patients in a hospital ICU setting."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does OHIP or private insurance cover private ICU nursing services?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "OHIP does not cover private duty nursing because it falls outside publicly funded home care programs. However, private insurance plans and employer health spending accounts will cover some or all of the costs. Check your policy for private nursing, home health care, or registered nurse coverage. Some extended health plans have annual limits for nursing services. We recommend getting pre-authorization from your insurer before booking."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How quickly can you send a nurse for urgent ventilator care in Toronto?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For urgent high-acuity needs like ventilator management or tracheostomy support within the Greater Toronto Area, we aim to match you with a qualified RN within 24 to 48 hours. If your loved one is being discharged from hospital soon, contact us as early as possible so we can arrange coverage before discharge day. Non-urgent consultations can typically be arranged within three to five business days."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you help with the Transitional Home Ventilation Program in Ontario?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The Transitional Home Ventilation Program (THVP) in Ontario helps patients transition from hospital to home on long-term ventilation, but the program does not always provide enough nursing hours. We work alongside THVP services to provide experienced ICU nurses who understand invasive ventilation protocols. We are familiar with the equipment suppliers, respiratory therapy coordination, and the documentation requirements for ventilator-dependent patients."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What areas does Toronto ProRN serve for private ICU nursing?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We provide private duty nursing services throughout the Greater Toronto Area including Toronto, North York, Scarborough, Etobicoke, Mississauga, Brampton, Markham, Richmond Hill, Vaughan, and Oakville. We offer premium concierge-level service in Yorkville, Rosedale, Forest Hill, Bridle Path, and other premier Toronto neighborhoods."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
     
