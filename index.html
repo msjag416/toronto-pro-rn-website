@@ -760,7 +760,7 @@
                     <div class="mb-6 border-b border-slate-100 pb-4">
                         <div class="inline-flex items-center justify-center p-2 bg-blue-100 rounded-full mb-3"><i data-lucide="mail" class="w-6 h-6 text-blue-600"></i></div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-2">Request Private Nursing</h3>
-                        <p class="text-slate-600 text-sm">Fill out this form to send us a secure email about your in-home nursing needs.</p>
+                        <p class="text-slate-600 text-sm">Fill out this form to send us a secure email about your in-home nursing needs. All fields are required.</p>
                     </div>
 
                     <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
@@ -785,7 +785,7 @@
                         </div>
                         <div>
                             <label for="contact-location" class="block text-sm font-semibold text-slate-700 mb-2">Your Location (Toronto Area)</label>
-                            <input type="text" id="contact-location" name="location" placeholder="e.g. North York, Etobicoke, Markham" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+                            <input type="text" id="contact-location" name="location" required placeholder="e.g. North York, Etobicoke, Markham" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Patient Care Needs (Check all that apply)</label>
@@ -799,6 +799,7 @@
                                 <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="needs" value="Geriatric Assessment" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Geriatric Assessment</span></label>
                                 <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="needs" value="Consultation Only" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" /><span class="text-slate-600 text-sm">Consultation</span></label>
                             </div>
+                            <p class="text-xs text-slate-500 mt-2">Please select at least one option.</p>
                         </div>
                         <div>
                             <label for="contact-message" class="block text-sm font-semibold text-slate-700 mb-2">Tell Us About Your Needs</label>
@@ -976,6 +977,7 @@
                     if (input.name === 'email') input.setCustomValidity('Please enter a valid email address (e.g. name@example.com)');
                     if (input.name === 'phone') input.setCustomValidity('Please enter a phone number so we can reach you.');
                     if (input.name === 'name') input.setCustomValidity('Please enter your full name.');
+                    if (input.name === 'location') input.setCustomValidity('Please enter your location so we know what area you\'re in.');
                     if (input.name === 'message') input.setCustomValidity('Please tell us about your loved one\'s needs.');
                 });
                 input.addEventListener('input', () => input.setCustomValidity(''));
@@ -988,6 +990,14 @@
             const btn = document.getElementById('submit-btn');
             const status = document.getElementById('form-status');
             const originalBtnText = btn.innerHTML;
+
+            const checkedNeeds = form.querySelectorAll('input[name="needs"]:checked');
+            if (checkedNeeds.length === 0) {
+                status.textContent = "Please check at least one option under Patient Care Needs.";
+                status.classList.remove('hidden');
+                status.className = 'rounded-lg p-4 text-sm bg-red-100 text-red-700 border border-red-200';
+                return;
+            }
 
             btn.disabled = true;
             btn.innerHTML = '<div class="loader"></div><span>Sending...</span>';
