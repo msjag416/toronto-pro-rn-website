@@ -465,7 +465,7 @@
 
                     <div>
                         <label for="contact-message" class="block text-sm font-semibold text-slate-700 mb-2">Case Details / File Information</label>
-                        <textarea id="contact-message" rows="4" name="message" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Provide case details, surgical procedure, or specific clinical requirements. If you have files to send, note it here and we will provide a secure method."></textarea>
+                        <textarea id="contact-message" rows="4" name="message" required minlength="40" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="Provide case details, surgical procedure, or specific clinical requirements. If you have files to send, note it here and we will provide a secure method."></textarea>
                     </div>
 
                     <div id="form-status" class="hidden rounded-lg p-4 text-sm font-medium"></div>
@@ -631,7 +631,7 @@
                     if (input.name === 'phone') input.setCustomValidity('Please enter a contact number.');
                     if (input.name === 'name') input.setCustomValidity('Please enter your name or the name of the firm.');
                     if (input.name === 'location') input.setCustomValidity('Please enter the discharge hospital or patient location.');
-                    if (input.name === 'message') input.setCustomValidity('Please provide the case or file details.');
+                    if (input.name === 'message') input.setCustomValidity('Please describe the case or file in a bit more detail (at least a few sentences).');
                 });
                 input.addEventListener('input', () => input.setCustomValidity(''));
             });
