@@ -308,8 +308,7 @@
   </form>
 
   <footer>
-    <p>Questions? Call <a href="tel:3433015061">(343) 301-5061</a> or email
-    <a href="mailto:prorninc@gmail.com">prorninc@gmail.com</a></p>
+    <p>Questions? Call <a href="tel:3433015061">(343) 301-5061</a></p>
     <p>&copy; <span id="year"></span> Toronto ProRN Inc. All rights reserved.</p>
   </footer>
 </div>
@@ -355,7 +354,7 @@ form.addEventListener('submit', async function(e){
       throw new Error(json.message || 'Submission failed');
     }
   }catch(err){
-    result.textContent = 'The request could not be sent. Please call (343) 301-5061 or email prorninc@gmail.com and we will book you directly.';
+    result.textContent = 'The request could not be sent. Please call (343) 301-5061 and we will book you directly.';
     result.className = 'err';
   }finally{
     btn.disabled = false;
