@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Clinic Booking Request | Toronto ProRN Inc.</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root{
+    --navy:#123A5C;
+    --teal:#1B8A8F;
+    --ink:#2E3A42;
+    --mist:#EEF5F6;
+    --line:#D5E2E4;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:Georgia,'Times New Roman',serif;
+    background:var(--mist);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 60px;}
+  header{
+    background:var(--navy);
+    padding:28px 20px 30px;
+    text-align:center;
+  }
+  header img.logo{
+    height:60px;
+    width:auto;
+    display:block;
+    margin:0 auto 14px;
+  }
+  header h1{
+    font-family:Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:.06em;
+    font-size:1.45rem;
+    color:var(--white);
+  }
+  header p{
+    color:#A8D4D6;
+    font-size:.98rem;
+    margin-top:6px;
+    font-family:Helvetica,Arial,sans-serif;
+  }
+  .intro{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    padding:24px 26px;
+    margin-top:-18px;
+    border-radius:6px;
+  }
+  .intro p{font-size:1rem;}
+  .rate{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    flex-wrap:wrap;
+    background:var(--navy);
+    color:var(--white);
+    border-radius:6px;
+    padding:18px 22px;
+    margin:22px 0;
+    font-family:Helvetica,Arial,sans-serif;
+  }
+  .rate .amount{font-size:2rem;font-weight:700;}
+  .rate .terms{font-size:.95rem;color:#CFE6E7;}
+  form{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px;
+  }
+  fieldset{border:none;margin-bottom:8px;}
+  legend{
+    font-family:Helvetica,Arial,sans-serif;
+    font-weight:700;
+    color:var(--navy);
+    font-size:1.02rem;
+    padding:14px 0 10px;
+  }
+  label{
+    display:block;
+    font-family:Helvetica,Arial,sans-serif;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--navy);
+    margin:14px 0 5px;
+  }
+  input[type=text],input[type=tel],input[type=email],input[type=date],
+  select,textarea{
+    width:100%;
+    padding:11px 12px;
+    font-size:1rem;
+    font-family:Helvetica,Arial,sans-serif;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:#FBFDFD;
+    color:var(--ink);
+  }
+  input:focus,select:focus,textarea:focus{
+    outline:2px solid var(--teal);
+    outline-offset:1px;
+    background:var(--white);
+  }
+  .code input{
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--teal);
+  }
+  .hint{
+    font-size:.82rem;
+    color:#6B7A82;
+    font-family:Helvetica,Arial,sans-serif;
+    margin-top:4px;
+  }
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:560px){.two{grid-template-columns:1fr;gap:0;}}
+  button{
+    width:100%;
+    margin-top:26px;
+    background:var(--teal);
+    color:var(--white);
+    border:none;
+    border-radius:4px;
+    padding:15px;
+    font-size:1.05rem;
+    font-weight:700;
+    font-family:Helvetica,Arial,sans-serif;
+    cursor:pointer;
+  }
+  button:hover{background:#147175;}
+  button:disabled{background:#8FB9BB;cursor:wait;}
+  #result{
+    display:none;
+    margin-top:18px;
+    padding:16px;
+    border-radius:4px;
+    font-family:Helvetica,Arial,sans-serif;
+    font-size:.98rem;
+  }
+  #result.ok{display:block;background:#E4F4EC;color:#1D6B43;border:1px solid #BBDECB;}
+  #result.err{display:block;background:#FBEAEA;color:#8C2F2F;border:1px solid #EBC7C7;}
+  footer{
+    text-align:center;
+    font-size:.85rem;
+    color:#6B7A82;
+    font-family:Helvetica,Arial,sans-serif;
+    margin-top:34px;
+  }
+  footer a{color:var(--teal);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="logo-mark.png" alt="Toronto ProRN logo">
+  <h1>TORONTO PRORN INC.</h1>
+  <p>Clinic Booking Request &mdash; Post-Operative Recovery Nursing</p>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <p>This page is for referring clinics only. Complete the request below and we
+    confirm availability the same business day, then contact your clinic to verify
+    the surgeon's post-operative orders before the surgery date. A nursing report
+    is returned to your clinic after care is complete.</p>
+  </div>
+
+  <div class="rate" aria-label="Rate">
+    <span class="amount">$85/hour</span>
+    <span class="terms">10-hour minimum per booking &bull; same rate day or night &bull; home or hotel &bull; Toronto and GTA<br>
+    Paid parking or transportation to the patient is reimbursed to Toronto ProRN with a valid receipt, up to $25 per booking.</span>
+  </div>
+
+  <form id="clinicForm">
+    <input type="hidden" name="access_key" value="d53865a9-a2b3-4a65-944e-42902839d672">
+    <input type="hidden" name="subject" value="CLINIC BOOKING REQUEST — torontoprorn.com">
+    <input type="hidden" name="from_name" value="Toronto ProRN Clinic Request Page">
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+    <fieldset>
+      <legend>Your clinic</legend>
+      <label for="clinic">Clinic name</label>
+      <input type="text" id="clinic" name="Clinic Name" required>
+
+      <div class="two">
+        <div>
+          <label for="contact">Your name</label>
+          <input type="text" id="contact" name="Contact Name" required>
+        </div>
+        <div>
+          <label for="role">Your role</label>
+          <input type="text" id="role" name="Role" placeholder="e.g., OR Nurse, Clinic Manager">
+        </div>
+      </div>
+
+      <div class="two">
+        <div>
+          <label for="phone">Direct phone</label>
+          <input type="tel" id="phone" name="Phone" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" required>
+        </div>
+      </div>
+
+      <div class="code">
+        <label for="refcode">Clinic referral code</label>
+        <input type="text" id="refcode" name="Referral Code" placeholder="From your Toronto ProRN one-pager">
+        <p class="hint">Found on the information sheet we sent your clinic. Leave blank if you don't have one.</p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>The booking</legend>
+      <div class="two">
+        <div>
+          <label for="date">Surgery date</label>
+          <input type="date" id="date" name="Surgery Date" required>
+        </div>
+        <div>
+          <label for="procedure">Procedure</label>
+          <input type="text" id="procedure" name="Procedure" placeholder="e.g., abdominoplasty" required>
+        </div>
+      </div>
+
+      <div class="two">
+        <div>
+          <label for="coverage">Coverage needed</label>
+          <select id="coverage" name="Coverage" required>
+            <option value="">Select&hellip;</option>
+            <option>Overnight (10 hours)</option>
+            <option>Overnight (12 hours)</option>
+            <option>Day coverage (10 hours)</option>
+            <option>Day coverage (12 hours)</option>
+            <option>Two nights</option>
+            <option>Other / multi-day (describe in notes)</option>
+          </select>
+        </div>
+        <div>
+          <label for="start">Preferred start time</label>
+          <input type="text" id="start" name="Start Time" placeholder="e.g., 6:00 PM pickup at clinic">
+        </div>
+      </div>
+
+      <label for="location">Patient recovery location</label>
+      <input type="text" id="location" name="Recovery Location" placeholder="Neighbourhood or hotel, e.g., Yorkville hotel, Etobicoke home" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>Recovery environment</legend>
+
+      <label for="setting">Type of setting</label>
+      <select id="setting" name="Setting Type" required>
+        <option value="">Select&hellip;</option>
+        <option>Hotel</option>
+        <option>Private residence — condo or apartment building</option>
+        <option>Private residence — house</option>
+      </select>
+
+      <label for="pets">Pets in the home?</label>
+      <select id="pets" name="Pets" required>
+        <option value="">Select&hellip;</option>
+        <option>No pets</option>
+        <option>Yes</option>
+      </select>
+      <div id="petDetailsWrap" style="display:none">
+        <label for="petDetails">What kind of pets, and how many?</label>
+        <input type="text" id="petDetails" name="Pet Details" placeholder="e.g., 2 cats, 1 large dog">
+      </div>
+
+      <label for="adults">Will other adults be in the home during care?</label>
+      <select id="adults" name="Other Adults" required>
+        <option value="">Select&hellip;</option>
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+      <div id="adultDetailsWrap" style="display:none">
+        <label for="adultDetails">How many adults, and their relationship to the patient?</label>
+        <input type="text" id="adultDetails" name="Adult Details" placeholder="e.g., spouse and mother, 2 adults">
+      </div>
+
+      <label for="children">Will children be in the home during care?</label>
+      <select id="children" name="Children" required>
+        <option value="">Select&hellip;</option>
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+      <div id="childDetailsWrap" style="display:none">
+        <label for="childDetails">How many children, and their ages?</label>
+        <input type="text" id="childDetails" name="Child Details" placeholder="e.g., 2 children, ages 4 and 7">
+      </div>
+
+      <label for="notes">Notes for the nurse</label>
+      <textarea id="notes" name="Notes" rows="4" placeholder="Drains, mobility, language, escort from clinic needed, anything else relevant."></textarea>
+    </fieldset>
+
+    <button type="submit" id="submitBtn">Send booking request</button>
+    <div id="result" role="status"></div>
+  </form>
+
+  <footer>
+    <p>Questions? Call <a href="tel:3433015061">(343) 301-5061</a> or email
+    <a href="mailto:prorninc@gmail.com">prorninc@gmail.com</a></p>
+    <p>&copy; <span id="year"></span> Toronto ProRN Inc. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function toggleDetail(selectId, wrapId){
+  const sel = document.getElementById(selectId);
+  const wrap = document.getElementById(wrapId);
+  sel.addEventListener('change', function(){
+    wrap.style.display = (sel.value === 'Yes') ? 'block' : 'none';
+    if(sel.value !== 'Yes'){ wrap.querySelector('input').value = ''; }
+  });
+}
+toggleDetail('pets', 'petDetailsWrap');
+toggleDetail('adults', 'adultDetailsWrap');
+toggleDetail('children', 'childDetailsWrap');
+
+const form = document.getElementById('clinicForm');
+const btn = document.getElementById('submitBtn');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = 'Sending\u2026';
+  result.className = '';
+  result.style.display = 'none';
+
+  try{
+    const data = new FormData(form);
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+    if(json.success){
+      result.textContent = 'Request received. We will confirm availability the same business day at the phone number you provided.';
+      result.className = 'ok';
+      form.reset();
+    }else{
+      throw new Error(json.message || 'Submission failed');
+    }
+  }catch(err){
+    result.textContent = 'The request could not be sent. Please call (343) 301-5061 or email prorninc@gmail.com and we will book you directly.';
+    result.className = 'err';
+  }finally{
+    btn.disabled = false;
+    btn.textContent = 'Send booking request';
+  }
+});
+</script>
+
+</body>
+</html>
