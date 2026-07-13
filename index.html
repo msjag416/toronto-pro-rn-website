@@ -710,6 +710,22 @@
             }
         }
 
+        // Safeguard: if the hero image is already loaded (e.g. served from cache)
+        // before the onload handler was attached, reveal it right away. Also a
+        // short fallback timer in case the event was missed entirely.
+        (function ensureHeroVisible() {
+            const img = document.getElementById('hero-image');
+            if (img && img.complete && img.naturalWidth > 0) {
+                handleImageLoad();
+            }
+            setTimeout(function () {
+                const el = document.getElementById('hero-image');
+                if (el && el.complete && el.naturalWidth > 0) {
+                    handleImageLoad();
+                }
+            }, 400);
+        })();
+
         function setupFormValidation() {
             const form = document.getElementById('contact-form');
             if (!form) return;
