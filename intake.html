@@ -138,7 +138,7 @@ tailwind.config = {
 
     <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slatey">
       <span class="inline-flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-teal"></i> Toronto and the GTA, Ontario, Canada only</span>
-      <span class="inline-flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-teal"></i> $85/hour (CAD), 8-hour minimum</span>
+      <span class="inline-flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-teal"></i> $85/hour, 8-hour minimum</span>
       <span class="inline-flex items-center gap-2"><i data-lucide="list-checks" class="w-4 h-4 text-teal"></i> 12 short steps</span>
       <span class="inline-flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-teal"></i> Kept confidential under PHIPA</span>
     </div>
@@ -199,7 +199,7 @@ tailwind.config = {
 <div class="q"><label for="f13" class="q-label">Province or state <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f13" name="Home province/state" class="inp" autocomplete="address-level1" required ><p class="q-err" role="alert"></p></div>
 </div>
 <div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f14" class="q-label">Postal or ZIP code <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f14" name="Home postal/ZIP code" class="inp" autocomplete="postal-code" required ><p class="q-err" role="alert"></p></div>
-<div class="q"><label for="f15" class="q-label">Country of residence <span class="text-teal" aria-hidden="true">*</span></label><select id="f15" name="Country of residence" class="inp" required><option value="">Select</option><option>Canada</option><option>United States</option><option>Other</option></select><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f15" class="q-label">Country of residence <span class="text-teal" aria-hidden="true">*</span></label><select id="f15" name="Country of residence" class="inp" required><option value="">Select</option><option>Canada</option><option>United States</option><option>Bahamas</option><option>Barbados</option><option>Bermuda</option><option>Cayman Islands</option><option>Jamaica</option><option>Trinidad and Tobago</option><option>United Arab Emirates</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option><option>United Kingdom</option><option>Other</option></select><p class="q-err" role="alert"></p></div>
 </div>
 <div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Country of residence" data-if-values="Other"><div class="q"><label for="f16" class="q-label">Which country? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f16" name="Country of residence: other" class="inp" required ><p class="q-err" role="alert"></p></div>
 </div>
@@ -471,7 +471,7 @@ tailwind.config = {
         <tr><td class="py-1.5">12 hours</td><td class="py-1.5 text-right font-mono text-ink">$1,020.00</td></tr>
       </tbody>
     </table>
-    <p class="text-sm text-slatey mt-3">$85.00 per hour, 8-hour minimum per shift.</p>
+    <p class="text-sm text-slatey mt-3">$85.00 per hour, 8-hour minimum per shift. Canadian dollars for clients in Canada, US dollars for clients outside Canada.</p>
   </div>
   <div class="rounded-xl border border-line bg-white p-6">
     <h3 class="font-display text-lg text-ink mb-3">RN transportation fee</h3>
@@ -497,7 +497,7 @@ tailwind.config = {
 <div class="q"><label class="box"><input type="checkbox" name="Ack: hourly rate" value="Yes" required><span>I understand Toronto ProRN charges $85.00 per hour, with an 8-hour minimum.</span></label><p class="q-err" role="alert"></p></div>
 <div class="q"><label class="box"><input type="checkbox" name="Ack: 25% deposit" value="Yes" required><span>I understand a 25% deposit is needed to confirm my booking.</span></label><p class="q-err" role="alert"></p></div>
 <div class="q"><label class="box"><input type="checkbox" name="Ack: balance due 48 hours before" value="Yes" required><span>I understand the balance is due 48 hours before my first nursing shift.</span></label><p class="q-err" role="alert"></p></div>
-<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">How to pay.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link. The payment link is sent to you once your booking is confirmed.</div>
+<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">How to pay.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link. The payment link is sent to you once your booking is confirmed. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars.</div>
 <h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Cancellation and refund policy</h3>
 <ul class="list-disc pl-5 space-y-2 text-[15px] text-slatey mb-6">
   <li><strong class="text-ink">More than 14 days before your first nursing shift:</strong> your deposit is refunded in full.</li>
@@ -1052,6 +1052,7 @@ function renderEstimate() {
   if (!e.nightsKnown) notes.push("Shown for 1 night. Your total depends on how many nights you book.");
   if (!e.hoursKnown) notes.push(`Shown at the ${MIN_HOURS}-hour minimum.`);
   if (e.fee === null) notes.push("The transportation fee isn't included until your recovery address is checked.");
+  notes.push("Amounts are in Canadian dollars for clients in Canada, and in US dollars for clients outside Canada.");
   notes.push("Ontario statutory holidays may be charged at time and a half.");
   document.getElementById('estimate-notes').innerHTML = notes.map(n => `<p>${n}</p>`).join('');
   paintZone();

@@ -43,7 +43,7 @@
       "image": "https://www.torontoprorn.com/hero.jpg",
       "logo": "https://www.torontoprorn.com/logo-mark.png",
       "priceRange": "$$$",
-      "currenciesAccepted": "CAD",
+      "currenciesAccepted": "CAD, USD",
       "paymentAccepted": "Interac e-Transfer, Credit Card",
       "address": {
         "@type": "PostalAddress",
@@ -111,11 +111,11 @@
         { "@type": "Question", "name": "Can a nurse stay overnight with me after plastic surgery in Toronto?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your nurse provides continuous overnight care at your home, hotel or recovery suite anywhere in the GTA. They stay awake through the night monitoring vital signs, tracking drain output, timing medications, managing nausea and helping you get up safely the first time." } },
         { "@type": "Question", "name": "How much does a private recovery nurse cost after cosmetic surgery in Toronto?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Pay by Interac e-Transfer in Canada, or by credit card from anywhere through a secure Stripe link. Fill out the intake form and it shows your estimate as you go." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Pay by Interac e-Transfer in Canada, or by credit card from anywhere through a secure Stripe link. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars. Fill out the intake form and it shows your estimate as you go." } },
         { "@type": "Question", "name": "Who takes care of my drains after a tummy tuck?",
           "acceptedAnswer": { "@type": "Answer", "text": "Your nurse does. Stripping the tubing, emptying and measuring output, recording volumes for your surgeon, and watching for clots, blockage or early infection. Most patients find drains the most stressful part of recovery, and having a nurse handle them removes the guesswork. Before your nurse leaves, they teach whoever is staying with you how to do it." } },
         { "@type": "Question", "name": "Can I recover in a hotel after plastic surgery in Toronto?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it's common for patients flying into Toronto for surgery. Your nurse provides discreet care in your hotel room, including overnight monitoring before you're cleared to fly home, and follows your surgeon's post-operative instructions exactly." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it's common for patients flying into Toronto for surgery. Your nurse provides discreet care in your hotel room, including overnight monitoring before you're cleared to fly home, and follows your surgeon's post-operative instructions exactly. Travelling from another country? Read our guide for international patients." } },
         { "@type": "Question", "name": "What's the difference between an ICU recovery nurse, a practical nurse and a PSW?",
           "acceptedAnswer": { "@type": "Answer", "text": "A personal support worker (PSW) or caregiver can bring you water and help you to the bathroom, but can't assess you. Registered Practical Nurses (RPNs) are trained to care for patients whose condition is stable and predictable, and the first night after surgery isn't always predictable. An ICU-trained Registered Nurse is used to patients who can change quickly. That means taking a full set of vitals and knowing what they mean, recognizing an expanding hematoma, judging whether your breathing is safe after anesthesia, managing opioid dosing and timing, and deciding when your surgeon needs to be called at 2am." } },
         { "@type": "Question", "name": "Is a private recovery nurse covered by OHIP?",
@@ -196,6 +196,7 @@ tailwind.config = {
       <a href="#cost" class="text-sm font-medium text-slatey hover:text-teal transition">What it costs</a>
       <a href="#reviews" class="text-sm font-medium text-slatey hover:text-teal transition">Reviews</a>
       <a href="#faq" class="text-sm font-medium text-slatey hover:text-teal transition">FAQ</a>
+      <a href="international.html" class="text-sm font-medium text-slatey hover:text-teal transition">International</a>
       <a href="intake.html" class="text-sm font-bold text-teal hover:text-teallt transition">Intake form</a>
       <a href="tel:+13433015061" class="bg-teal hover:bg-teallt text-white px-5 py-2.5 rounded-full text-sm font-bold transition shadow-lg shadow-teal/25">Call (343) 301-5061</a>
     </div>
@@ -213,6 +214,7 @@ tailwind.config = {
       <a href="#cost" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">What it costs</a>
       <a href="#reviews" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">Reviews</a>
       <a href="#faq" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">FAQ</a>
+      <a href="international.html" class="block py-3 border-b border-line text-lg font-medium text-slatey">International patients</a>
       <a href="intake.html" class="block py-3 border-b border-line text-lg font-bold text-teal">Intake form</a>
       <a href="#book" onclick="toggleMenu()" class="block text-center bg-teal text-white py-3.5 rounded-lg font-bold mt-4">Book my recovery nurse</a>
     </div>
@@ -393,6 +395,7 @@ tailwind.config = {
         <i data-lucide="hotel" class="w-7 h-7 text-teal mb-4"></i>
         <h3 class="font-display text-xl text-ink mb-3">Hotel Recovery for Out-of-Town Patients</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Travelling to Toronto for surgery means recovering away from home, often without experienced medical support nearby. Your ICU-trained and post-operative care registered nurse provides overnight postoperative monitoring, manages prescribed compression garments and surgical drains, assesses peripheral IV saline locks when present, and administers prescribed medications within authorized nursing orders. Your nurse also monitors for complications and communicates concerning changes to your surgical team.</p>
+        <a href="international.html" class="inline-block mt-4 text-teal font-bold text-sm underline">Travelling from another country? Plan your recovery</a>
       </article>
 
     </div>
@@ -451,7 +454,7 @@ tailwind.config = {
         <p class="text-slatey"><strong class="text-ink">No supply fees and no hidden charges.</strong> You pay the hourly rate, plus the $30 transportation fee only if your address is outside the fee-free zone.</p>
         <p class="text-slatey"><strong class="text-ink">Not covered by OHIP.</strong> Cosmetic recovery nursing is paid privately. Some extended health plans reimburse private duty nursing, so check your policy and we'll provide a receipt.</p>
         <p class="text-slatey"><strong class="text-ink">Nothing is owed until the booking is confirmed</strong> and we've agreed on the hours. A 25% deposit confirms your booking, and the balance is due 48 hours before your first shift.</p>
-        <p class="text-slatey"><strong class="text-ink">Pay from anywhere.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link, sent to you once your booking is confirmed.</p>
+        <p class="text-slatey"><strong class="text-ink">Pay from anywhere.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link, sent to you once your booking is confirmed. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars.</p>
         <p class="text-slatey"><strong class="text-ink">Cancellation.</strong> Your deposit is refunded in full if you cancel more than 14 days before your first shift. <a href="#" onclick="openModal('cancellation'); return false;" class="text-teal font-semibold underline">Read the full cancellation policy</a>.</p>
       </div>
     </div>
@@ -655,7 +658,7 @@ tailwind.config = {
           <h3 class="font-display text-lg text-ink">How much does a private recovery nurse cost after cosmetic surgery in Toronto?</h3>
           <i data-lucide="plus" class="w-5 h-5 text-teal flex-shrink-0 mt-1 group-open:rotate-45 transition-transform"></i>
         </summary>
-        <p class="px-6 pb-6 text-slatey leading-relaxed">Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Pay by Interac e-Transfer in Canada, or by credit card from anywhere through a secure Stripe link. Fill out the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> and it shows your estimate as you go.</p>
+        <p class="px-6 pb-6 text-slatey leading-relaxed">Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Pay by Interac e-Transfer in Canada, or by credit card from anywhere through a secure Stripe link. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars. Fill out the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> and it shows your estimate as you go.</p>
       </details>
 
       <details class="group bg-white rounded-xl border border-line overflow-hidden">
@@ -671,7 +674,7 @@ tailwind.config = {
           <h3 class="font-display text-lg text-ink">Can I recover in a hotel after plastic surgery in Toronto?</h3>
           <i data-lucide="plus" class="w-5 h-5 text-teal flex-shrink-0 mt-1 group-open:rotate-45 transition-transform"></i>
         </summary>
-        <p class="px-6 pb-6 text-slatey leading-relaxed">Yes, and it's common for patients flying into Toronto for surgery. Your nurse provides discreet care in your hotel room, including overnight monitoring before you're cleared to fly home, and follows your surgeon's post-operative instructions exactly.</p>
+        <p class="px-6 pb-6 text-slatey leading-relaxed">Yes, and it's common for patients flying into Toronto for surgery. Your nurse provides discreet care in your hotel room, including overnight monitoring before you're cleared to fly home, and follows your surgeon's post-operative instructions exactly. Travelling from another country? Read our <a href="international.html" class="text-teal font-semibold underline">guide for international patients</a>.</p>
       </details>
 
       <details class="group bg-white rounded-xl border border-line overflow-hidden">
@@ -869,6 +872,7 @@ tailwind.config = {
           <li><a href="#cost" class="hover:text-blush transition">What it costs</a></li>
           <li><a href="#about" class="hover:text-blush transition">About JoAnne</a></li>
           <li><a href="#faq" class="hover:text-blush transition">FAQ</a></li>
+          <li><a href="international.html" class="hover:text-blush transition">International patients</a></li>
         </ul>
       </div>
 
