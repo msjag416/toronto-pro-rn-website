@@ -111,7 +111,7 @@
         { "@type": "Question", "name": "Can a nurse stay overnight with me after plastic surgery in Toronto?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your nurse provides continuous overnight care at your home, hotel or recovery suite anywhere in the GTA. They stay awake through the night monitoring vital signs, tracking drain output, timing medications, managing nausea and helping you get up safely the first time." } },
         { "@type": "Question", "name": "How much does a private recovery nurse cost after cosmetic surgery in Toronto?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of the waterfront). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Fill out the intake form and it shows your estimate as you go." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Fill out the intake form and it shows your estimate as you go." } },
         { "@type": "Question", "name": "Who takes care of my drains after a tummy tuck?",
           "acceptedAnswer": { "@type": "Answer", "text": "Your nurse does. Stripping the tubing, emptying and measuring output, recording volumes for your surgeon, and watching for clots, blockage or early infection. Most patients find drains the most stressful part of recovery, and having a nurse handle them removes the guesswork. Before your nurse leaves, they teach whoever is staying with you how to do it." } },
         { "@type": "Question", "name": "Can I recover in a hotel after plastic surgery in Toronto?",
@@ -424,7 +424,16 @@ tailwind.config = {
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <p class="eyebrow text-teal mb-4">What it costs</p>
     <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight text-ink mb-4">$85 an hour, with an 8-hour minimum</h2>
-    <p class="text-slatey text-lg mb-10">An 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of the waterfront), and Ontario statutory holidays may be charged at time and a half. The intake form shows your estimate as you fill it out, so you know the cost before you book.</p>
+    <p class="text-slatey text-lg mb-10">An 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay), and Ontario statutory holidays may be charged at time and a half. The intake form shows your estimate as you fill it out, so you know the cost before you book.</p>
+
+    <div class="mb-10">
+      <h3 class="font-display text-xl text-ink mb-2">The fee-free zone</h3>
+      <p class="text-slatey text-[15px] mb-4">No RN transportation fee for recovery addresses inside the red line: south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of Queens Quay.</p>
+      <div class="w-full rounded-2xl border border-line overflow-x-auto bg-line">
+        <img src="toronto-fee-free-zone.jpg" width="1634" height="963" loading="lazy" class="block w-full min-w-[640px] h-auto" alt="Map of the fee-free zone in downtown Toronto: south of Bloor St, east of Dufferin St, west of the Don Valley and north of Queens Quay, outlined in red">
+      </div>
+      <p class="text-xs text-slatey mt-2">Your exact address is checked on the <a href="intake.html" class="text-teal font-semibold underline">intake form</a>. Map: Esri, HERE, Garmin, &copy; OpenStreetMap contributors.</p>
+    </div>
 
     <div class="bg-white rounded-2xl border border-line overflow-hidden">
       <div class="p-8 md:p-10 border-b border-line">
@@ -644,7 +653,7 @@ tailwind.config = {
           <h3 class="font-display text-lg text-ink">How much does a private recovery nurse cost after cosmetic surgery in Toronto?</h3>
           <i data-lucide="plus" class="w-5 h-5 text-teal flex-shrink-0 mt-1 group-open:rotate-45 transition-transform"></i>
         </summary>
-        <p class="px-6 pb-6 text-slatey leading-relaxed">Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of the waterfront). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Fill out the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> and it shows your estimate as you go.</p>
+        <p class="px-6 pb-6 text-slatey leading-relaxed">Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Fill out the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> and it shows your estimate as you go.</p>
       </details>
 
       <details class="group bg-white rounded-xl border border-line overflow-hidden">
@@ -1072,6 +1081,7 @@ function handleTestimonialSubmit(e) {
     'bg-red-50 text-red-800 border border-red-200'
   );
 }
+
 </script>
 </body>
 </html>
