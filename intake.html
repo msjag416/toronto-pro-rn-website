@@ -36,6 +36,9 @@
   }
 
   /* ---------- form pieces ---------- */
+  .saved-badge { opacity: 0; transition: opacity .3s; }
+  .saved-badge.show { opacity: 1; }
+  .saved-badge.warn { opacity: 1; color: #B42318; }
   .q { margin-bottom: 1.75rem; }
   .q-label { display:block; font-size:15px; font-weight:600; color:#12191B; margin-bottom:.6rem; line-height:1.35; }
   .q-hint { font-size:.875rem; color:#4A5A5C; margin:-.25rem 0 .75rem; }
@@ -134,7 +137,7 @@
   <div id="progress-wrap" class="sticky top-[61px] z-40 bg-ivory/95 backdrop-blur-sm py-4 -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
     <div class="flex justify-between items-baseline text-sm mb-2">
       <span class="font-semibold text-ink" id="progress-label">Step 1 of 12: About you</span>
-      <span class="text-slatey font-mono text-xs" id="progress-pct">0%</span>
+      <span class="flex items-center gap-3"><span id="saved-badge" class="saved-badge text-xs font-semibold text-teal" aria-live="polite"></span><span class="text-slatey font-mono text-xs" id="progress-pct">0%</span></span>
     </div>
     <div class="h-2 w-full rounded-full bg-line overflow-hidden">
       <div id="progress-bar" class="h-full bg-teal rounded-full transition-all duration-500" style="width:8%"></div>
@@ -526,12 +529,16 @@
 
 
       <div id="form-status" class="hidden rounded-lg p-4 text-sm font-medium mb-4" role="alert"></div>
+      <div id="save-later-note" class="hidden rounded-lg p-4 text-sm font-medium mb-4 bg-teal/10 text-teal border border-teal/30" role="status"></div>
 
       <div class="flex flex-col-reverse sm:flex-row justify-between gap-3 pt-6 border-t border-line">
         <button type="button" id="back-btn" class="hidden inline-flex justify-center items-center px-6 py-3.5 bg-white text-ink border border-line font-semibold rounded-lg hover:border-teal transition">
           <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back
         </button>
         <span id="back-spacer"></span>
+        <button type="button" id="save-later-btn" class="inline-flex justify-center items-center px-6 py-3.5 bg-white text-ink border border-line font-semibold rounded-lg hover:border-teal transition">
+          <i data-lucide="save" class="w-4 h-4 mr-2"></i> Save and finish later
+        </button>
         <button type="button" id="next-btn" class="inline-flex justify-center items-center px-7 py-3.5 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition shadow-lg shadow-teal/25">
           Next <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
         </button>
@@ -769,13 +776,47 @@ function apply(data) {
     else el.value = v;
   });
 }
-let saveTimer, submitted = false;
-function save() {
+let saveTimer, badgeTimer, submitted = false;
+function writeSave() {
+  if (submitted) return false;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ fields: collect(), step: current, zone, saved: Date.now() }));
+    return localStorage.getItem(STORAGE_KEY) !== null;
+  } catch (e) { return false; }
+}
+function showSaved(ok) {
+  const b = document.getElementById('saved-badge');
+  if (!b) return;
+  clearTimeout(badgeTimer);
+  if (ok) {
+    b.textContent = '\u2713 Saved';
+    b.className = 'saved-badge show text-xs font-semibold text-teal';
+    badgeTimer = setTimeout(() => b.classList.remove('show'), 2000);
+  } else {
+    b.textContent = "Can't save in this browser";
+    b.className = 'saved-badge warn text-xs font-semibold';
+  }
+}
+function save(silent) {
   clearTimeout(saveTimer);
   if (submitted) return;
   saveTimer = setTimeout(() => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ fields: collect(), step: current, zone, saved: Date.now() })); } catch (e) {}
+    const ok = writeSave();
+    if (!silent || !ok) showSaved(ok);
   }, 250);
+}
+function saveForLater() {
+  clearTimeout(saveTimer);
+  const ok = writeSave();
+  showSaved(ok);
+  const note = document.getElementById('save-later-note');
+  note.textContent = ok
+    ? "Your answers are saved on this phone or computer. You can close this page now. To finish, come back to torontoprorn.com/intake.html in this same browser and you'll pick up right where you left off."
+    : "This browser isn't letting the form save your answers. This happens in private or incognito windows. Please finish the form now, or open it in a regular browser window.";
+  note.className = ok
+    ? 'rounded-lg p-4 text-sm font-medium mb-4 bg-teal/10 text-teal border border-teal/30'
+    : 'rounded-lg p-4 text-sm font-medium mb-4 bg-red-50 text-red-800 border border-red-200';
+  note.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 function loadSaved() {
   let saved = null;
@@ -860,7 +901,9 @@ function showStep(n) {
   if (steps[n - 1].querySelector('#zone-map')) ensureMap();
   if (steps[n - 1].querySelector('#estimate-rows')) renderEstimate();
   if (n === TOTAL) renderReview();
-  save();
+  const note = document.getElementById('save-later-note');
+  if (note) note.className = 'hidden';
+  save(true);
 }
 function scrollToForm() {
   const top = document.getElementById('progress-wrap').getBoundingClientRect().top + window.scrollY - 70;
@@ -1155,6 +1198,7 @@ function init() {
   form.addEventListener('submit', submit);
   document.getElementById('next-btn').addEventListener('click', next);
   document.getElementById('back-btn').addEventListener('click', back);
+  document.getElementById('save-later-btn').addEventListener('click', saveForLater);
   document.getElementById('check-address-btn').addEventListener('click', () => checkAddress(false));
   document.getElementById('goto-address').addEventListener('click', () => {
     const idx = steps.findIndex(s => s.querySelector('#zone-map')) + 1;
