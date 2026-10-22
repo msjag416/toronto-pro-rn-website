@@ -37,16 +37,11 @@ The service is for Toronto and the GTA, Ontario, Canada only. That is stated in 
 
 ## The fee-free zone map
 
-The map uses OpenStreetMap, which is free and needs no account or key. The shaded area is the fee-free zone: south of Bloor, east of Dufferin, west of the Don Valley, north of the waterfront.
+The map is a picture file, **toronto-fee-free-zone.jpg**, and it must sit in the same folder as the two pages. It's JoAnne's own Toronto street map with the fee-free zone outlined in red: Bloor St W and Bloor St E (north), Dufferin St (west), the Don Valley (east) and Queens Quay W / Lake Shore (south). Because it's a plain picture, it always shows, including when the files are opened straight from the computer.
 
-When a client presses "Check my address", the page looks up the street address with OpenStreetMap's free search and places a pin. It then shows one of these:
+It appears in two places: the "What it costs" section of the main page, and step 4 of the intake form. On the intake form, a client can press "Check my address" or tap the map, and a pin drops on the spot and shows $0 or $30.
 
-- Inside the zone: $0 fee
-- Outside the zone but within about 45 km of downtown: $30 per shift
-- Farther than 45 km: "outside our usual service area", you confirm availability
-- Not found: client can tap their location on the map instead, or skip it and you confirm the fee later
-
-The zone edges follow the streets closely but not perfectly. For an address right on Bloor or Dufferin, use your own judgment.
+The red line was traced into map positions (the FEE_FREE_ZONE list in intake.html), so the fee check follows the same border clients see. If the border ever changes, the picture and that list both need redoing, so ask for help rather than editing the numbers by hand.
 
 ## Changing rates, the zone or the service area
 
@@ -57,7 +52,7 @@ Open intake.html and search for **SETTINGS**. Near the bottom of the file you'll
 - `TRAVEL_FEE = 30`
 - `DEPOSIT_RATE = 0.25`
 - `SERVICE_RADIUS_KM = 45`
-- `FEE_FREE_ZONE`, a list of map points with the street corner written beside each one
+- `FEE_FREE_ZONE`, the border as map points (see the map section above before changing it)
 
 Change the number, save, and upload. If you change the rates, also update the rates table in step 10 (search for "$680.00") and the "$85/hour" line at the top of the page, since those are written out as text.
 
@@ -65,5 +60,5 @@ Change the number, save, and upload. If you change the rates, also update the ra
 
 1. Go to your torontoprorn repository on GitHub.
 2. Click "Add file", then "Upload files".
-3. Drag in the changed files (intake.html, index.html).
+3. Drag in the changed files (intake.html, index.html, and toronto-fee-free-zone.jpg the first time).
 4. Click "Commit changes". The live site updates within a minute or two.

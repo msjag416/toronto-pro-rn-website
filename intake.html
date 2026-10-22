@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://www.torontoprorn.com/intake.html" />
 
-<title>Recovery Nurse Booking Intake Form | Toronto ProRN</title>
-<meta name="description" content="Book a private overnight recovery nurse in Toronto after plastic surgery. Tell us about your surgery, discharge, recovery address and nursing dates, and see your cost estimate.">
+<title>Recovery Nurse Booking Intake Form | Toronto ProRN, Ontario, Canada</title>
+<meta name="description" content="Book a private overnight recovery nurse in Toronto, Ontario, Canada after plastic surgery. Tell us about your surgery, discharge, recovery address and nursing dates, and see your cost estimate.">
 
-<meta property="og:title" content="Recovery Nurse Booking Intake Form | Toronto ProRN" />
+<meta property="og:title" content="Recovery Nurse Booking Intake Form | Toronto ProRN, Ontario, Canada" />
 <meta property="og:description" content="Request overnight post-operative nursing care in Toronto. About 15 to 20 minutes, and your answers save so you can finish later." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.torontoprorn.com/intake.html" />
@@ -21,9 +21,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Map library (OpenStreetMap, free, no account needed) -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -94,7 +91,7 @@ tailwind.config = {
   .zone-status.out { background:#FBF3EF; border-color:#E4CFC6; color:#12191B; }
   .zone-status.far { background:#FEF3F2; border-color:#FDA29B; color:#7A271A; }
 
-  .leaflet-container { font-family: 'Karla', system-ui, sans-serif; }
+  #zone-pin { transform: translate(-50%, -100%); }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -125,8 +122,8 @@ tailwind.config = {
 <header class="relative pt-12 pb-8 lg:pt-16 overflow-hidden">
   <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blush/40 blur-3xl"></div>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <p class="eyebrow text-teal mb-4">Booking intake form</p>
-    <h1 class="font-display text-3xl sm:text-4xl lg:text-[2.8rem] leading-[1.1] text-ink mb-5">Book your overnight recovery nurse</h1>
+    <p class="eyebrow text-teal mb-4">Booking intake form · Toronto, Ontario, Canada</p>
+    <h1 class="font-display text-3xl sm:text-4xl lg:text-[2.8rem] leading-[1.1] text-ink mb-5">Book your overnight recovery nurse in Toronto</h1>
     <p class="text-lg text-slatey leading-relaxed mb-6">This form is detailed on purpose. It covers everything your nurse needs to plan your first nights after surgery and give you an accurate quote, so you won't have to answer the same questions again by email. Most questions are quick taps, and the whole form takes about 15 to 20 minutes.</p>
 
     <div class="rounded-xl border border-teal/30 bg-white p-5 mb-6 flex gap-4">
@@ -140,7 +137,8 @@ tailwind.config = {
     </div>
 
     <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slatey">
-      <span class="inline-flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-teal"></i> $85/hour, 8-hour minimum</span>
+      <span class="inline-flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-teal"></i> Toronto and the GTA, Ontario, Canada only</span>
+      <span class="inline-flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-teal"></i> $85/hour (CAD), 8-hour minimum</span>
       <span class="inline-flex items-center gap-2"><i data-lucide="list-checks" class="w-4 h-4 text-teal"></i> 12 short steps</span>
       <span class="inline-flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-teal"></i> Kept confidential under PHIPA</span>
     </div>
@@ -177,6 +175,8 @@ tailwind.config = {
   <p class="eyebrow text-teal mb-2">Step 1 of 12</p>
   <h2 id="step-h-1" class="font-display text-2xl md:text-3xl text-ink mb-2">About you</h2>
   <p class="text-slatey mb-8">Start with the basics so we know who you are and how to reach you.</p>
+<div class="rounded-xl border bg-blush/40 border-blush text-ink p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">Toronto ProRN is an in-person nursing service in Toronto, Ontario, Canada.</strong> Your nurse comes to your home, hotel or recovery suite in Toronto or the Greater Toronto Area (GTA). We don't provide care in any other city or country.</div>
+<div class="q"><label class="box"><input type="checkbox" name="Location confirmed: Toronto, Ontario, Canada" value="Yes" required><span>I confirm my surgery and recovery will be in Toronto or the Greater Toronto Area, Ontario, Canada.</span></label><p class="q-err" role="alert"></p></div>
 <div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f1" class="q-label">Legal first name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f1" name="First name" class="inp" autocomplete="given-name" required ><p class="q-err" role="alert"></p></div>
 <div class="q"><label for="f2" class="q-label">Middle name <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f2" name="Middle name" class="inp" autocomplete="additional-name" ><p class="q-err" role="alert"></p></div>
 </div>
@@ -284,7 +284,7 @@ tailwind.config = {
 <div class="q"><p class="q-label">Is your recovery accommodation booked or confirmed? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Accommodation confirmed" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Accommodation confirmed" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
 <div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Recovery accommodation type" data-if-values="Hotel|Airbnb or short-term rental|Other (please specify)"><div class="q"><label for="f37" class="q-label">Name of the hotel, Airbnb or property <span class="font-normal text-slatey">(if known)</span></label><input type="text" id="f37" name="Accommodation name" class="inp" ><p class="q-err" role="alert"></p></div>
 </div>
-<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed">Fill in your recovery address and press <strong class="text-ink">Check my address</strong>. The map shows the fee-free zone: south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of the waterfront. Addresses inside the shaded area have no transportation fee.</div>
+<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed">Fill in your recovery address and press <strong class="text-ink">Check my address</strong>. The map shows the fee-free zone: south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of Queens Quay. Addresses inside the red line have no transportation fee.</div>
 <div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f38" class="q-label">Recovery street address <span class="text-teal req-if-star hidden" aria-hidden="true">*</span></label><input type="text" id="f38" name="Recovery street address" class="inp" autocomplete="off" data-req-if-name="Accommodation confirmed" data-req-if-values="Yes" ><p class="q-err" role="alert"></p></div>
 <div class="q"><label for="f39" class="q-label">Apartment, suite or hotel room number <span class="font-normal text-slatey">(if known)</span></label><input type="text" id="f39" name="Recovery unit/room" class="inp" ><p class="q-err" role="alert"></p></div>
 </div>
@@ -299,8 +299,13 @@ tailwind.config = {
     <p class="text-sm text-slatey">Can't find it? Tap your recovery location on the map.</p>
   </div>
   <div id="zone-status" class="zone-status rounded-xl border p-4 mb-4 text-[15px]" aria-live="polite"></div>
-  <div id="zone-map" class="w-full h-[320px] sm:h-[380px] rounded-xl border border-line overflow-hidden bg-line" role="application" aria-label="Map of the fee-free zone"></div>
-  <p class="text-xs text-slatey mt-2">Your address is looked up with OpenStreetMap's free map search. The map is a guide and your fee is confirmed with you before booking.</p>
+  <div id="zone-map" class="w-full rounded-xl border border-line overflow-x-auto bg-line">
+    <div class="relative min-w-[640px]">
+      <img id="zone-img" src="toronto-fee-free-zone.jpg" width="1634" height="963" class="block w-full h-auto cursor-crosshair" alt="Map of the fee-free zone in downtown Toronto: south of Bloor St, east of Dufferin St, west of the Don Valley and north of Queens Quay, outlined in red">
+      <svg id="zone-pin" class="hidden absolute w-8 h-10 pointer-events-none drop-shadow-lg" viewBox="0 0 32 40" aria-hidden="true"><path d="M16 0C7.2 0 0 7 0 15.6 0 27.3 16 40 16 40s16-12.7 16-24.4C32 7 24.8 0 16 0z" fill="#12191B"/><circle cx="16" cy="15.5" r="6" fill="#fff"/></svg>
+    </div>
+  </div>
+  <p class="text-xs text-slatey mt-2">No transportation fee inside the red line. Your address is looked up with OpenStreetMap's free map search, and your fee is confirmed with you before booking. Map: Esri, HERE, Garmin, &copy; OpenStreetMap contributors.</p>
 </div>
 <div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f42" class="q-label">Check-in date <span class="font-normal text-slatey">(if known)</span></label><input type="date" id="f42" name="Check-in date" class="inp" ><p class="q-err" role="alert"></p></div>
 <div class="q"><label for="f43" class="q-label">Check-out date <span class="font-normal text-slatey">(if known)</span></label><input type="date" id="f43" name="Check-out date" class="inp" ><p class="q-err" role="alert"></p></div>
@@ -470,7 +475,7 @@ tailwind.config = {
   </div>
   <div class="rounded-xl border border-line bg-white p-6">
     <h3 class="font-display text-lg text-ink mb-3">RN transportation fee</h3>
-    <p class="text-[15px] text-slatey mb-3">No fee inside the zone south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of the waterfront.</p>
+    <p class="text-[15px] text-slatey mb-3">No fee inside the zone south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of Queens Quay.</p>
     <p class="text-[15px] text-slatey mb-4">$30.00 per shift for addresses outside that zone in our service area. This covers your nurse's travel only. It doesn't cover transportation for you.</p>
     <div id="fee-status-2" class="zone-status rounded-lg border p-3 text-sm"></div>
     <button type="button" id="goto-address" class="hidden mt-3 text-sm font-bold text-teal underline">Go back and check my address</button>
@@ -577,7 +582,7 @@ tailwind.config = {
           <img src="logo-mark.png" alt="Toronto ProRN" class="h-7 w-auto" />
           <span class="font-display text-xl text-white">Toronto<span class="text-blush">ProRN</span></span>
         </div>
-        <p class="max-w-sm text-sm leading-relaxed">Private overnight recovery nursing for plastic surgery patients across Toronto and the GTA. Provided by JoAnne Gomez, RN.</p>
+        <p class="max-w-sm text-sm leading-relaxed">Private overnight recovery nursing for plastic surgery patients across Toronto and the GTA, Ontario, Canada. Provided by professionally trained Registered Nurses with ICU and post-op recovery experience.</p>
       </div>
       <div class="text-sm space-y-2">
         <p><a href="tel:+13433015061" class="hover:text-blush transition">(343) 301-5061</a></p>
@@ -624,35 +629,55 @@ const DEPOSIT_RATE  = 0.25;   // 25% deposit
 const SERVICE_RADIUS_KM = 45; // farther than this from downtown = "availability to be confirmed"
 const DOWNTOWN = [43.6532, -79.3832];
 
-// Fee-free zone: south of Bloor, east of Dufferin, west of the Don Valley,
-// north of the waterfront. Each pair is [latitude, longitude], going clockwise.
+// Fee-free zone, traced from JoAnne's red line: Bloor St (north), Dufferin St (west),
+// the Don Valley (east), Queens Quay / Lake Shore (south). Each pair is [latitude, longitude].
+// Map picture position: image pixel -> Web Mercator world pixel (zoom 14). Worked out by matching
+// the picture to Esri's map; accurate to about 10 metres. Don't change unless the picture changes.
+const MAP_IMG = { w: 1634, h: 963, a: [0.70743172, 0.00013129, -0.00013131, 0.70733415], t: [1171587.9161, 1530383.8168], world: 4194304 };
 const FEE_FREE_ZONE = [
-  [43.6597, -79.4357], // Bloor & Dufferin
-  [43.6623, -79.4262], // Bloor & Ossington
-  [43.6653, -79.4113], // Bloor & Bathurst
-  [43.6672, -79.4037], // Bloor & Spadina
-  [43.6686, -79.3946], // Bloor & Avenue Rd
-  [43.6709, -79.3866], // Bloor & Yonge
-  [43.6721, -79.3767], // Bloor & Sherbourne
-  [43.6737, -79.3687], // Bloor & Castle Frank (Don Valley)
-  [43.6720, -79.3650], // Don Valley, south of the viaduct
-  [43.6665, -79.3608],
-  [43.6620, -79.3580], // Don Valley at Gerrard
-  [43.6577, -79.3560], // Don Valley at Queen
-  [43.6530, -79.3548],
-  [43.6490, -79.3537], // Don River near Lake Shore
-  [43.6440, -79.3600], // waterfront east
-  [43.6400, -79.3720], // Queens Quay & Jarvis
-  [43.6385, -79.3800], // Queens Quay & Yonge/York
-  [43.6372, -79.3900], // Queens Quay & Spadina
-  [43.6360, -79.3990], // Queens Quay & Bathurst
-  [43.6350, -79.4100], // Lake Shore & Strachan
-  [43.6335, -79.4180],
-  [43.6330, -79.4275], // Lake Shore & Dufferin
-  [43.6390, -79.4282], // Dufferin & King
-  [43.6430, -79.4295], // Dufferin & Queen
-  [43.6495, -79.4312], // Dufferin & Dundas
-  [43.6540, -79.4333]  // Dufferin & College
+  [43.67138, -79.35825],
+  [43.67199, -79.35898],
+  [43.67199, -79.36001],
+  [43.67116, -79.36718],
+  [43.67212, -79.37410],
+  [43.67239, -79.37695],
+  [43.67102, -79.38260],
+  [43.66900, -79.39377],
+  [43.66707, -79.40337],
+  [43.66395, -79.41800],
+  [43.66180, -79.42704],
+  [43.66004, -79.43536],
+  [43.65942, -79.43536],
+  [43.65336, -79.43324],
+  [43.63882, -79.42734],
+  [43.63421, -79.42564],
+  [43.63421, -79.42491],
+  [43.63728, -79.41265],
+  [43.63755, -79.41028],
+  [43.63737, -79.41010],
+  [43.63513, -79.40906],
+  [43.63513, -79.40846],
+  [43.63562, -79.40615],
+  [43.63579, -79.40190],
+  [43.63636, -79.39941],
+  [43.63658, -79.39589],
+  [43.64006, -79.38016],
+  [43.64204, -79.37446],
+  [43.64621, -79.36146],
+  [43.64726, -79.36086],
+  [43.64867, -79.35606],
+  [43.64867, -79.35266],
+  [43.65012, -79.34902],
+  [43.65061, -79.34835],
+  [43.65109, -79.34805],
+  [43.65254, -79.34811],
+  [43.65328, -79.34853],
+  [43.65421, -79.34938],
+  [43.65675, -79.35254],
+  [43.65790, -79.35357],
+  [43.66523, -79.35588],
+  [43.66962, -79.35704],
+  [43.67028, -79.35734]
 ];
 
 const STORAGE_KEY = 'torontoprorn-intake-v1';
@@ -663,7 +688,7 @@ const steps  = Array.from(form.querySelectorAll('.step'));
 const TOTAL  = steps.length;
 let current  = 1;
 let zone     = { status: 'unknown' }; // in | out | far | unknown
-let map, zoneLayer, marker;
+let mapReady = false;
 
 function setYear() {
   const y = new Date().getFullYear();
@@ -912,33 +937,48 @@ function paintZone(stateKey) {
 }
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
+// latitude/longitude <-> pixel on the map picture
+function llToImg(lat, lng) {
+  const W = MAP_IMG.world, m = MAP_IMG.a, t = MAP_IMG.t;
+  const wx = (lng + 180) / 360 * W;
+  const sn = Math.sin(lat * Math.PI / 180);
+  const wy = (0.5 - Math.log((1 + sn) / (1 - sn)) / (4 * Math.PI)) * W;
+  const dx = wx - t[0], dy = wy - t[1], det = m[0] * m[3] - m[1] * m[2];
+  return { x: (m[3] * dx - m[1] * dy) / det, y: (-m[2] * dx + m[0] * dy) / det };
+}
+function imgToLl(x, y) {
+  const W = MAP_IMG.world, m = MAP_IMG.a, t = MAP_IMG.t;
+  const wx = m[0] * x + m[1] * y + t[0], wy = m[2] * x + m[3] * y + t[1];
+  const n = Math.PI - 2 * Math.PI * wy / W;
+  return { lat: Math.atan(Math.sinh(n)) * 180 / Math.PI, lng: wx / W * 360 - 180 };
+}
+function placePin() {
+  const pin = document.getElementById('zone-pin');
+  if (!pin) return;
+  if (!zone.lat) { pin.classList.add('hidden'); return; }
+  const p = llToImg(zone.lat, zone.lng);
+  const onMap = p.x >= 0 && p.y >= 0 && p.x <= MAP_IMG.w && p.y <= MAP_IMG.h;
+  pin.classList.toggle('hidden', !onMap);
+  pin.style.left = (p.x / MAP_IMG.w * 100) + '%';
+  pin.style.top = (p.y / MAP_IMG.h * 100) + '%';
+}
 function setPoint(lat, lng, source, label) {
   zone = { status: classify(lat, lng), lat, lng, source, addr: addressText(), label: label || '' };
-  if (map) {
-    if (!marker) marker = L.marker([lat, lng]).addTo(map); else marker.setLatLng([lat, lng]);
-    map.setView([lat, lng], Math.max(map.getZoom(), 13));
-  }
+  placePin();
   paintZone();
   save();
 }
 function ensureMap() {
-  if (!window.L) {
-    const el = document.getElementById('zone-map');
-    if (el && !el.dataset.failed) { el.dataset.failed = '1'; el.innerHTML = '<p class="p-6 text-sm text-slatey">The map could not load. The address check still works.</p>'; }
-    paintZone();
-    return;
+  if (!mapReady) {
+    const img = document.getElementById('zone-img');
+    if (img) img.addEventListener('click', e => {
+      const r = img.getBoundingClientRect();
+      const ll = imgToLl((e.clientX - r.left) / r.width * MAP_IMG.w, (e.clientY - r.top) / r.height * MAP_IMG.h);
+      setPoint(ll.lat, ll.lng, 'map', 'Location tapped on the map');
+    });
+    mapReady = true;
   }
-  if (map) { setTimeout(() => map.invalidateSize(), 50); paintZone(); return; }
-  map = L.map('zone-map', { scrollWheelZoom: false });
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-  zoneLayer = L.polygon(FEE_FREE_ZONE, { color: '#2C5F5A', weight: 2, fillColor: '#3E837B', fillOpacity: 0.18 })
-    .addTo(map).bindTooltip('No transportation fee in this area', { sticky: true });
-  map.fitBounds(zoneLayer.getBounds(), { padding: [20, 20] });
-  if (zone.lat) marker = L.marker([zone.lat, zone.lng]).addTo(map);
-  map.on('click', e => setPoint(e.latlng.lat, e.latlng.lng, 'map', 'Location tapped on the map'));
-  setTimeout(() => map.invalidateSize(), 50);
+  placePin();
   paintZone();
 }
 async function lookup(query) {
@@ -1003,6 +1043,7 @@ function renderEstimate() {
   if (!e.nightsKnown) notes.push("Shown for 1 night. Your total depends on how many nights you book.");
   if (!e.hoursKnown) notes.push(`Shown at the ${MIN_HOURS}-hour minimum.`);
   if (e.fee === null) notes.push("The transportation fee isn't included until your recovery address is checked.");
+  notes.push("Ontario statutory holidays may be charged at time and a half.");
   document.getElementById('estimate-notes').innerHTML = notes.map(n => `<p>${n}</p>`).join('');
   paintZone();
 }
@@ -1115,7 +1156,7 @@ function init() {
     const n = ev.target.name || '';
     if (/^Recovery (street address|city|postal code)$/.test(n) && zone.source === 'address' && zone.addr !== addressText()) {
       zone = { status: 'unknown' };
-      if (marker && map) { map.removeLayer(marker); marker = null; }
+      placePin();
       paintZone();
     }
     const q = ev.target.closest('.q'); if (q) q.classList.remove('has-error');
@@ -1145,7 +1186,7 @@ function init() {
   setYear();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-window.addEventListener('load', () => { drawIcons(); setYear(); if (map) map.invalidateSize(); });
+window.addEventListener('load', () => { drawIcons(); setYear(); });
 </script>
 </body>
 </html>
