@@ -497,7 +497,16 @@ tailwind.config = {
 <div class="q"><label class="box"><input type="checkbox" name="Ack: hourly rate" value="Yes" required><span>I understand Toronto ProRN charges $85.00 per hour, with an 8-hour minimum.</span></label><p class="q-err" role="alert"></p></div>
 <div class="q"><label class="box"><input type="checkbox" name="Ack: 25% deposit" value="Yes" required><span>I understand a 25% deposit is needed to confirm my booking.</span></label><p class="q-err" role="alert"></p></div>
 <div class="q"><label class="box"><input type="checkbox" name="Ack: balance due 48 hours before" value="Yes" required><span>I understand the balance is due 48 hours before my first nursing shift.</span></label><p class="q-err" role="alert"></p></div>
-<p class="text-sm text-slatey -mt-3">Your nursing services agreement and cancellation policy are sent to you before anything is booked.</p>
+<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">How to pay.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link. The payment link is sent to you once your booking is confirmed.</div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Cancellation and refund policy</h3>
+<ul class="list-disc pl-5 space-y-2 text-[15px] text-slatey mb-6">
+  <li><strong class="text-ink">More than 14 days before your first nursing shift:</strong> your deposit is refunded in full.</li>
+  <li><strong class="text-ink">Between 14 days and 48 hours before:</strong> the 25% deposit is kept, and nothing else is owed.</li>
+  <li><strong class="text-ink">Within 48 hours (balance already paid):</strong> no refund. Your nurse has turned down other work for those nights.</li>
+  <li><strong class="text-ink">Your surgeon postpones or cancels your surgery for a medical reason:</strong> your deposit moves to the new date, or is refunded if no new date is set.</li>
+  <li><strong class="text-ink">You end a shift early:</strong> the booked hours are still charged.</li>
+</ul>
+<div class="q"><label class="box"><input type="checkbox" name="Ack: cancellation policy" value="Yes" required><span>I have read and agree to the cancellation and refund policy.</span></label><p class="q-err" role="alert"></p></div>
 
 </section>
 
@@ -563,7 +572,7 @@ tailwind.config = {
     </div>
     <h2 class="font-display text-3xl text-ink mb-4">Thank you, your request is in</h2>
     <p class="text-slatey text-lg leading-relaxed mb-4">We've received your information and will review your nursing dates, recovery address and care needs. You'll hear back personally to talk about availability and next steps.</p>
-    <p class="text-slatey leading-relaxed mb-8">Your booking is confirmed once nurse availability is verified, your nursing services agreement is signed and your 25% deposit is received. If your surgery is within 48 hours, call or WhatsApp <a href="tel:+13433015061" class="text-teal font-semibold underline">(343) 301-5061</a> so it's seen right away.</p>
+    <p class="text-slatey leading-relaxed mb-8">Your booking is confirmed once nurse availability is verified, your nursing services agreement is signed and your 25% deposit is received by Interac e-Transfer or the secure card payment link we send you. If your surgery is within 48 hours, call or WhatsApp <a href="tel:+13433015061" class="text-teal font-semibold underline">(343) 301-5061</a> so it's seen right away.</p>
     <p class="font-display text-ink">Toronto ProRN</p>
     <p class="text-sm text-slatey">Professional post-operative nursing care</p>
     <p class="text-sm"><a href="mailto:prorninc@gmail.com" class="text-teal underline">prorninc@gmail.com</a></p>

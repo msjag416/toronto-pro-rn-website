@@ -44,7 +44,7 @@
       "logo": "https://www.torontoprorn.com/logo-mark.png",
       "priceRange": "$$$",
       "currenciesAccepted": "CAD",
-      "paymentAccepted": "Interac e-Transfer",
+      "paymentAccepted": "Interac e-Transfer, Credit Card",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Toronto",
@@ -111,7 +111,7 @@
         { "@type": "Question", "name": "Can a nurse stay overnight with me after plastic surgery in Toronto?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your nurse provides continuous overnight care at your home, hotel or recovery suite anywhere in the GTA. They stay awake through the night monitoring vital signs, tracking drain output, timing medications, managing nausea and helping you get up safely the first time." } },
         { "@type": "Question", "name": "How much does a private recovery nurse cost after cosmetic surgery in Toronto?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Fill out the intake form and it shows your estimate as you go." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Pay by Interac e-Transfer in Canada, or by credit card from anywhere through a secure Stripe link. Fill out the intake form and it shows your estimate as you go." } },
         { "@type": "Question", "name": "Who takes care of my drains after a tummy tuck?",
           "acceptedAnswer": { "@type": "Answer", "text": "Your nurse does. Stripping the tubing, emptying and measuring output, recording volumes for your surgeon, and watching for clots, blockage or early infection. Most patients find drains the most stressful part of recovery, and having a nurse handle them removes the guesswork. Before your nurse leaves, they teach whoever is staying with you how to do it." } },
         { "@type": "Question", "name": "Can I recover in a hotel after plastic surgery in Toronto?",
@@ -450,7 +450,9 @@ tailwind.config = {
         <p class="text-slatey"><strong class="text-ink">Matched by a nurse, not a dispatch desk.</strong> JoAnne pairs you with your nurse personally, based on your procedure and your surgeon's preferences.</p>
         <p class="text-slatey"><strong class="text-ink">No supply fees and no hidden charges.</strong> You pay the hourly rate, plus the $30 transportation fee only if your address is outside the fee-free zone.</p>
         <p class="text-slatey"><strong class="text-ink">Not covered by OHIP.</strong> Cosmetic recovery nursing is paid privately. Some extended health plans reimburse private duty nursing, so check your policy and we'll provide a receipt.</p>
-        <p class="text-slatey"><strong class="text-ink">Nothing is owed until the booking is confirmed</strong> and we've agreed on the hours.</p>
+        <p class="text-slatey"><strong class="text-ink">Nothing is owed until the booking is confirmed</strong> and we've agreed on the hours. A 25% deposit confirms your booking, and the balance is due 48 hours before your first shift.</p>
+        <p class="text-slatey"><strong class="text-ink">Pay from anywhere.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link, sent to you once your booking is confirmed.</p>
+        <p class="text-slatey"><strong class="text-ink">Cancellation.</strong> Your deposit is refunded in full if you cancel more than 14 days before your first shift. <a href="#" onclick="openModal('cancellation'); return false;" class="text-teal font-semibold underline">Read the full cancellation policy</a>.</p>
       </div>
     </div>
 
@@ -653,7 +655,7 @@ tailwind.config = {
           <h3 class="font-display text-lg text-ink">How much does a private recovery nurse cost after cosmetic surgery in Toronto?</h3>
           <i data-lucide="plus" class="w-5 h-5 text-teal flex-shrink-0 mt-1 group-open:rotate-45 transition-transform"></i>
         </summary>
-        <p class="px-6 pb-6 text-slatey leading-relaxed">Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Fill out the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> and it shows your estimate as you go.</p>
+        <p class="px-6 pb-6 text-slatey leading-relaxed">Nursing care is $85 an hour, with an 8-hour minimum per shift, so an 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay). Ontario statutory holidays may be charged at time and a half. There are no supply fees and nothing is added afterwards. Pay by Interac e-Transfer in Canada, or by credit card from anywhere through a secure Stripe link. Fill out the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> and it shows your estimate as you go.</p>
       </details>
 
       <details class="group bg-white rounded-xl border border-line overflow-hidden">
@@ -876,6 +878,7 @@ tailwind.config = {
           <li><a href="https://registry.cno.org" target="_blank" rel="noreferrer" class="hover:text-blush transition">CNO Registry</a></li>
           <li><a href="#" onclick="openModal('privacy'); return false;" class="hover:text-blush transition">Privacy policy</a></li>
           <li><a href="#" onclick="openModal('terms'); return false;" class="hover:text-blush transition">Terms of service</a></li>
+          <li><a href="#" onclick="openModal('cancellation'); return false;" class="hover:text-blush transition">Cancellation policy</a></li>
           <li><a href="#" onclick="openModal('disclaimer'); return false;" class="hover:text-blush transition">Medical disclaimer</a></li>
         </ul>
       </div>
@@ -916,12 +919,27 @@ tailwind.config = {
       </div>
     </div>
 
+    <div id="modal-content-cancellation" class="hidden modal-panel">
+      <h2 id="modal-title-cancellation" class="font-display text-2xl text-ink mb-4">Cancellation and refund policy</h2>
+      <div class="text-slatey text-sm space-y-3">
+        <p>A 25% deposit confirms your booking. The balance is due 48 hours before your first nursing shift.</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong class="text-ink">More than 14 days before your first nursing shift:</strong> your deposit is refunded in full.</li>
+          <li><strong class="text-ink">Between 14 days and 48 hours before:</strong> the 25% deposit is kept, and nothing else is owed.</li>
+          <li><strong class="text-ink">Within 48 hours (balance already paid):</strong> no refund. Your nurse has turned down other work for those nights.</li>
+          <li><strong class="text-ink">Your surgeon postpones or cancels your surgery for a medical reason:</strong> your deposit moves to the new date, or is refunded if no new date is set.</li>
+          <li><strong class="text-ink">You end a shift early:</strong> the booked hours are still charged.</li>
+        </ul>
+        <p>To cancel or change a booking, call or WhatsApp (343) 301-5061 or email prorninc@gmail.com.</p>
+      </div>
+    </div>
+
     <div id="modal-content-terms" class="hidden modal-panel">
       <h2 id="modal-title-terms" class="font-display text-2xl text-ink mb-4">Terms of service</h2>
       <div class="text-slatey text-sm space-y-3">
         <p>By requesting services from Toronto ProRN, operated by ProRN Inc., you agree to these terms. Services are private-pay and not covered by OHIP. Bookings are confirmed only after a direct conversation and are subject to nurse availability.</p>
         <p>Care is provided under the written post-operative orders of your treating surgeon. Toronto ProRN does not prescribe, does not alter surgical plans, and does not replace your surgeon's care.</p>
-        <p>Cancellation terms are confirmed with you at the time of booking.</p>
+        <p>Payment is by Interac e-Transfer in Canada, or by credit card through a secure Stripe payment link. A 25% deposit confirms your booking and the balance is due 48 hours before your first shift. Cancellations follow the <a href="#" onclick="openModal('cancellation'); return false;" class="text-teal font-semibold underline">cancellation policy</a>.</p>
       </div>
     </div>
 
