@@ -194,6 +194,7 @@ tailwind.config = {
       <a href="#cost" class="text-sm font-medium text-slatey hover:text-teal transition">What it costs</a>
       <a href="#reviews" class="text-sm font-medium text-slatey hover:text-teal transition">Reviews</a>
       <a href="#faq" class="text-sm font-medium text-slatey hover:text-teal transition">FAQ</a>
+      <a href="intake.html" class="text-sm font-bold text-teal hover:text-teallt transition">Intake form</a>
       <a href="tel:+13433015061" class="bg-teal hover:bg-teallt text-white px-5 py-2.5 rounded-full text-sm font-bold transition shadow-lg shadow-teal/25">Call (343) 301-5061</a>
     </div>
 
@@ -210,6 +211,7 @@ tailwind.config = {
       <a href="#cost" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">What it costs</a>
       <a href="#reviews" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">Reviews</a>
       <a href="#faq" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">FAQ</a>
+      <a href="intake.html" class="block py-3 border-b border-line text-lg font-bold text-teal">Intake form</a>
       <a href="#book" onclick="toggleMenu()" class="block text-center bg-teal text-white py-3.5 rounded-lg font-bold mt-4">Book my recovery nurse</a>
     </div>
   </div>
@@ -296,15 +298,15 @@ tailwind.config = {
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <p class="eyebrow text-blush mb-4">Hour by hour</p>
     <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight mb-4">What your first night with a recovery nurse looks like</h2>
-    <p class="text-white/70 text-lg mb-14 max-w-2xl">This is the timeline I follow from the moment you're discharged until your surgeon's office opens the next morning.</p>
+    <p class="text-white/70 text-lg mb-14 max-w-2xl">This is the timeline I follow from the moment you arrive at your recovery address until your surgeon's office opens the next morning.</p>
 
     <ol class="space-y-0">
 
       <li class="relative pl-16 pb-12 border-l border-white/15 ml-3 reveal">
         <span class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blush"></span>
-        <p class="font-mono text-blush text-xs mb-2">HOUR 0 · PICKUP</p>
-        <h3 class="font-display text-xl mb-2">I collect you from the clinic</h3>
-        <p class="text-white/70 leading-relaxed">I read your surgeon's written post-op orders in front of the nurse discharging you, confirm your medication list and drain count, and get you into the car safely. No handoff gets lost.</p>
+        <p class="font-mono text-blush text-xs mb-2">HOUR 0 · ARRIVAL</p>
+        <h3 class="font-display text-xl mb-2">I meet you at your recovery address</h3>
+        <p class="text-white/70 leading-relaxed">I'm at your home, hotel or recovery suite when you get there. I go through your surgeon's written post-op orders with you, confirm your medication list and drain count, and get you settled into bed safely. No handoff gets lost.</p>
       </li>
 
       <li class="relative pl-16 pb-12 border-l border-white/15 ml-3 reveal">
@@ -423,7 +425,7 @@ tailwind.config = {
       <div class="p-8 md:p-10 border-b border-line">
         <h3 class="font-display text-xl text-ink mb-5">Your quote covers</h3>
         <div class="space-y-3 text-[15px] text-slatey">
-          <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> Pickup from your clinic and the full overnight window through to morning</p>
+          <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> The full overnight window at your home, hotel or recovery suite, through to morning</p>
           <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> Vitals monitoring, drain care, medication timing and nausea management</p>
           <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> A written record of the night for your surgeon</p>
           <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> Teaching for whoever takes over from me the next day</p>
@@ -713,6 +715,16 @@ tailwind.config = {
       <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight text-ink mb-4">Tell me your surgery date</h2>
       <p class="text-slatey text-lg">I answer personally, usually the same day. Nothing is booked until we've spoken.</p>
     </div>
+
+    <div class="bg-night text-white rounded-2xl p-7 md:p-8 mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div>
+        <p class="font-display text-xl mb-1">Know your surgery date? Fill out the full intake form.</p>
+        <p class="text-white/70 text-[15px]">It's detailed, about 15 to 20 minutes, and covers your surgery, recovery address and nursing dates, then shows your cost estimate. Your answers save as you go, so you can stop and finish it later.</p>
+      </div>
+      <a href="intake.html" class="inline-flex flex-shrink-0 justify-center items-center px-6 py-3.5 bg-blush text-ink font-bold rounded-lg hover:bg-white transition">Start my intake form</a>
+    </div>
+
+    <p class="text-center text-slatey text-sm mb-4">Just have a quick question? Call, WhatsApp, or send the short form below.</p>
 
     <div class="flex flex-col sm:flex-row justify-center gap-3 mb-10">
       <a href="tel:+13433015061" class="inline-flex justify-center items-center px-6 py-3.5 bg-ink text-white font-bold rounded-lg hover:bg-night transition">

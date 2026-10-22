@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://www.torontoprorn.com/intake.html" />
+
+<title>Recovery Nurse Booking Intake Form | Toronto ProRN</title>
+<meta name="description" content="Book a private overnight recovery nurse in Toronto after plastic surgery. Tell us about your surgery, discharge, recovery address and nursing dates, and see your cost estimate.">
+
+<meta property="og:title" content="Recovery Nurse Booking Intake Form | Toronto ProRN" />
+<meta property="og:description" content="Request overnight post-operative nursing care in Toronto. About 15 to 20 minutes, and your answers save so you can finish later." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.torontoprorn.com/intake.html" />
+<meta property="og:site_name" content="Toronto ProRN" />
+<meta property="og:image" content="https://www.torontoprorn.com/hero.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Map library (OpenStreetMap, free, no account needed) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    '#12191B',
+        night:  '#1B2A2C',
+        slatey: '#4A5A5C',
+        teal:   '#2C5F5A',
+        teallt: '#3E837B',
+        blush:  '#E4CFC6',
+        ivory:  '#FAF7F3',
+        line:   '#E3DCD4'
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans:    ['Karla', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { background: #FAF7F3; }
+  .eyebrow { letter-spacing: .18em; text-transform: uppercase; font-size: .7rem; font-weight: 700; }
+  .loader { border:3px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; width:20px; height:20px; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid #3E837B; outline-offset: 2px;
+  }
+
+  /* ---------- form pieces ---------- */
+  .q { margin-bottom: 1.75rem; }
+  .q-label { display:block; font-size:15px; font-weight:600; color:#12191B; margin-bottom:.6rem; line-height:1.35; }
+  .q-hint { font-size:.875rem; color:#4A5A5C; margin:-.25rem 0 .75rem; }
+  .q-err { display:none; font-size:.875rem; color:#B42318; margin-top:.5rem; font-weight:500; }
+  .q.has-error .q-err { display:block; }
+  .inp { display:block; width:100%; min-height:48px; padding:.75rem 1rem; border-radius:.6rem; background:#fff;
+         border:1px solid #E3DCD4; color:#12191B; font-size:16px; outline:none; transition:border-color .15s; }
+  .inp:focus { border-color:#2C5F5A; }
+  input[type=date].inp, input[type=time].inp, input[type=datetime-local].inp { -webkit-appearance:none; appearance:none; }
+  textarea.inp { min-height:auto; }
+
+  .pill { position:relative; }
+  .pill input { position:absolute; opacity:0; width:1px; height:1px; }
+  .pill span { display:block; padding:.6rem 1rem; border:1px solid #E3DCD4; border-radius:.6rem; background:#fff;
+               color:#4A5A5C; font-size:15px; cursor:pointer; transition:all .15s; user-select:none; }
+  .pill span:hover { border-color:#2C5F5A; }
+  .pill input:checked + span { background:#2C5F5A; border-color:#2C5F5A; color:#fff; font-weight:600; }
+  .pill input:focus-visible + span { outline:3px solid #3E837B; outline-offset:2px; }
+
+  .box { display:flex; gap:.75rem; align-items:flex-start; padding:.75rem 1rem; border:1px solid #E3DCD4;
+         border-radius:.6rem; background:#fff; cursor:pointer; font-size:15px; color:#4A5A5C; transition:all .15s; }
+  .box input { width:1.05rem; height:1.05rem; margin-top:.15rem; accent-color:#2C5F5A; flex-shrink:0; }
+  .box:has(input:checked) { border-color:#2C5F5A; background:#F1F6F5; color:#12191B; }
+
+  .q.has-error .inp, .q.has-error .pill span, .q.has-error .box { border-color:#F87171; }
+
+  .zone-status { background:#FAF7F3; border-color:#E3DCD4; color:#4A5A5C; }
+  .zone-status.in  { background:#EAF3F1; border-color:#3E837B; color:#1E4642; }
+  .zone-status.out { background:#FBF3EF; border-color:#E4CFC6; color:#12191B; }
+  .zone-status.far { background:#FEF3F2; border-color:#FDA29B; color:#7A271A; }
+
+  .leaflet-container { font-family: 'Karla', system-ui, sans-serif; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+
+<body class="font-sans text-ink antialiased">
+
+<!-- ============================== NAV ============================== -->
+<nav class="sticky top-0 w-full z-50 bg-ivory/95 backdrop-blur-sm border-b border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="logo-mark.png" alt="Toronto ProRN" class="h-9 w-auto" />
+      <span class="font-display text-xl text-ink">Toronto<span class="text-teal">ProRN</span></span>
+    </a>
+    <div class="flex items-center gap-4">
+      <a href="index.html" class="hidden sm:inline text-sm font-medium text-slatey hover:text-teal transition">Back to main site</a>
+      <a href="tel:+13433015061" class="bg-teal hover:bg-teallt text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-bold transition shadow-lg shadow-teal/25">
+        <span class="sm:hidden">Call</span><span class="hidden sm:inline">Call (343) 301-5061</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== HEADER ============================== -->
+<header class="relative pt-12 pb-8 lg:pt-16 overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blush/40 blur-3xl"></div>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <p class="eyebrow text-teal mb-4">Booking intake form</p>
+    <h1 class="font-display text-3xl sm:text-4xl lg:text-[2.8rem] leading-[1.1] text-ink mb-5">Book your overnight recovery nurse</h1>
+    <p class="text-lg text-slatey leading-relaxed mb-6">This form is detailed on purpose. It covers everything your nurse needs to plan your first nights after surgery and give you an accurate quote, so you won't have to answer the same questions again by email. Most questions are quick taps, and the whole form takes about 15 to 20 minutes.</p>
+
+    <div class="rounded-xl border border-teal/30 bg-white p-5 mb-6 flex gap-4">
+      <i data-lucide="save" class="w-6 h-6 text-teal flex-shrink-0 mt-0.5"></i>
+      <div class="text-[15px] text-slatey leading-relaxed">
+        <p class="font-bold text-ink mb-1">You don't have to finish it in one sitting.</p>
+        <p class="mb-2">Your answers save automatically as you go. Close the page any time, then open this same link on the same phone or computer, in the same browser, and you'll pick up right where you left off.</p>
+        <p class="mb-2">Don't know an answer yet? Choose "Not yet determined" or leave the "if known" boxes empty.</p>
+        <p class="text-sm">Saving doesn't work in a private or incognito window.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slatey">
+      <span class="inline-flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-teal"></i> $85/hour, 8-hour minimum</span>
+      <span class="inline-flex items-center gap-2"><i data-lucide="list-checks" class="w-4 h-4 text-teal"></i> 12 short steps</span>
+      <span class="inline-flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-teal"></i> Kept confidential under PHIPA</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+
+  <!-- Welcome-back banner (shown when saved answers are found) -->
+  <div id="resume-banner" class="hidden rounded-xl border border-teal/30 bg-teal/10 text-teal p-4 mb-6 text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <span><strong>Welcome back.</strong> Your saved answers have been loaded.</span>
+    <button type="button" id="start-over-btn" class="font-bold underline text-left">Start over with a blank form</button>
+  </div>
+
+  <!-- Progress -->
+  <div id="progress-wrap" class="sticky top-[61px] z-40 bg-ivory/95 backdrop-blur-sm py-4 -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
+    <div class="flex justify-between items-baseline text-sm mb-2">
+      <span class="font-semibold text-ink" id="progress-label">Step 1 of 12: About you</span>
+      <span class="text-slatey font-mono text-xs" id="progress-pct">0%</span>
+    </div>
+    <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+      <div id="progress-bar" class="h-full bg-teal rounded-full transition-all duration-500" style="width:8%"></div>
+    </div>
+  </div>
+
+  <div id="form-card" class="bg-white rounded-2xl border border-line p-6 sm:p-10 shadow-sm">
+    <form id="intake-form" novalidate>
+      <input type="hidden" name="access_key" value="d53865a9-a2b3-4a65-944e-42902839d672" />
+      <input type="hidden" name="from_name" value="Toronto ProRN Intake Form" />
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+
+
+<section class="step" data-step="1" data-title="About you" aria-labelledby="step-h-1">
+  <p class="eyebrow text-teal mb-2">Step 1 of 12</p>
+  <h2 id="step-h-1" class="font-display text-2xl md:text-3xl text-ink mb-2">About you</h2>
+  <p class="text-slatey mb-8">Start with the basics so we know who you are and how to reach you.</p>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f1" class="q-label">Legal first name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f1" name="First name" class="inp" autocomplete="given-name" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f2" class="q-label">Middle name <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f2" name="Middle name" class="inp" autocomplete="additional-name" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f3" class="q-label">Legal last name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f3" name="Last name" class="inp" autocomplete="family-name" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f4" class="q-label">Preferred name <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f4" name="Preferred name" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f5" class="q-label">Date of birth <span class="text-teal" aria-hidden="true">*</span></label><input type="date" id="f5" name="Date of birth" class="inp" autocomplete="bday" required data-max-today><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f6" class="q-label">Primary phone number <span class="text-teal" aria-hidden="true">*</span></label><input type="tel" id="f6" name="Primary phone" class="inp" autocomplete="tel" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f7" class="q-label">Secondary phone number <span class="font-normal text-slatey">(optional)</span></label><input type="tel" id="f7" name="Secondary phone" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f8" class="q-label">Email address <span class="text-teal" aria-hidden="true">*</span></label><input type="email" id="f8" name="email" class="inp" autocomplete="email" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f9" class="q-label">Confirm email address <span class="text-teal" aria-hidden="true">*</span></label><input type="email" id="f9" name="Confirm email" class="inp" required data-match="email"><p class="q-err" role="alert"></p></div>
+</div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Your home address</h3>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f10" class="q-label">Street address <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f10" name="Home street address" class="inp" autocomplete="street-address" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f11" class="q-label">Apartment or unit number <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f11" name="Home unit" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f12" class="q-label">City <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f12" name="Home city" class="inp" autocomplete="address-level2" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f13" class="q-label">Province or state <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f13" name="Home province/state" class="inp" autocomplete="address-level1" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f14" class="q-label">Postal or ZIP code <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f14" name="Home postal/ZIP code" class="inp" autocomplete="postal-code" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f15" class="q-label">Country of residence <span class="text-teal" aria-hidden="true">*</span></label><select id="f15" name="Country of residence" class="inp" required><option value="">Select</option><option>Canada</option><option>United States</option><option>Other</option></select><p class="q-err" role="alert"></p></div>
+</div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Country of residence" data-if-values="Other"><div class="q"><label for="f16" class="q-label">Which country? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f16" name="Country of residence: other" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">How we reach you</h3>
+<div class="q" data-group-required="Preferred contact method"><p class="q-label">How would you like to be contacted? <span class="text-teal" aria-hidden="true">*</span></p><p class="q-hint">Choose as many as you like.</p><div class="grid sm:grid-cols-2 gap-2"><label class="box"><input type="checkbox" name="Preferred contact method" value="Email"><span>Email</span></label><label class="box"><input type="checkbox" name="Preferred contact method" value="Telephone"><span>Telephone</span></label><label class="box"><input type="checkbox" name="Preferred contact method" value="Text message"><span>Text message</span></label><label class="box"><input type="checkbox" name="Preferred contact method" value="WhatsApp"><span>WhatsApp</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Who is completing this form? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Completed by" value="I am the patient" required><span>I am the patient</span></label><label class="pill"><input type="radio" name="Completed by" value="I am completing this for the patient" required><span>I am completing this for the patient</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Completed by" data-if-values="I am completing this for the patient"><div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed">Please answer the rest of the form about the patient. The patient, or their legally authorized representative, needs to agree before any health information is shared with us.</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f17" class="q-label">Your full legal name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f17" name="Form completed by: name" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f18" class="q-label">Your relationship to the patient <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f18" name="Form completed by: relationship" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f19" class="q-label">Your phone number <span class="text-teal" aria-hidden="true">*</span></label><input type="tel" id="f19" name="Form completed by: phone" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f20" class="q-label">Your email address <span class="text-teal" aria-hidden="true">*</span></label><input type="email" id="f20" name="Form completed by: email" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Has the patient authorized you to speak with Toronto ProRN about their care? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Patient authorized this person" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Patient authorized this person" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+</div>
+
+</section>
+
+<section class="step hidden" data-step="2" data-title="Your surgery" aria-labelledby="step-h-2">
+  <p class="eyebrow text-teal mb-2">Step 2 of 12</p>
+  <h2 id="step-h-2" class="font-display text-2xl md:text-3xl text-ink mb-2">Your surgery</h2>
+  <p class="text-slatey mb-8">Tell us what you're having done and who your surgeon is.</p>
+<div class="q" data-group-required="Procedure(s)"><p class="q-label">Which procedure(s) are you having? <span class="text-teal" aria-hidden="true">*</span></p><p class="q-hint">Choose every procedure you are having, even if they are done in the same operation.</p><div class="grid sm:grid-cols-2 gap-2"><label class="box"><input type="checkbox" name="Procedure(s)" value="Facelift"><span>Facelift</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Neck lift"><span>Neck lift</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Blepharoplasty (eyelid surgery)"><span>Blepharoplasty (eyelid surgery)</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Rhinoplasty"><span>Rhinoplasty</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Breast augmentation"><span>Breast augmentation</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Breast reduction"><span>Breast reduction</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Breast lift"><span>Breast lift</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Breast reconstruction"><span>Breast reconstruction</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Abdominoplasty (tummy tuck)"><span>Abdominoplasty (tummy tuck)</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Liposuction"><span>Liposuction</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Brazilian butt lift (BBL)"><span>Brazilian butt lift (BBL)</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Body lift"><span>Body lift</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Thigh lift"><span>Thigh lift</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Arm lift"><span>Arm lift</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Gynecological surgery"><span>Gynecological surgery</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Orthopedic surgery"><span>Orthopedic surgery</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="General surgery"><span>General surgery</span></label><label class="box"><input type="checkbox" name="Procedure(s)" value="Other (please specify)"><span>Other (please specify)</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Procedure(s)" data-if-values="Other (please specify)"><div class="q"><label for="f21" class="q-label">Which other procedure? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f21" name="Procedure(s): other" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Are you having more than one procedure? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="More than one procedure" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="More than one procedure" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="More than one procedure" data-if-values="Yes"><div class="q"><label for="f22" class="q-label">List any additional procedures <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f22" name="Additional procedures" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f23" class="q-label">Surgery date <span class="text-teal" aria-hidden="true">*</span></label><input type="date" id="f23" name="Surgery date" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f24" class="q-label">Surgery start time <span class="font-normal text-slatey">(if known)</span></label><input type="time" id="f24" name="Surgery start time" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Is your surgery date confirmed? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Surgery date status" value="Confirmed with my surgeon" required><span>Confirmed with my surgeon</span></label><label class="pill"><input type="radio" name="Surgery date status" value="Tentatively scheduled" required><span>Tentatively scheduled</span></label><label class="pill"><input type="radio" name="Surgery date status" value="Awaiting confirmation" required><span>Awaiting confirmation</span></label></div><p class="q-err" role="alert"></p></div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Your surgeon</h3>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f25" class="q-label">Surgeon's full name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f25" name="Surgeon" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f26" class="q-label">Clinic or hospital name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f26" name="Clinic or hospital" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><label for="f27" class="q-label">Clinic or hospital address <span class="font-normal text-slatey">(if known)</span></label><input type="text" id="f27" name="Clinic address" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f28" class="q-label">Surgeon's office phone <span class="font-normal text-slatey">(if known)</span></label><input type="tel" id="f28" name="Surgeon office phone" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f29" class="q-label">Surgeon's office email <span class="font-normal text-slatey">(optional)</span></label><input type="email" id="f29" name="Surgeon office email" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Is your surgery elective or medically necessary? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Surgery type" value="Elective" required><span>Elective</span></label><label class="pill"><input type="radio" name="Surgery type" value="Medically necessary" required><span>Medically necessary</span></label><label class="pill"><input type="radio" name="Surgery type" value="Not sure" required><span>Not sure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Have you had this procedure before? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Had this procedure before" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Had this procedure before" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Has your surgeon said you may need to stay overnight at the surgical facility? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="May stay overnight at facility" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="May stay overnight at facility" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="May stay overnight at facility" value="Not yet determined" required><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you have a pre-operative appointment booked? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Pre-op appointment booked" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Pre-op appointment booked" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Pre-op appointment booked" data-if-values="Yes"><div class="q"><label for="f30" class="q-label">Date of your next pre-op appointment <span class="text-teal" aria-hidden="true">*</span></label><input type="date" id="f30" name="Pre-op appointment date" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+
+</section>
+
+<section class="step hidden" data-step="3" data-title="Discharge and getting home" aria-labelledby="step-h-3">
+  <p class="eyebrow text-teal mb-2">Step 3 of 12</p>
+  <h2 id="step-h-3" class="font-display text-2xl md:text-3xl text-ink mb-2">Discharge and getting home</h2>
+  <p class="text-slatey mb-8">Your surgery time and your discharge time are different things. This helps us plan when your nurse arrives.</p>
+<div class="rounded-xl border bg-blush/40 border-blush text-ink p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">Getting home is arranged by you.</strong> Toronto ProRN doesn't provide transportation from hospitals or surgical clinics. Your nurse meets you at your recovery address. Please arrange your ride, and any adult your surgeon says must travel with you, following your surgeon's discharge instructions.</div>
+<div class="q"><p class="q-label">When do you expect to be discharged? <span class="text-teal" aria-hidden="true">*</span></p><p class="q-hint">Your surgery time and your discharge time are often hours apart. Your best guess is fine.</p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Expected discharge" value="Same day as surgery" required><span>Same day as surgery</span></label><label class="pill"><input type="radio" name="Expected discharge" value="The following morning" required><span>The following morning</span></label><label class="pill"><input type="radio" name="Expected discharge" value="After more than one night" required><span>After more than one night</span></label><label class="pill"><input type="radio" name="Expected discharge" value="Not yet determined" required><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f31" class="q-label">Expected discharge date <span class="font-normal text-slatey">(if known)</span></label><input type="date" id="f31" name="Discharge date" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f32" class="q-label">Expected discharge time <span class="font-normal text-slatey">(if known)</span></label><input type="time" id="f32" name="Discharge time" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will you spend your first night after surgery at the surgical facility? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="First night at facility" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="First night at facility" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="First night at facility" value="Not yet determined" required><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will a nurse from the surgical facility come with you to your recovery address? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Facility nurse accompanies you" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Facility nurse accompanies you" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Facility nurse accompanies you" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Facility nurse accompanies you" data-if-values="Yes"><div class="q"><label for="f33" class="q-label">How long will that nurse stay with you? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f33" name="Facility nurse stays for" class="inp" placeholder="e.g. 2 hours" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Who will drive you from the surgical facility to your recovery address? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Transportation home" value="Family member" required><span>Family member</span></label><label class="pill"><input type="radio" name="Transportation home" value="Friend" required><span>Friend</span></label><label class="pill"><input type="radio" name="Transportation home" value="Spouse or partner" required><span>Spouse or partner</span></label><label class="pill"><input type="radio" name="Transportation home" value="Private transportation service" required><span>Private transportation service</span></label><label class="pill"><input type="radio" name="Transportation home" value="Taxi or rideshare, with a responsible adult" required><span>Taxi or rideshare, with a responsible adult</span></label><label class="pill"><input type="radio" name="Transportation home" value="Arranged by the surgical facility" required><span>Arranged by the surgical facility</span></label><label class="pill"><input type="radio" name="Transportation home" value="Not yet arranged" required><span>Not yet arranged</span></label><label class="pill"><input type="radio" name="Transportation home" value="Other (please specify)" required><span>Other (please specify)</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Transportation home" data-if-values="Other (please specify)"><div class="q"><label for="f34" class="q-label">Please specify <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f34" name="Transportation home: other" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will someone ride with you? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Someone rides with you" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Someone rides with you" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Someone rides with you" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Has your surgeon approved your travel plan home? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Surgeon approved travel plan" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Surgeon approved travel plan" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Surgeon approved travel plan" value="Not discussed" required><span>Not discussed</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will you need help getting into your recovery accommodation? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Help entering accommodation" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Help entering accommodation" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Help entering accommodation" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you have a follow-up appointment with your surgeon during the nights you want nursing care? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Follow-up during nursing period" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Follow-up during nursing period" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Follow-up during nursing period" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Follow-up during nursing period" data-if-values="Yes"><div class="q"><label for="f35" class="q-label">Follow-up appointment date and time <span class="font-normal text-slatey">(if known)</span></label><input type="datetime-local" id="f35" name="Follow-up appointment" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+
+</section>
+
+<section class="step hidden" data-step="4" data-title="Where you&#x27;ll recover" aria-labelledby="step-h-4">
+  <p class="eyebrow text-teal mb-2">Step 4 of 12</p>
+  <h2 id="step-h-4" class="font-display text-2xl md:text-3xl text-ink mb-2">Where you'll recover</h2>
+  <p class="text-slatey mb-8">Your nurse comes to you. Tell us where, and check whether a transportation fee applies.</p>
+<div class="q"><p class="q-label">Where will you be recovering? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Recovery accommodation type" value="Hotel" required><span>Hotel</span></label><label class="pill"><input type="radio" name="Recovery accommodation type" value="Airbnb or short-term rental" required><span>Airbnb or short-term rental</span></label><label class="pill"><input type="radio" name="Recovery accommodation type" value="Private condominium" required><span>Private condominium</span></label><label class="pill"><input type="radio" name="Recovery accommodation type" value="Private house" required><span>Private house</span></label><label class="pill"><input type="radio" name="Recovery accommodation type" value="Friend&#x27;s home" required><span>Friend&#x27;s home</span></label><label class="pill"><input type="radio" name="Recovery accommodation type" value="Family member&#x27;s home" required><span>Family member&#x27;s home</span></label><label class="pill"><input type="radio" name="Recovery accommodation type" value="Other (please specify)" required><span>Other (please specify)</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Recovery accommodation type" data-if-values="Other (please specify)"><div class="q"><label for="f36" class="q-label">Please specify <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f36" name="Recovery accommodation type: other" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Is your recovery accommodation booked or confirmed? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Accommodation confirmed" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Accommodation confirmed" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Recovery accommodation type" data-if-values="Hotel|Airbnb or short-term rental|Other (please specify)"><div class="q"><label for="f37" class="q-label">Name of the hotel, Airbnb or property <span class="font-normal text-slatey">(if known)</span></label><input type="text" id="f37" name="Accommodation name" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed">Fill in your recovery address and press <strong class="text-ink">Check my address</strong>. The map shows the fee-free zone: south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of the waterfront. Addresses inside the shaded area have no transportation fee.</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f38" class="q-label">Recovery street address <span class="text-teal req-if-star hidden" aria-hidden="true">*</span></label><input type="text" id="f38" name="Recovery street address" class="inp" autocomplete="off" data-req-if-name="Accommodation confirmed" data-req-if-values="Yes" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f39" class="q-label">Apartment, suite or hotel room number <span class="font-normal text-slatey">(if known)</span></label><input type="text" id="f39" name="Recovery unit/room" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f40" class="q-label">City <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f40" name="Recovery city" class="inp" placeholder="e.g. Toronto" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f41" class="q-label">Postal code <span class="text-teal req-if-star hidden" aria-hidden="true">*</span></label><input type="text" id="f41" name="Recovery postal code" class="inp" data-req-if-name="Accommodation confirmed" data-req-if-values="Yes" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q" id="zone-block">
+  <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+    <button type="button" id="check-address-btn" class="inline-flex justify-center items-center px-5 py-3 bg-ink text-white font-bold rounded-lg hover:bg-night transition">
+      <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i> Check my address
+    </button>
+    <p class="text-sm text-slatey">Can't find it? Tap your recovery location on the map.</p>
+  </div>
+  <div id="zone-status" class="zone-status rounded-xl border p-4 mb-4 text-[15px]" aria-live="polite"></div>
+  <div id="zone-map" class="w-full h-[320px] sm:h-[380px] rounded-xl border border-line overflow-hidden bg-line" role="application" aria-label="Map of the fee-free zone"></div>
+  <p class="text-xs text-slatey mt-2">Your address is looked up with OpenStreetMap's free map search. The map is a guide and your fee is confirmed with you before booking.</p>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f42" class="q-label">Check-in date <span class="font-normal text-slatey">(if known)</span></label><input type="date" id="f42" name="Check-in date" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f43" class="q-label">Check-out date <span class="font-normal text-slatey">(if known)</span></label><input type="date" id="f43" name="Check-out date" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will you stay at the same address for all of your nursing care? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Same address throughout" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Same address throughout" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Same address throughout" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Is it a private residence or shared accommodation? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Private or shared" value="Private (only my household)" required><span>Private (only my household)</span></label><label class="pill"><input type="radio" name="Private or shared" value="Shared accommodation" required><span>Shared accommodation</span></label></div><p class="q-err" role="alert"></p></div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Getting in and around</h3>
+<div class="q"><p class="q-label">Are there stairs to get into the building? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Stairs to enter" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Stairs to enter" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Stairs to enter" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Are there stairs inside the unit or home? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Stairs inside" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Stairs inside" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Stairs inside" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Is there an elevator? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Elevator" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Elevator" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Elevator" value="Not applicable" required><span>Not applicable</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Is parking available for your nurse? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Parking for nurse" value="Free parking" required><span>Free parking</span></label><label class="pill"><input type="radio" name="Parking for nurse" value="Paid parking" required><span>Paid parking</span></label><label class="pill"><input type="radio" name="Parking for nurse" value="Street parking" required><span>Street parking</span></label><label class="pill"><input type="radio" name="Parking for nurse" value="No parking" required><span>No parking</span></label><label class="pill"><input type="radio" name="Parking for nurse" value="Not yet determined" required><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Parking for nurse" data-if-values="Paid parking"><div class="q"><label for="f44" class="q-label">Estimated parking cost <span class="font-normal text-slatey">(if known)</span></label><input type="text" id="f44" name="Estimated parking cost" class="inp" placeholder="e.g. $20 overnight" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Are there any building access steps (concierge, buzzer, elevator key)? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Building access requirements" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Building access requirements" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Building access requirements" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Building access requirements" data-if-values="Yes"><div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed">Please <strong class="text-ink">don't</strong> enter door codes or lockbox combinations here. We collect those privately closer to your booking date.</div>
+<div class="q"><label for="f45" class="q-label">Concierge or security desk instructions <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f45" name="Access: concierge/security" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f46" class="q-label">Intercom or buzzer number <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f46" name="Access: buzzer number" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f47" class="q-label">Elevator access requirements <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f47" name="Access: elevator" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><label for="f48" class="q-label">Anything else your nurse needs to get in <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f48" name="Access: other" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">For your nurse during the shift</h3>
+<div class="q"><p class="q-label">Will your nurse have use of a bathroom? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Nurse bathroom access" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Nurse bathroom access" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will your nurse have a suitable chair and somewhere to write? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Nurse chair and workspace" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Nurse chair and workspace" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will your nurse have drinking water? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Nurse drinking water" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Nurse drinking water" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Is the accommodation smoke-free indoors? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Smoke-free indoors" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Smoke-free indoors" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+
+</section>
+
+<section class="step hidden" data-step="5" data-title="Who will be with you" aria-labelledby="step-h-5">
+  <p class="eyebrow text-teal mb-2">Step 5 of 12</p>
+  <h2 id="step-h-5" class="font-display text-2xl md:text-3xl text-ink mb-2">Who will be with you</h2>
+  <p class="text-slatey mb-8">Partners, family, children and pets all change how your night is planned.</p>
+<div class="q"><p class="q-label">Will anyone else be staying at your recovery accommodation? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Others staying" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Others staying" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Others staying" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Others staying" data-if-values="Yes"><div class="q"><label for="f49" class="q-label">How many other adults will be there? <span class="text-teal" aria-hidden="true">*</span></label><input type="number" id="f49" name="Number of other adults" class="inp" required min="0" max="20" inputmode="numeric"><p class="q-err" role="alert"></p></div>
+<div class="q" data-group-required="Other adults relationship"><p class="q-label">Their relationship to you <span class="text-teal" aria-hidden="true">*</span></p><div class="grid sm:grid-cols-2 gap-2"><label class="box"><input type="checkbox" name="Other adults relationship" value="Spouse"><span>Spouse</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Partner"><span>Partner</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Friend"><span>Friend</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Parent"><span>Parent</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Adult child"><span>Adult child</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Other family member"><span>Other family member</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Another caregiver"><span>Another caregiver</span></label><label class="box"><input type="checkbox" name="Other adults relationship" value="Other"><span>Other</span></label></div><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will a spouse or partner be there? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Spouse or partner present" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Spouse or partner present" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Spouse or partner present" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will any children be there? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Children present" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Children present" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Children present" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Children present" data-if-values="Yes"><div class="q"><label for="f50" class="q-label">How many children, and their ages? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f50" name="Children: number and ages" class="inp" placeholder="e.g. 2 children, ages 4 and 9" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will there be pets? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Pets" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Pets" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Pets" data-if-values="Yes"><div class="q"><label for="f51" class="q-label">What kind of pets, and how many? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f51" name="Pets: type and number" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will another caregiver or healthcare worker be there during the nursing shift? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Other caregiver during shift" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Other caregiver during shift" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Other caregiver during shift" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will someone stay with you after your nurse's shift ends? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Someone stays after shift" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Someone stays after shift" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Someone stays after shift" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Someone stays after shift" data-if-values="Yes"><div class="q"><label for="f52" class="q-label">Who will be with you? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f52" name="Person staying after shift" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will you be alone at any point in the first 24 to 48 hours after discharge? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Alone in first 24-48 hours" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Alone in first 24-48 hours" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Alone in first 24-48 hours" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will an adult at the accommodation help you between nursing shifts? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Adult helps between shifts" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Adult helps between shifts" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Adult helps between shifts" value="Not yet determined" required><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Adult helps between shifts" data-if-values="Yes"><div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f53" class="q-label">Their name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f53" name="Helper between shifts: name" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f54" class="q-label">Their relationship to you <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f54" name="Helper between shifts: relationship" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><label for="f55" class="q-label">When are they available? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f55" name="Helper between shifts: availability" class="inp" placeholder="e.g. all day, after 6pm" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed">Having another adult in the home doesn't always mean they can give the level of supervision your surgeon recommends. Your nurse will go over this with you.</div>
+
+</section>
+
+<section class="step hidden" data-step="6" data-title="Nursing dates and hours" aria-labelledby="step-h-6">
+  <p class="eyebrow text-teal mb-2">Step 6 of 12</p>
+  <h2 id="step-h-6" class="font-display text-2xl md:text-3xl text-ink mb-2">Nursing dates and hours</h2>
+  <p class="text-slatey mb-8">Pick your nights, shift length and the kind of help you want.</p>
+<div class="q"><label for="nights-select" class="q-label">How many nights of nursing care would you like? <span class="text-teal" aria-hidden="true">*</span></label><select id="nights-select" name="Number of nights" class="inp" required><option value="">Select</option><option>1 night</option><option>2 nights</option><option>3 nights</option><option>4 nights</option><option>5 nights</option><option>6 nights</option><option>7 nights</option><option>More than 7 nights</option><option>Not yet determined</option></select><p class="q-err" role="alert"></p></div>
+<div class="q" data-group-required="Care requested"><p class="q-label">What care would you like help with? <span class="text-teal" aria-hidden="true">*</span></p><div class="grid sm:grid-cols-2 gap-2"><label class="box"><input type="checkbox" name="Care requested" value="Overnight post-op monitoring"><span>Overnight post-op monitoring</span></label><label class="box"><input type="checkbox" name="Care requested" value="Vital signs monitoring"><span>Vital signs monitoring</span></label><label class="box"><input type="checkbox" name="Care requested" value="Pain assessment and management"><span>Pain assessment and management</span></label><label class="box"><input type="checkbox" name="Care requested" value="Medication given as prescribed"><span>Medication given as prescribed</span></label><label class="box"><input type="checkbox" name="Care requested" value="Dressing checks"><span>Dressing checks</span></label><label class="box"><input type="checkbox" name="Care requested" value="Surgical drain monitoring"><span>Surgical drain monitoring</span></label><label class="box"><input type="checkbox" name="Care requested" value="Help with moving around"><span>Help with moving around</span></label><label class="box"><input type="checkbox" name="Care requested" value="Help with the toilet"><span>Help with the toilet</span></label><label class="box"><input type="checkbox" name="Care requested" value="Help with positioning"><span>Help with positioning</span></label><label class="box"><input type="checkbox" name="Care requested" value="Watching for complications"><span>Watching for complications</span></label><label class="box"><input type="checkbox" name="Care requested" value="General post-op nursing support"><span>General post-op nursing support</span></label><label class="box"><input type="checkbox" name="Care requested" value="Other (please specify)"><span>Other (please specify)</span></label><label class="box"><input type="checkbox" name="Care requested" value="Unsure, I&#x27;d like to discuss it"><span>Unsure, I&#x27;d like to discuss it</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Care requested" data-if-values="Other (please specify)"><div class="q"><label for="f56" class="q-label">Please specify <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f56" name="Care requested: other" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Dates and times</h3>
+<div class="q"><label for="f57" class="q-label">First night you would like nursing care <span class="text-teal" aria-hidden="true">*</span></label><p class="q-hint">Usually the date you are discharged. Your best guess is fine.</p><input type="date" id="f57" name="First nursing date" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div id="extra-dates"></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Number of nights" data-if-values="More than 7 nights|Not yet determined"><div class="q"><label for="f58" class="q-label">All the dates you would like care <span class="font-normal text-slatey">(if known)</span></label><textarea id="f58" name="All requested nursing dates" rows="2" class="inp"></textarea><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f59" class="q-label">Preferred shift start time <span class="font-normal text-slatey">(if known)</span></label><input type="time" id="f59" name="Shift start time" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f60" class="q-label">Preferred shift end time <span class="font-normal text-slatey">(if known)</span></label><input type="time" id="f60" name="Shift end time" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">How long would you like each shift to be? <span class="text-teal" aria-hidden="true">*</span></p><p class="q-hint">Toronto ProRN books a minimum of 8 hours in a row. Shifts of up to 12 hours are available, depending on nurse availability.</p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Shift length" value="8 hours" required><span>8 hours</span></label><label class="pill"><input type="radio" name="Shift length" value="9 hours" required><span>9 hours</span></label><label class="pill"><input type="radio" name="Shift length" value="10 hours" required><span>10 hours</span></label><label class="pill"><input type="radio" name="Shift length" value="11 hours" required><span>11 hours</span></label><label class="pill"><input type="radio" name="Shift length" value="12 hours" required><span>12 hours</span></label><label class="pill"><input type="radio" name="Shift length" value="Not yet determined" required><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<p id="mini-estimate" class="hidden -mt-3 mb-7 text-sm font-semibold text-teal"></p>
+<div class="q"><p class="q-label">Do you need care on nights in a row? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Consecutive nights" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Consecutive nights" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Consecutive nights" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Has your surgeon recommended how long you should have nursing care? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Surgeon recommended duration" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Surgeon recommended duration" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Surgeon recommended duration" value="Not discussed yet" required><span>Not discussed yet</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Surgeon recommended duration" data-if-values="Yes"><div class="q"><label for="f61" class="q-label">What did your surgeon recommend? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f61" name="Recommended duration" class="inp" placeholder="e.g. 2 nights" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Do you think you may need help beyond the hours you book? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="May need help beyond booked hours" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="May need help beyond booked hours" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="May need help beyond booked hours" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Would you like to talk about extra nursing hours if they are available? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Discuss extra hours" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Discuss extra hours" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+
+</section>
+
+<section class="step hidden" data-step="7" data-title="Care you may need" aria-labelledby="step-h-7">
+  <p class="eyebrow text-teal mb-2">Step 7 of 12</p>
+  <h2 id="step-h-7" class="font-display text-2xl md:text-3xl text-ink mb-2">Care you may need</h2>
+  <p class="text-slatey mb-8">These answers tell us whether your recovery address has what your care needs.</p>
+<div class="q"><p class="q-label">Are you expected to have surgical drains? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Drains expected" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Drains expected" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Drains expected" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Drains expected" data-if-values="Yes"><div class="q"><label for="f62" class="q-label">How many drains? <span class="text-teal" aria-hidden="true">*</span></label><select id="f62" name="Number of drains" class="inp" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4 or more</option><option>Unsure</option></select><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will you have dressings or compression garments? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Dressings or compression garments" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Dressings or compression garments" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Dressings or compression garments" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will you need help getting out of bed? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Help getting out of bed" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Help getting out of bed" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Help getting out of bed" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will you need help walking? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Help walking" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Help walking" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Help walking" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will you need help using the bathroom? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Help using bathroom" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Help using bathroom" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Help using bathroom" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will you need help with your prescribed post-op medications? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Help with medications" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Help with medications" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Help with medications" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will your prescriptions be picked up and at your recovery address? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Medications at recovery address" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Medications at recovery address" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Medications at recovery address" value="Not yet" required><span>Not yet</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will your surgeon give you written discharge instructions? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Written discharge instructions" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Written discharge instructions" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Written discharge instructions" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Will your post-op supplies be at your recovery address? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Supplies at recovery address" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Supplies at recovery address" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Supplies at recovery address" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Has your surgeon said you may need special equipment after surgery? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Special equipment" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Special equipment" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Special equipment" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Special equipment" data-if-values="Yes"><div class="q"><label for="f63" class="q-label">What equipment? <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f63" name="Special equipment: description" class="inp" required ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Has your surgeon said you will need someone with you at all times after discharge? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Continuous supervision advised" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Continuous supervision advised" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Continuous supervision advised" value="Not discussed" required><span>Not discussed</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q" data-group-required="Specialized care advised"><p class="q-label">Has your surgeon said you will need any of these after discharge? <span class="text-teal" aria-hidden="true">*</span></p><div class="grid sm:grid-cols-2 gap-2"><label class="box"><input type="checkbox" name="Specialized care advised" value="Supplemental oxygen"><span>Supplemental oxygen</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Injectable medication"><span>Injectable medication</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Specialized wound care"><span>Specialized wound care</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Catheter care"><span>Catheter care</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Drain care"><span>Drain care</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Mobility equipment"><span>Mobility equipment</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Other specialized nursing care"><span>Other specialized nursing care</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="None of the above"><span>None of the above</span></label><label class="box"><input type="checkbox" name="Specialized care advised" value="Not yet determined"><span>Not yet determined</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Specialized care advised" data-if-values="Supplemental oxygen|Injectable medication|Specialized wound care|Catheter care|Drain care|Mobility equipment|Other specialized nursing care"><div class="rounded-xl border bg-blush/40 border-blush text-ink p-5 mb-7 text-[15px] leading-relaxed">Thank you. A nursing assessment is needed before we can confirm this care can be given safely at your recovery address. Your nurse will go over it with you.</div>
+</div>
+
+</section>
+
+<section class="step hidden" data-step="8" data-title="Health screening" aria-labelledby="step-h-8">
+  <p class="eyebrow text-teal mb-2">Step 8 of 12</p>
+  <h2 id="step-h-8" class="font-display text-2xl md:text-3xl text-ink mb-2">Health screening</h2>
+  <p class="text-slatey mb-8">A quick yes or no check. Details are covered privately by phone.</p>
+<div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">Yes or No is all we need here.</strong> Please don't type details about allergies, medications or medical conditions into this form. Your nurse will go over those with you privately by phone before your surgery.</div>
+<div class="q"><p class="q-label">Do you have any medication allergies? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: medication allergies" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: medication allergies" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Screening: medication allergies" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you take any prescription medications? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: prescription medications" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: prescription medications" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you have any medical conditions that could affect your surgery or recovery? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: medical conditions" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: medical conditions" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Screening: medical conditions" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you have any mobility limitations? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: mobility limitations" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: mobility limitations" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you use a mobility aid (cane, walker, wheelchair)? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: mobility aid" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: mobility aid" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you use oxygen, CPAP or BiPAP at home? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: oxygen/CPAP/BiPAP" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: oxygen/CPAP/BiPAP" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you have any hearing, vision or communication needs? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: hearing/vision/communication" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: hearing/vision/communication" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Has a doctor said you need extra monitoring after surgery because of a medical condition? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Screening: extra monitoring advised" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Screening: extra monitoring advised" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Screening: extra monitoring advised" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+
+</section>
+
+<section class="step hidden" data-step="9" data-title="Emergency contact" aria-labelledby="step-h-9">
+  <p class="eyebrow text-teal mb-2">Step 9 of 12</p>
+  <h2 id="step-h-9" class="font-display text-2xl md:text-3xl text-ink mb-2">Emergency contact</h2>
+  <p class="text-slatey mb-8">Someone we can call if we need to reach your family.</p>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f64" class="q-label">Emergency contact's full name <span class="text-teal" aria-hidden="true">*</span></label><input type="text" id="f64" name="Emergency contact: name" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f65" class="q-label">Relationship to you <span class="text-teal" aria-hidden="true">*</span></label><select id="f65" name="Emergency contact: relationship" class="inp" required><option value="">Select</option><option>Spouse</option><option>Partner</option><option>Parent</option><option>Adult child</option><option>Sibling</option><option>Other family member</option><option>Friend</option><option>Other</option></select><p class="q-err" role="alert"></p></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f66" class="q-label">Phone number <span class="text-teal" aria-hidden="true">*</span></label><input type="tel" id="f66" name="Emergency contact: phone" class="inp" required ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f67" class="q-label">Other phone number <span class="font-normal text-slatey">(optional)</span></label><input type="tel" id="f67" name="Emergency contact: other phone" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><p class="q-label">Will this person be in Toronto during your recovery? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Emergency contact in Toronto" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Emergency contact in Toronto" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Can this person be reached by phone overnight? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Emergency contact reachable overnight" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Emergency contact reachable overnight" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Emergency contact reachable overnight" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Can your nurse share updates about your care with this person? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Emergency contact can receive updates" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Emergency contact can receive updates" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Emergency contact in Toronto" data-if-values="No"><h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Second emergency contact</h3>
+<p class="q-hint mb-5">Since your first contact won't be in Toronto, you can add someone local.</p><div class="grid sm:grid-cols-2 gap-x-5"><div class="q"><label for="f68" class="q-label">Full name <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f68" name="Second emergency contact: name" class="inp" ><p class="q-err" role="alert"></p></div>
+<div class="q"><label for="f69" class="q-label">Relationship to you <span class="font-normal text-slatey">(optional)</span></label><input type="text" id="f69" name="Second emergency contact: relationship" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><label for="f70" class="q-label">Phone number <span class="font-normal text-slatey">(optional)</span></label><input type="tel" id="f70" name="Second emergency contact: phone" class="inp" ><p class="q-err" role="alert"></p></div>
+</div>
+
+</section>
+
+<section class="step hidden" data-step="10" data-title="Fees and your estimate" aria-labelledby="step-h-10">
+  <p class="eyebrow text-teal mb-2">Step 10 of 12</p>
+  <h2 id="step-h-10" class="font-display text-2xl md:text-3xl text-ink mb-2">Fees and your estimate</h2>
+  <p class="text-slatey mb-8">Here is what your care would cost based on what you told us.</p>
+<div class="grid md:grid-cols-2 gap-5 mb-8">
+  <div class="rounded-xl border border-line bg-white p-6">
+    <h3 class="font-display text-lg text-ink mb-3">Nursing rates</h3>
+    <table class="w-full text-[15px] text-slatey">
+      <tbody>
+        <tr class="border-b border-line"><td class="py-1.5">8 hours (minimum)</td><td class="py-1.5 text-right font-mono text-ink">$680.00</td></tr>
+        <tr class="border-b border-line"><td class="py-1.5">9 hours</td><td class="py-1.5 text-right font-mono text-ink">$765.00</td></tr>
+        <tr class="border-b border-line"><td class="py-1.5">10 hours</td><td class="py-1.5 text-right font-mono text-ink">$850.00</td></tr>
+        <tr class="border-b border-line"><td class="py-1.5">11 hours</td><td class="py-1.5 text-right font-mono text-ink">$935.00</td></tr>
+        <tr><td class="py-1.5">12 hours</td><td class="py-1.5 text-right font-mono text-ink">$1,020.00</td></tr>
+      </tbody>
+    </table>
+    <p class="text-sm text-slatey mt-3">$85.00 per hour, 8-hour minimum per shift.</p>
+  </div>
+  <div class="rounded-xl border border-line bg-white p-6">
+    <h3 class="font-display text-lg text-ink mb-3">RN transportation fee</h3>
+    <p class="text-[15px] text-slatey mb-3">No fee inside the zone south of Bloor Street, east of Dufferin Street, west of the Don Valley and north of the waterfront.</p>
+    <p class="text-[15px] text-slatey mb-4">$30.00 per shift for addresses outside that zone in our service area. This covers your nurse's travel only. It doesn't cover transportation for you.</p>
+    <div id="fee-status-2" class="zone-status rounded-lg border p-3 text-sm"></div>
+    <button type="button" id="goto-address" class="hidden mt-3 text-sm font-bold text-teal underline">Go back and check my address</button>
+  </div>
+</div>
+
+<div class="rounded-xl border border-line bg-white overflow-hidden mb-8">
+  <div class="p-6 border-b border-line">
+    <h3 class="font-display text-lg text-ink">Your estimate</h3>
+    <p class="text-sm text-slatey mt-1">Based on your answers so far. This is an estimate until your nurse, dates and care are confirmed.</p>
+  </div>
+  <table class="w-full text-[15px]"><tbody id="estimate-rows"></tbody></table>
+  <div id="estimate-notes" class="px-6 pb-5 text-sm text-slatey space-y-1"></div>
+</div>
+<div class="q"><p class="q-label">Is your recovery address in the Toronto area? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Recovery address in Toronto area" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Recovery address in Toronto area" value="No" required><span>No</span></label><label class="pill"><input type="radio" name="Recovery address in Toronto area" value="Unsure" required><span>Unsure</span></label></div><p class="q-err" role="alert"></p></div>
+<h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Please confirm</h3>
+<div class="q"><label class="box"><input type="checkbox" name="Ack: transportation fee" value="Yes" required><span>I understand a $30.00 RN transportation fee applies to each shift outside the fee-free zone.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Ack: no patient transport" value="Yes" required><span>I understand Toronto ProRN doesn't drive patients from hospitals or surgical clinics.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Ack: hourly rate" value="Yes" required><span>I understand Toronto ProRN charges $85.00 per hour, with an 8-hour minimum.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Ack: 25% deposit" value="Yes" required><span>I understand a 25% deposit is needed to confirm my booking.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Ack: balance due 48 hours before" value="Yes" required><span>I understand the balance is due 48 hours before my first nursing shift.</span></label><p class="q-err" role="alert"></p></div>
+<p class="text-sm text-slatey -mt-3">Your nursing services agreement and cancellation policy are sent to you before anything is booked.</p>
+
+</section>
+
+<section class="step hidden" data-step="11" data-title="Ready to book?" aria-labelledby="step-h-11">
+  <p class="eyebrow text-teal mb-2">Step 11 of 12</p>
+  <h2 id="step-h-11" class="font-display text-2xl md:text-3xl text-ink mb-2">Ready to book?</h2>
+  <p class="text-slatey mb-8">This tells us where you are in your planning.</p>
+<div class="q"><p class="q-label">Is your surgery date final? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Surgery date final" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Surgery date final" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Are your discharge plans confirmed? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Discharge plans confirmed" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Discharge plans confirmed" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Is your recovery accommodation booked? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Accommodation booked" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Accommodation booked" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Do you know the nursing dates you need? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Nursing dates known" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Nursing dates known" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Are you ready to book if a nurse is available? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Booking readiness" value="Yes, I&#x27;m ready to book" required><span>Yes, I&#x27;m ready to book</span></label><label class="pill"><input type="radio" name="Booking readiness" value="I need to confirm details with my surgeon" required><span>I need to confirm details with my surgeon</span></label><label class="pill"><input type="radio" name="Booking readiness" value="I&#x27;m still arranging where I&#x27;ll recover" required><span>I&#x27;m still arranging where I&#x27;ll recover</span></label><label class="pill"><input type="radio" name="Booking readiness" value="I&#x27;m comparing nursing options" required><span>I&#x27;m comparing nursing options</span></label><label class="pill"><input type="radio" name="Booking readiness" value="I&#x27;d like more information first" required><span>I&#x27;d like more information first</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="q"><p class="q-label">Would you like a video call to talk it through? <span class="text-teal" aria-hidden="true">*</span></p><div class="flex flex-wrap gap-2" role="radiogroup"><label class="pill"><input type="radio" name="Video consultation wanted" value="Yes" required><span>Yes</span></label><label class="pill"><input type="radio" name="Video consultation wanted" value="No" required><span>No</span></label></div><p class="q-err" role="alert"></p></div>
+<div class="cond hidden pl-4 border-l-2 border-blush mb-2" data-if-name="Video consultation wanted" data-if-values="Yes"><div class="q"><label for="f71" class="q-label">What days and times work for a video call? <span class="text-teal" aria-hidden="true">*</span></label><textarea id="f71" name="Video call times" rows="2" class="inp" placeholder="e.g. weekdays after 5pm, or Saturday morning" required></textarea><p class="q-err" role="alert"></p></div>
+</div>
+<div class="q"><label for="f72" class="q-label">Any questions for us? <span class="font-normal text-slatey">(optional)</span></label><textarea id="f72" name="Questions" rows="4" class="inp"></textarea><p class="q-err" role="alert"></p></div>
+
+</section>
+
+<section class="step hidden" data-step="12" data-title="Review and send" aria-labelledby="step-h-12">
+  <p class="eyebrow text-teal mb-2">Step 12 of 12</p>
+  <h2 id="step-h-12" class="font-display text-2xl md:text-3xl text-ink mb-2">Review and send</h2>
+  <p class="text-slatey mb-8">Check your answers, confirm the last few items, and send it.</p>
+<details class="rounded-xl border border-line bg-white mb-8 group">
+  <summary class="cursor-pointer list-none p-5 flex justify-between items-center">
+    <span class="font-display text-lg text-ink">Review your answers</span>
+    <i data-lucide="chevron-down" class="w-5 h-5 text-teal group-open:rotate-180 transition-transform"></i>
+  </summary>
+  <dl id="review-list" class="px-5 pb-5 text-sm divide-y divide-line"></dl>
+</details>
+<div class="q"><label class="box"><input type="checkbox" name="Consent: information accurate" value="Yes" required><span>The information in this form is accurate to the best of my knowledge.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Consent: privacy notice read" value="Yes" required><span>I have read the <a href="#" class="text-teal font-semibold underline" data-open-privacy>privacy notice</a> and understand how my information is collected, used and protected.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Consent: may contact me" value="Yes" required><span>Toronto ProRN may contact me about this request using the details I gave.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Consent: not a confirmed booking" value="Yes" required><span>I understand this form doesn't confirm a booking or guarantee a nurse is available.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Consent: service limits" value="Yes" required><span>I understand care is given at an approved recovery address, and Toronto ProRN doesn't provide patient transportation or a place to stay.</span></label><p class="q-err" role="alert"></p></div>
+<div class="q"><label class="box"><input type="checkbox" name="Optional: send me occasional updates" value="Yes"><span>Optional: send me occasional updates about Toronto ProRN.</span></label></div>
+<div class="h-captcha mb-6" data-captcha="true"></div>
+
+</section>
+
+
+      <div id="form-status" class="hidden rounded-lg p-4 text-sm font-medium mb-4" role="alert"></div>
+
+      <div class="flex flex-col-reverse sm:flex-row justify-between gap-3 pt-6 border-t border-line">
+        <button type="button" id="back-btn" class="hidden inline-flex justify-center items-center px-6 py-3.5 bg-white text-ink border border-line font-semibold rounded-lg hover:border-teal transition">
+          <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back
+        </button>
+        <span id="back-spacer"></span>
+        <button type="button" id="next-btn" class="inline-flex justify-center items-center px-7 py-3.5 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition shadow-lg shadow-teal/25">
+          Next <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+        </button>
+        <button type="submit" id="submit-btn" class="hidden inline-flex justify-center items-center gap-2 px-7 py-3.5 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition shadow-lg shadow-teal/25">
+          <span>Submit my nursing care request</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success panel -->
+  <div id="success-card" class="hidden bg-white rounded-2xl border border-line p-8 sm:p-12 text-center shadow-sm">
+    <div class="w-14 h-14 rounded-full bg-teal/10 flex items-center justify-center mx-auto mb-6">
+      <i data-lucide="check" class="w-7 h-7 text-teal"></i>
+    </div>
+    <h2 class="font-display text-3xl text-ink mb-4">Thank you, your request is in</h2>
+    <p class="text-slatey text-lg leading-relaxed mb-4">We've received your information and will review your nursing dates, recovery address and care needs. You'll hear back personally to talk about availability and next steps.</p>
+    <p class="text-slatey leading-relaxed mb-8">Your booking is confirmed once nurse availability is verified, your nursing services agreement is signed and your 25% deposit is received. If your surgery is within 48 hours, call or WhatsApp <a href="tel:+13433015061" class="text-teal font-semibold underline">(343) 301-5061</a> so it's seen right away.</p>
+    <p class="font-display text-ink">Toronto ProRN</p>
+    <p class="text-sm text-slatey">Professional post-operative nursing care</p>
+    <p class="text-sm"><a href="mailto:prorninc@gmail.com" class="text-teal underline">prorninc@gmail.com</a></p>
+    <a href="index.html" class="inline-flex items-center mt-8 px-6 py-3 bg-white text-ink border border-line font-semibold rounded-lg hover:border-teal transition">Back to the main site</a>
+  </div>
+
+  <p class="text-center text-sm text-slatey mt-8">Questions while you fill this out? Call or WhatsApp <a href="tel:+13433015061" class="text-teal font-semibold underline">(343) 301-5061</a>.</p>
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="bg-ink text-white/70 py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:justify-between gap-6 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <img src="logo-mark.png" alt="Toronto ProRN" class="h-7 w-auto" />
+          <span class="font-display text-xl text-white">Toronto<span class="text-blush">ProRN</span></span>
+        </div>
+        <p class="max-w-sm text-sm leading-relaxed">Private overnight recovery nursing for plastic surgery patients across Toronto and the GTA. Provided by JoAnne Gomez, RN.</p>
+      </div>
+      <div class="text-sm space-y-2">
+        <p><a href="tel:+13433015061" class="hover:text-blush transition">(343) 301-5061</a></p>
+        <p><a href="mailto:prorninc@gmail.com" class="hover:text-blush transition">prorninc@gmail.com</a></p>
+        <p><a href="#" data-open-privacy class="hover:text-blush transition">Privacy notice</a></p>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-white/10 text-xs flex flex-col md:flex-row justify-between gap-2">
+      <p>Toronto Pro RN is operated by ProRN Inc. · Registered Nurse, College of Nurses of Ontario · PHIPA compliant</p>
+      <p>&copy; <span id="footer-year"></span> ProRN Inc. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ====================== PRIVACY NOTICE ====================== -->
+<div id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 bg-ink/80 backdrop-blur-sm">
+  <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl p-8 relative">
+    <button type="button" data-close-privacy aria-label="Close" class="absolute top-4 right-4 p-2 bg-ivory rounded-full hover:bg-line transition">
+      <i data-lucide="x" class="w-5 h-5 text-ink"></i>
+    </button>
+    <h2 id="privacy-title" class="font-display text-2xl text-ink mb-4">Privacy notice</h2>
+    <div class="text-slatey text-sm space-y-3">
+      <p><strong>Last updated: <span id="privacy-year"></span></strong></p>
+      <p>Toronto ProRN protects the privacy and confidentiality of your personal health information under the Personal Health Information Protection Act (PHIPA) of Ontario and applicable Canadian privacy law.</p>
+      <p>This form collects only what's needed to plan safe nursing care and prepare your quote: your contact details, surgery and discharge plans, recovery address, who will be with you, the care you need and yes or no health screening answers. Detailed medical information is collected privately by phone, not through this form.</p>
+      <p>Your answers are saved in this browser on this device while you fill out the form, so you can come back later. They are erased from this device when you submit, or when you choose "Start over". To check whether your recovery address is in the fee-free zone, the street address, city and postal code are looked up with OpenStreetMap's map search. Nothing else is sent to it.</p>
+      <p>Your information is never sold, shared or used for marketing unless you opt in to updates. Clinical records are kept as required by the College of Nurses of Ontario.</p>
+      <p>To ask what information is held about you, or to request a correction or deletion, email prorninc@gmail.com.</p>
+    </div>
+    <div class="mt-8 pt-4 border-t border-line flex justify-end">
+      <button type="button" data-close-privacy class="px-6 py-2.5 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   SETTINGS: change these if your rates or zone change.
+   ===================================================================== */
+const HOURLY_RATE   = 85;     // dollars per hour
+const MIN_HOURS     = 8;      // minimum shift length
+const TRAVEL_FEE    = 30;     // RN transportation fee per shift outside the zone
+const DEPOSIT_RATE  = 0.25;   // 25% deposit
+const SERVICE_RADIUS_KM = 45; // farther than this from downtown = "availability to be confirmed"
+const DOWNTOWN = [43.6532, -79.3832];
+
+// Fee-free zone: south of Bloor, east of Dufferin, west of the Don Valley,
+// north of the waterfront. Each pair is [latitude, longitude], going clockwise.
+const FEE_FREE_ZONE = [
+  [43.6597, -79.4357], // Bloor & Dufferin
+  [43.6623, -79.4262], // Bloor & Ossington
+  [43.6653, -79.4113], // Bloor & Bathurst
+  [43.6672, -79.4037], // Bloor & Spadina
+  [43.6686, -79.3946], // Bloor & Avenue Rd
+  [43.6709, -79.3866], // Bloor & Yonge
+  [43.6721, -79.3767], // Bloor & Sherbourne
+  [43.6737, -79.3687], // Bloor & Castle Frank (Don Valley)
+  [43.6720, -79.3650], // Don Valley, south of the viaduct
+  [43.6665, -79.3608],
+  [43.6620, -79.3580], // Don Valley at Gerrard
+  [43.6577, -79.3560], // Don Valley at Queen
+  [43.6530, -79.3548],
+  [43.6490, -79.3537], // Don River near Lake Shore
+  [43.6440, -79.3600], // waterfront east
+  [43.6400, -79.3720], // Queens Quay & Jarvis
+  [43.6385, -79.3800], // Queens Quay & Yonge/York
+  [43.6372, -79.3900], // Queens Quay & Spadina
+  [43.6360, -79.3990], // Queens Quay & Bathurst
+  [43.6350, -79.4100], // Lake Shore & Strachan
+  [43.6335, -79.4180],
+  [43.6330, -79.4275], // Lake Shore & Dufferin
+  [43.6390, -79.4282], // Dufferin & King
+  [43.6430, -79.4295], // Dufferin & Queen
+  [43.6495, -79.4312], // Dufferin & Dundas
+  [43.6540, -79.4333]  // Dufferin & College
+];
+
+const STORAGE_KEY = 'torontoprorn-intake-v1';
+
+/* ===================================================================== */
+const form   = document.getElementById('intake-form');
+const steps  = Array.from(form.querySelectorAll('.step'));
+const TOTAL  = steps.length;
+let current  = 1;
+let zone     = { status: 'unknown' }; // in | out | far | unknown
+let map, zoneLayer, marker;
+
+function setYear() {
+  const y = new Date().getFullYear();
+  ['footer-year', 'privacy-year'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = y; });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setYear); else setYear();
+
+function drawIcons() { try { if (window.lucide) lucide.createIcons(); } catch (e) {} }
+
+/* ---------------- money ---------------- */
+const money = n => n.toLocaleString('en-CA', { style: 'currency', currency: 'CAD' });
+
+/* ---------------- show/hide follow-up questions ---------------- */
+function fieldValues(name) {
+  const els = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+  const vals = [];
+  els.forEach(el => {
+    if (el.disabled) return;
+    if (el.type === 'radio' || el.type === 'checkbox') { if (el.checked) vals.push(el.value); }
+    else if (el.value) vals.push(el.value);
+  });
+  return vals;
+}
+function matches(name, valuesAttr) {
+  const want = valuesAttr.split('|');
+  return fieldValues(name).some(v => want.includes(v));
+}
+function hasHiddenAncestor(el) {
+  let p = el.closest('.cond');
+  while (p) { if (p.classList.contains('hidden')) return true; p = p.parentElement && p.parentElement.closest('.cond'); }
+  return false;
+}
+function updateConditionals() {
+  // repeat so follow-ups inside follow-ups settle correctly
+  for (let pass = 0; pass < 3; pass++) {
+    form.querySelectorAll('.cond').forEach(c => {
+      c.classList.toggle('hidden', !matches(c.dataset.ifName, c.dataset.ifValues));
+    });
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+      if (el.type === 'hidden' || el.name === 'botcheck') return;
+      el.disabled = hasHiddenAncestor(el);
+    });
+  }
+  // questions that become required only for certain answers
+  form.querySelectorAll('[data-req-if-name]').forEach(el => {
+    const on = matches(el.dataset.reqIfName, el.dataset.reqIfValues);
+    el.required = on;
+    const star = el.closest('.q') && el.closest('.q').querySelector('.req-if-star');
+    if (star) star.classList.toggle('hidden', !on);
+  });
+}
+
+/* ---------------- extra nursing date boxes ---------------- */
+function renderExtraDates() {
+  const box = document.getElementById('extra-dates');
+  const n = parseInt(document.getElementById('nights-select').value, 10);
+  const wanted = (n >= 2 && n <= 7) ? n : 1;
+  const have = box.querySelectorAll('input').length + 1;
+  if (have === wanted) return;
+  const keep = {};
+  box.querySelectorAll('input').forEach(i => keep[i.name] = i.value);
+  let html = '';
+  if (wanted > 1) {
+    html += '<div class="q"><p class="q-label">Your other nursing dates <span class="font-normal text-slatey">(if known)</span></p><div class="grid sm:grid-cols-2 gap-3">';
+    for (let d = 2; d <= wanted; d++) {
+      html += `<label class="block"><span class="block text-xs text-slatey mb-1">Night ${d}</span><input type="date" name="Nursing date ${d}" class="inp"></label>`;
+    }
+    html += '</div></div>';
+  }
+  box.innerHTML = html;
+  box.querySelectorAll('input').forEach(i => { if (keep[i.name]) i.value = keep[i.name]; });
+}
+
+/* ---------------- save / restore on this device ---------------- */
+const SKIP = new Set(['access_key', 'from_name', 'botcheck', 'h-captcha-response', 'g-recaptcha-response']);
+function collect() {
+  const data = {};
+  form.querySelectorAll('input, select, textarea').forEach(el => {
+    if (!el.name || SKIP.has(el.name) || el.type === 'hidden') return;
+    if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; }
+    else if (el.type === 'checkbox') { (data[el.name] = data[el.name] || []); if (el.checked) data[el.name].push(el.value); }
+    else data[el.name] = el.value;
+  });
+  return data;
+}
+function apply(data) {
+  form.querySelectorAll('input, select, textarea').forEach(el => {
+    if (!el.name || SKIP.has(el.name) || el.type === 'hidden' || !(el.name in data)) return;
+    const v = data[el.name];
+    if (el.type === 'radio') el.checked = (v === el.value);
+    else if (el.type === 'checkbox') el.checked = Array.isArray(v) && v.includes(el.value);
+    else el.value = v;
+  });
+}
+let saveTimer, submitted = false;
+function save() {
+  clearTimeout(saveTimer);
+  if (submitted) return;
+  saveTimer = setTimeout(() => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ fields: collect(), step: current, zone, saved: Date.now() })); } catch (e) {}
+  }, 250);
+}
+function loadSaved() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch (e) {}
+  if (!saved || !saved.fields) return 1;
+  apply(saved.fields);
+  renderExtraDates();
+  apply(saved.fields);           // second pass fills the extra date boxes
+  if (saved.zone) zone = saved.zone;
+  document.getElementById('resume-banner').classList.remove('hidden');
+  return Math.min(Math.max(parseInt(saved.step, 10) || 1, 1), TOTAL);
+}
+function clearSaved() { clearTimeout(saveTimer); try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} }
+
+/* ---------------- checking each step ---------------- */
+function clearErrors(scope) { scope.querySelectorAll('.q.has-error').forEach(q => q.classList.remove('has-error')); }
+function flag(q, msg) {
+  if (!q || q.classList.contains('has-error')) return;
+  q.classList.add('has-error');
+  const e = q.querySelector(':scope > .q-err');
+  if (e) e.textContent = msg;
+}
+function validateStep(n) {
+  const sec = steps[n - 1];
+  clearErrors(sec);
+  // matching email
+  const conf = sec.querySelector('[data-match]');
+  if (conf) {
+    const other = form.querySelector(`[name="${conf.dataset.match}"]`);
+    conf.setCustomValidity(conf.value && other && conf.value.trim().toLowerCase() !== other.value.trim().toLowerCase() ? "The two email addresses don't match." : '');
+  }
+  // checkbox groups that need at least one tick
+  sec.querySelectorAll('[data-group-required]').forEach(q => {
+    if (hasHiddenAncestor(q)) return;
+    const ticked = q.querySelectorAll('input[type=checkbox]:checked').length;
+    if (!ticked) flag(q, 'Please choose at least one.');
+  });
+  // radio groups
+  const seenRadio = new Set();
+  sec.querySelectorAll('input[type=radio][required]').forEach(r => {
+    if (r.disabled || seenRadio.has(r.name)) return;
+    seenRadio.add(r.name);
+    if (!form.querySelector(`input[type=radio][name="${CSS.escape(r.name)}"]:checked`)) flag(r.closest('.q'), 'Please choose an answer.');
+  });
+  // everything else
+  sec.querySelectorAll('input, select, textarea').forEach(el => {
+    if (el.disabled || el.type === 'radio' || el.type === 'hidden') return;
+    if (!el.checkValidity()) {
+      let msg = 'Please fill this in.';
+      if (el.type === 'checkbox') msg = 'Please tick this box to continue.';
+      else if (el.validity.customError) msg = el.validationMessage;
+      else if (el.validity.typeMismatch && el.type === 'email') msg = 'Please enter a full email address, like name@example.com.';
+      else if (el.validity.rangeOverflow && el.type === 'date') msg = 'Please check this date.';
+      else if (el.tagName === 'SELECT') msg = 'Please choose an option.';
+      else if (el.validity.rangeUnderflow || el.validity.rangeOverflow || el.validity.badInput) msg = 'Please check this answer.';
+      flag(el.closest('.q'), msg);
+    }
+  });
+  const first = sec.querySelector('.q.has-error');
+  if (first) {
+    first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const f = first.querySelector('input:not([disabled]), select, textarea');
+    if (f) setTimeout(() => { try { f.focus({ preventScroll: true }); } catch (e) {} }, 300);
+    return false;
+  }
+  return true;
+}
+
+/* ---------------- moving between steps ---------------- */
+function showStep(n) {
+  current = n;
+  steps.forEach((s, i) => s.classList.toggle('hidden', i !== n - 1));
+  const title = steps[n - 1].dataset.title;
+  document.getElementById('progress-label').textContent = `Step ${n} of ${TOTAL}: ${title}`;
+  const pct = Math.round(((n - 1) / TOTAL) * 100);
+  document.getElementById('progress-pct').textContent = pct + '% done';
+  document.getElementById('progress-bar').style.width = Math.max(pct, 4) + '%';
+  document.getElementById('back-btn').classList.toggle('hidden', n === 1);
+  document.getElementById('back-spacer').classList.toggle('hidden', n !== 1);
+  document.getElementById('next-btn').classList.toggle('hidden', n === TOTAL);
+  document.getElementById('submit-btn').classList.toggle('hidden', n !== TOTAL);
+  if (steps[n - 1].querySelector('#zone-map')) ensureMap();
+  if (steps[n - 1].querySelector('#estimate-rows')) renderEstimate();
+  if (n === TOTAL) renderReview();
+  save();
+}
+function scrollToForm() {
+  const top = document.getElementById('progress-wrap').getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+async function next() {
+  if (!validateStep(current)) return;
+  if (steps[current - 1].querySelector('#zone-map') && addressText() && zone.addr !== addressText() && zone.source !== 'map') {
+    await checkAddress(true);
+  }
+  if (current < TOTAL) { showStep(current + 1); scrollToForm(); }
+}
+function back() { if (current > 1) { showStep(current - 1); scrollToForm(); } }
+
+/* ---------------- fee-free zone and map ---------------- */
+function insidePolygon(lat, lng, poly) {
+  let inside = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [yi, xi] = poly[i], [yj, xj] = poly[j];
+    if (((yi > lat) !== (yj > lat)) && (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi)) inside = !inside;
+  }
+  return inside;
+}
+function kmBetween(a, b) {
+  const R = 6371, toR = d => d * Math.PI / 180;
+  const dLat = toR(b[0] - a[0]), dLng = toR(b[1] - a[1]);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toR(a[0])) * Math.cos(toR(b[0])) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function classify(lat, lng) {
+  if (insidePolygon(lat, lng, FEE_FREE_ZONE)) return 'in';
+  if (kmBetween(DOWNTOWN, [lat, lng]) <= SERVICE_RADIUS_KM) return 'out';
+  return 'far';
+}
+function addressText() {
+  const v = n => (form.querySelector(`[name="${n}"]`) || {}).value || '';
+  const street = v('Recovery street address').trim(), city = v('Recovery city').trim(), postal = v('Recovery postal code').trim();
+  if (!street && !postal) return '';
+  return [street, city, postal].filter(Boolean).join(', ');
+}
+const ZONE_TEXT = {
+  in:      '<strong>Inside the fee-free zone.</strong> RN transportation fee: <strong>$0.00</strong>',
+  out:     '<strong>Outside the fee-free zone.</strong> RN transportation fee: <strong>$30.00 per shift</strong>',
+  far:     "<strong>This address is outside our usual service area.</strong> We'll confirm whether a nurse is available there before anything is booked.",
+  unknown: "<strong>Not checked yet.</strong> Enter your recovery address and press Check my address, or tap your location on the map. If you don't know it yet, your fee is confirmed with you later.",
+  loading: 'Looking up your address...',
+  notfound:"<strong>We couldn't find that address.</strong> Check the spelling, or tap your recovery location on the map. You can also carry on and your fee is confirmed with you later."
+};
+function paintZone(stateKey) {
+  const key = stateKey || zone.status;
+  const cls = ['in', 'out', 'far'].includes(key) ? key : '';
+  ['zone-status', 'fee-status-2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.className = el.className.replace(/\b(in|out|far)\b/g, '').trim() + (cls ? ' ' + cls : '');
+    el.innerHTML = ZONE_TEXT[key] + (zone.label && cls ? `<span class="block text-xs mt-1 opacity-80">${escapeHtml(zone.label)}</span>` : '');
+  });
+  const go = document.getElementById('goto-address');
+  if (go) go.classList.toggle('hidden', zone.status !== 'unknown');
+}
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+function setPoint(lat, lng, source, label) {
+  zone = { status: classify(lat, lng), lat, lng, source, addr: addressText(), label: label || '' };
+  if (map) {
+    if (!marker) marker = L.marker([lat, lng]).addTo(map); else marker.setLatLng([lat, lng]);
+    map.setView([lat, lng], Math.max(map.getZoom(), 13));
+  }
+  paintZone();
+  save();
+}
+function ensureMap() {
+  if (!window.L) {
+    const el = document.getElementById('zone-map');
+    if (el && !el.dataset.failed) { el.dataset.failed = '1'; el.innerHTML = '<p class="p-6 text-sm text-slatey">The map could not load. The address check still works.</p>'; }
+    paintZone();
+    return;
+  }
+  if (map) { setTimeout(() => map.invalidateSize(), 50); paintZone(); return; }
+  map = L.map('zone-map', { scrollWheelZoom: false });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  zoneLayer = L.polygon(FEE_FREE_ZONE, { color: '#2C5F5A', weight: 2, fillColor: '#3E837B', fillOpacity: 0.18 })
+    .addTo(map).bindTooltip('No transportation fee in this area', { sticky: true });
+  map.fitBounds(zoneLayer.getBounds(), { padding: [20, 20] });
+  if (zone.lat) marker = L.marker([zone.lat, zone.lng]).addTo(map);
+  map.on('click', e => setPoint(e.latlng.lat, e.latlng.lng, 'map', 'Location tapped on the map'));
+  setTimeout(() => map.invalidateSize(), 50);
+  paintZone();
+}
+async function lookup(query) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=ca&q=' + encodeURIComponent(query);
+    const r = await fetch(url, { signal: ctrl.signal, headers: { 'Accept': 'application/json' } });
+    if (!r.ok) return null;
+    const j = await r.json();
+    return j && j[0] ? j[0] : null;
+  } catch (e) { return null; } finally { clearTimeout(t); }
+}
+let checking = false;
+async function checkAddress(quiet) {
+  if (checking) return;
+  const v = n => ((form.querySelector(`[name="${n}"]`) || {}).value || '').trim();
+  const street = v('Recovery street address'), city = v('Recovery city'), postal = v('Recovery postal code');
+  if (!street && !postal) { if (!quiet) { paintZone('unknown'); } return; }
+  checking = true;
+  const btn = document.getElementById('check-address-btn');
+  btn.disabled = true;
+  paintZone('loading');
+  const tries = [];
+  if (street) tries.push([street, city || 'Toronto', 'Ontario', 'Canada'].join(', '));
+  if (postal) tries.push(postal + ', Ontario, Canada');
+  let hit = null;
+  for (let i = 0; i < tries.length && !hit; i++) {
+    if (i > 0) await new Promise(r => setTimeout(r, 1100)); // map search allows 1 request per second
+    hit = await lookup(tries[i]);
+  }
+  checking = false;
+  btn.disabled = false;
+  if (hit) setPoint(parseFloat(hit.lat), parseFloat(hit.lon), 'address', hit.display_name);
+  else { zone = { status: 'unknown' }; paintZone('notfound'); save(); }
+}
+
+/* ---------------- estimate ---------------- */
+function estimate() {
+  const nightsVal = (document.getElementById('nights-select') || {}).value || '';
+  const nights = parseInt(nightsVal, 10);
+  const hoursVal = fieldValues('Shift length')[0] || '';
+  const hours = parseInt(hoursVal, 10);
+  const shifts = (nights >= 1 && nights <= 7) ? nights : 1;
+  const hrs = (hours >= MIN_HOURS && hours <= 12) ? hours : MIN_HOURS;
+  const nursing = shifts * hrs * HOURLY_RATE;
+  const fee = zone.status === 'in' ? 0 : zone.status === 'out' ? TRAVEL_FEE * shifts : null;
+  const total = nursing + (fee || 0);
+  const deposit = Math.round(total * DEPOSIT_RATE * 100) / 100;
+  return { nightsVal, shifts, hrs, hoursKnown: !!(hours >= MIN_HOURS), nightsKnown: !!(nights >= 1 && nights <= 7), nursing, fee, total, deposit, balance: total - deposit };
+}
+function renderEstimate() {
+  const e = estimate();
+  const row = (a, b, strong) => `<tr class="border-b border-line"><td class="px-6 py-3 ${strong ? 'font-bold text-ink' : 'text-slatey'}">${a}</td><td class="px-6 py-3 text-right font-mono ${strong ? 'font-bold text-ink' : 'text-ink'}">${b}</td></tr>`;
+  let rows = row(`Nursing care: ${e.shifts} ${e.shifts === 1 ? 'shift' : 'shifts'} × ${e.hrs} hours at ${money(HOURLY_RATE)}/hour`, money(e.nursing));
+  rows += row(`RN transportation fee${e.fee ? ` (${e.shifts} × ${money(TRAVEL_FEE)})` : ''}`, e.fee === null ? 'To be confirmed' : money(e.fee));
+  rows += row('Total estimated cost', money(e.total), true);
+  rows += row(`Deposit to confirm booking (${DEPOSIT_RATE * 100}%)`, money(e.deposit));
+  rows += row('Balance due 48 hours before your first shift', money(e.balance));
+  document.getElementById('estimate-rows').innerHTML = rows;
+  const notes = [];
+  if (!e.nightsKnown) notes.push("Shown for 1 night. Your total depends on how many nights you book.");
+  if (!e.hoursKnown) notes.push(`Shown at the ${MIN_HOURS}-hour minimum.`);
+  if (e.fee === null) notes.push("The transportation fee isn't included until your recovery address is checked.");
+  document.getElementById('estimate-notes').innerHTML = notes.map(n => `<p>${n}</p>`).join('');
+  paintZone();
+}
+function renderMini() {
+  const el = document.getElementById('mini-estimate');
+  if (!el) return;
+  const e = estimate();
+  if (!e.nightsKnown && !e.hoursKnown) { el.classList.add('hidden'); return; }
+  el.classList.remove('hidden');
+  el.textContent = `Estimated nursing cost: ${money(e.nursing)} (${e.shifts} × ${e.hrs} hours, before any transportation fee)`;
+}
+
+/* ---------------- review list ---------------- */
+function buildPayload() {
+  const out = {};
+  new FormData(form).forEach((v, k) => {
+    if (typeof v !== 'string' || v.trim() === '') return;
+    out[k] = (k in out) ? out[k] + ', ' + v : v;
+  });
+  return out;
+}
+function renderReview() {
+  const p = buildPayload();
+  const hide = new Set(['access_key', 'from_name', 'botcheck', 'h-captcha-response', 'g-recaptcha-response']);
+  let html = '';
+  Object.keys(p).forEach(k => {
+    if (hide.has(k) || k.startsWith('Ack:') || k.startsWith('Consent:') || k.startsWith('Optional:')) return;
+    const label = k === 'email' ? 'Email' : k;
+    html += `<div class="py-2 grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-3"><dt class="text-slatey">${escapeHtml(label)}</dt><dd class="text-ink break-words">${escapeHtml(p[k])}</dd></div>`;
+  });
+  document.getElementById('review-list').innerHTML = html || '<p class="py-2 text-slatey">No answers yet.</p>';
+}
+
+/* ---------------- submit ---------------- */
+async function submit(ev) {
+  ev.preventDefault();
+  if (current !== TOTAL) { next(); return; }
+  if (!validateStep(TOTAL)) return;
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('form-status');
+  const original = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<div class="loader"></div><span>Sending...</span>';
+  status.className = 'hidden rounded-lg p-4 text-sm font-medium mb-4';
+
+  const p = buildPayload();
+  const e = estimate();
+  const name = [p['First name'], p['Last name']].filter(Boolean).join(' ');
+  p.subject = `Intake form: ${name || 'New client'} · surgery ${p['Surgery date'] || 'date TBD'}`;
+  p['Fee-free zone check'] = { in: 'Inside zone ($0 fee)', out: 'Outside zone ($30 per shift)', far: 'Outside usual service area, confirm availability', unknown: 'Not checked' }[zone.status] || 'Not checked';
+  if (zone.label) p['Zone check matched'] = zone.label;
+  p['Estimate: nursing'] = `${money(e.nursing)} (${e.shifts} × ${e.hrs} hrs)`;
+  p['Estimate: transportation fee'] = e.fee === null ? 'To be confirmed' : money(e.fee);
+  p['Estimate: total'] = money(e.total);
+  p['Estimate: 25% deposit'] = money(e.deposit);
+  p['Estimate: balance'] = money(e.balance);
+  p['Submitted'] = new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' });
+
+  try {
+    const r = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(p)
+    });
+    const data = await r.json();
+    if (!data.success) throw new Error(data.message || 'Failed');
+    submitted = true;
+    clearSaved();
+    document.getElementById('form-card').classList.add('hidden');
+    document.getElementById('progress-wrap').classList.add('hidden');
+    document.getElementById('resume-banner').classList.add('hidden');
+    document.getElementById('success-card').classList.remove('hidden');
+    drawIcons();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    console.error(err);
+    status.textContent = "That didn't send. Please try again, or call or WhatsApp (343) 301-5061. Your answers are still saved on this device.";
+    status.className = 'rounded-lg p-4 text-sm font-medium mb-4 bg-red-50 text-red-800 border border-red-200';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = original;
+  }
+}
+
+/* ---------------- privacy notice ---------------- */
+function openPrivacy(e) { if (e) e.preventDefault(); const m = document.getElementById('privacy-modal'); m.classList.remove('hidden'); m.classList.add('flex'); }
+function closePrivacy() { const m = document.getElementById('privacy-modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+
+/* ---------------- start ---------------- */
+function init() {
+  drawIcons();
+  const today = new Date();
+  const iso = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  form.querySelectorAll('[data-max-today]').forEach(el => el.max = iso);
+
+  const startAt = loadSaved();
+  renderExtraDates();
+  updateConditionals();
+  renderMini();
+  showStep(startAt);
+
+  form.addEventListener('change', ev => {
+    if (ev.target.id === 'nights-select') renderExtraDates();
+    updateConditionals();
+    renderMini();
+    const q = ev.target.closest('.q'); if (q) q.classList.remove('has-error');
+    save();
+  });
+  form.addEventListener('input', ev => {
+    const n = ev.target.name || '';
+    if (/^Recovery (street address|city|postal code)$/.test(n) && zone.source === 'address' && zone.addr !== addressText()) {
+      zone = { status: 'unknown' };
+      if (marker && map) { map.removeLayer(marker); marker = null; }
+      paintZone();
+    }
+    const q = ev.target.closest('.q'); if (q) q.classList.remove('has-error');
+    save();
+  });
+  form.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter' && ev.target.tagName === 'INPUT' && ev.target.type !== 'submit') { ev.preventDefault(); next(); }
+  });
+  form.addEventListener('submit', submit);
+  document.getElementById('next-btn').addEventListener('click', next);
+  document.getElementById('back-btn').addEventListener('click', back);
+  document.getElementById('check-address-btn').addEventListener('click', () => checkAddress(false));
+  document.getElementById('goto-address').addEventListener('click', () => {
+    const idx = steps.findIndex(s => s.querySelector('#zone-map')) + 1;
+    showStep(idx);
+    setTimeout(() => document.getElementById('zone-block').scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+  });
+  document.getElementById('start-over-btn').addEventListener('click', () => {
+    if (!confirm('Erase your saved answers and start a blank form?')) return;
+    clearSaved();
+    window.location.reload();
+  });
+  document.querySelectorAll('[data-open-privacy]').forEach(a => a.addEventListener('click', openPrivacy));
+  document.querySelectorAll('[data-close-privacy]').forEach(b => b.addEventListener('click', closePrivacy));
+  document.getElementById('privacy-modal').addEventListener('click', e => { if (e.target.id === 'privacy-modal') closePrivacy(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrivacy(); });
+  setYear();
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+window.addEventListener('load', () => { drawIcons(); setYear(); if (map) map.invalidateSize(); });
+</script>
+</body>
+</html>
