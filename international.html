@@ -104,31 +104,7 @@
 }
 </script>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        ink:    '#12191B',
-        night:  '#1B2A2C',
-        slatey: '#4A5A5C',
-        teal:   '#2C5F5A',
-        teallt: '#3E837B',
-        blush:  '#E4CFC6',
-        ivory:  '#FAF7F3',
-        line:   '#E3DCD4'
-      },
-      fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
-        sans:    ['Karla', 'system-ui', 'sans-serif'],
-        mono:    ['JetBrains Mono', 'monospace']
-      }
-    }
-  }
-}
-</script>
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@1.61.0/dist/umd/lucide.min.js" defer></script>
 
 <style>
   html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -138,6 +114,7 @@ tailwind.config = {
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   @media (max-width: 767px) { body { padding-bottom: 68px; } }
 </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="font-sans text-ink antialiased">

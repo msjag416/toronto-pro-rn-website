@@ -7,9 +7,17 @@ Last updated: October 21, 2026
 The site is plain HTML hosted on GitHub Pages, with the domain pointed there through Porkbun. There is no server and no database. Everything lives in these files, all in the same folder:
 
 - **index.html** is the main page (hero, first night timeline, procedures, about, pricing, reviews, FAQ, short booking form).
+- **international.html** is the page for patients travelling to Toronto from other countries or provinces (USA, Caribbean, Gulf, UK, elsewhere in Canada). It has its own Google search code: page details, the service, its FAQ and a breadcrumb.
 - **intake.html** is the full booking intake form. Its web address is torontoprorn.com/intake.html. You can text or email that link to clients directly.
 - **hero.jpg, logo-mark.png, favicon.svg** are the images both pages use.
+- **sitemap.xml** lists all three pages for Google. Update the dates when pages change.
 - **SITE-NOTES.md** is this file.
+
+## The styles file (styles.css)
+
+All three pages share one design file, **styles.css**, which must sit in the same folder as the pages. It holds every colour, size and layout rule the pages use, built ahead of time so phones load the site quickly. (Before October 2026 the pages built their design in the visitor's browser on every visit, which was slower.)
+
+Changing words, prices, phone numbers or links on a page is fine and needs nothing else. If new design styling is ever added to a page (for example a new colour or spacing class on a new section), styles.css has to be rebuilt to include it, so ask Claude to "rebuild styles.css" after that kind of change.
 
 ## How the two pages connect
 
@@ -60,5 +68,5 @@ Change the number, save, and upload. If you change the rates, also update the ra
 
 1. Go to your torontoprorn repository on GitHub.
 2. Click "Add file", then "Upload files".
-3. Drag in the changed files (intake.html, index.html, and toronto-fee-free-zone.jpg the first time).
+3. Drag in the changed files (index.html, intake.html, international.html, and the first time: styles.css and toronto-fee-free-zone.jpg).
 4. Click "Commit changes". The live site updates within a minute or two.
