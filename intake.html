@@ -75,6 +75,13 @@
     html { scroll-behavior: auto; }
     * { animation: none !important; transition: none !important; }
   }
+
+  /* ===== Phone comfort: wider side margins, roomier lines ===== */
+  @media (max-width: 639px) {
+    body { line-height: 1.6; }
+    div[class*="max-w-"][class*="px-4"], main[class*="max-w-"][class*="px-4"] { padding-left: 1.5rem; padding-right: 1.5rem; }
+    p:not(.font-display):not([class*="fn-"]), li { line-height: 1.6 !important; }
+  }
 </style>
 <link rel="stylesheet" href="styles.css">
 </head>

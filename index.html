@@ -157,7 +157,7 @@
   @media (max-width: 767px) { body { padding-bottom: 68px; } }
 
   /* ===== First night: scroll-driven night dial ===== */
-  .fn-panel { position: sticky; top: var(--fn-nav, 64px); z-index: 20; margin: 0 -1rem 2rem; padding: .7rem 1rem;
+  .fn-panel { position: sticky; top: var(--fn-nav, 64px); z-index: 20; margin: 0 -1.5rem 2rem; padding: .7rem 1.5rem;
     background: rgba(27,42,44,.98); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255,255,255,.1); }
   .fn-clock { position: relative; display: flex; align-items: center; gap: 1rem; }
@@ -217,6 +217,14 @@
       background: #E4CFC6; color: #12191B; font-weight: 700; border-radius: .5rem; transition: background .15s ease; }
     .fn-cta:hover { background: #fff; }
     .fn-cta-bottom { display: none; }
+  }
+
+  /* ===== Phone comfort: wider side margins, roomier lines ===== */
+  @media (max-width: 639px) {
+    body { line-height: 1.6; }
+    div[class*="max-w-"][class*="px-4"], main[class*="max-w-"][class*="px-4"] { padding-left: 1.5rem; padding-right: 1.5rem; }
+    p:not(.font-display):not([class*="fn-"]), li { line-height: 1.6 !important; }
+    .fn-list .fn-step { padding-left: 2.5rem; }
   }
 
   /* ===== Trust badges, icon chips and cards ===== */
@@ -286,6 +294,7 @@
       <a href="#faq" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">FAQ</a>
       <a href="international.html" class="block py-3 border-b border-line text-lg font-medium text-slatey">International patients</a>
       <a href="intake.html" class="block py-3 border-b border-line text-lg font-bold text-teal">Intake form</a>
+      <a href="tel:+13433015061" class="block py-3 border-b border-line text-lg font-medium text-slatey">Call (343) 301-5061</a>
       <a href="#book" onclick="toggleMenu()" class="block text-center bg-teal text-white py-3.5 rounded-lg font-bold mt-4">Book my recovery nurse</a>
     </div>
   </div>
@@ -1031,15 +1040,14 @@
   </div>
 </footer>
 
-<!-- ====================== STICKY MOBILE CALL BAR ====================== -->
+<!-- ====================== STICKY MOBILE ACTION BAR ====================== -->
 <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-line flex shadow-[0_-4px_20px_rgba(0,0,0,.08)]">
-  <a href="tel:+13433015061" class="flex-1 flex items-center justify-center gap-2 py-4 font-bold text-ink">
-    <i data-lucide="phone" class="w-5 h-5 text-teal"></i> Call
+  <a href="intake.html" class="flex-1 flex items-center justify-center gap-2 py-4 font-bold bg-ink text-white">
+    <i data-lucide="clipboard-list" class="w-5 h-5"></i> Intake Form
   </a>
-  <a href="https://wa.me/13433015061?text=Hi%20JoAnne%2C%20I%27m%20booking%20surgery%20and%20need%20an%20overnight%20recovery%20nurse." target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 py-4 font-bold text-ink border-l border-line">
-    <i data-lucide="message-circle" class="w-5 h-5 text-teal"></i> WhatsApp
+  <a href="https://wa.me/13433015061?text=Hi%20JoAnne%2C%20I%27m%20booking%20surgery%20and%20need%20an%20overnight%20recovery%20nurse." target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 py-4 font-bold bg-[#25D366] text-ink">
+    <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp Nurse
   </a>
-  <a href="#book" class="flex-1 flex items-center justify-center py-4 font-bold bg-teal text-white">Book</a>
 </div>
 
 <!-- ====================== MODALS ====================== -->
