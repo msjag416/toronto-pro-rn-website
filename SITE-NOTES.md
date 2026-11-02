@@ -96,3 +96,9 @@ Change the number, save, and upload. If you change the rates, also update the ra
 
 ## Icon script security check
 The Lucide icon script (unpkg.com, version 1.61.0) on all three pages has an "integrity" code. The browser refuses to run the script if the file on unpkg is ever changed. If you change the Lucide version number, the integrity code must be recalculated at the same time, or every icon on the site will disappear.
+
+## Recovery guides (articles)
+- Guide pages live in the **guides/** folder. The first one is **guides/faja-after-tummy-tuck-liposuction.html** (JoAnne's faja article, text unchanged).
+- Because guides sit one folder down, their links to the main site start with "../" (for example ../index.html, ../styles.css).
+- The homepage has a **Recovery guides** section (id "guides") just above the footer, with one card per guide. To add a guide: copy the faja page as a starting point, swap in the new article, add a card to that section, and add the page to sitemap.xml.
+

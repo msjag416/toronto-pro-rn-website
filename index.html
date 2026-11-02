@@ -305,6 +305,18 @@
     background: #2C5F5A; -webkit-mask: var(--li-icon) center / contain no-repeat; mask: var(--li-icon) center / contain no-repeat; }
   .icon-list--time { --li-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 14v2.2l1.6 1'/%3E%3Cpath d='M16 2v3'/%3E%3Cpath d='M21 7.338V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2.338'/%3E%3Cpath d='M3 9h5.859'/%3E%3Cpath d='M8 2v3'/%3E%3Ccircle cx='16' cy='16' r='6'/%3E%3C/svg%3E"); }
   .icon-list--check { --li-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
+
+  /* ===== Recovery guides hub ===== */
+  .guide-grid { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .guide-grid { grid-template-columns: repeat(3, 1fr); } }
+  .guide-card { display: flex; flex-direction: column; gap: .75rem; background: #fff; border: 1px solid #E3DCD4; border-radius: 1rem;
+    padding: 1.5rem; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .guide-card:hover { border-color: #2C5F5A; transform: translateY(-2px); box-shadow: 0 12px 30px -12px rgba(18,25,27,.18); }
+  .guide-card .guide-tag { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #2C5F5A; }
+  .guide-card h3 { font-family: Fraunces, Georgia, serif; font-weight: 500; font-size: 1.2rem; line-height: 1.3; color: #12191B; }
+  .guide-card .guide-more { margin-top: auto; font-size: .875rem; font-weight: 700; color: #2C5F5A; display: inline-flex; align-items: center; gap: .35rem; }
+  @media (prefers-reduced-motion: reduce) { .guide-card:hover { transform: none; } }
 </style>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -1051,6 +1063,23 @@
           Your health information stays confidential and is handled in line with PHIPA. It's never shared with anyone.
         </p>
       </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RECOVERY GUIDES ====================== -->
+<section id="guides" class="py-20 bg-ivory border-t border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p class="eyebrow text-teal mb-3">Post-op care guides</p>
+    <h2 class="font-display text-3xl text-ink mb-3">Recovery guides from an ICU nurse</h2>
+    <p class="text-slatey max-w-2xl mb-10">Answers to the questions patients ask most after plastic surgery, written by JoAnne Gomez, RN.</p>
+    <div class="guide-grid">
+      <a href="guides/faja-after-tummy-tuck-liposuction.html" class="guide-card">
+        <span class="guide-tag">Fajas &amp; compression</span>
+        <h3>How long should you wear a faja after a tummy tuck or liposuction?</h3>
+        <p class="text-sm text-slatey leading-relaxed">When you can take it off to shower or sleep, Stage 1 vs Stage 2, and how tight is too tight.</p>
+        <span class="guide-more">Read the guide <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+      </a>
     </div>
   </div>
 </section>
