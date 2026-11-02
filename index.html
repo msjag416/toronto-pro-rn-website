@@ -310,8 +310,9 @@
   .guide-grid { display: grid; gap: 1rem; }
   @media (min-width: 640px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 640px) and (max-width: 1023px) { .guide-grid > .guide-card:last-child:nth-child(odd) { grid-column: 1 / -1; } }
-  @media (min-width: 1024px) { .guide-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1024px) { .guide-grid > .guide-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; } }
+  @media (min-width: 1024px) { .guide-grid { grid-template-columns: repeat(6, 1fr); } .guide-grid > .guide-card { grid-column: span 2; }
+    .guide-grid > .guide-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+    .guide-grid > .guide-card:nth-last-child(2):nth-child(3n+1), .guide-grid > .guide-card:last-child:nth-child(3n+2) { grid-column: span 3; } }
   .guide-card { display: flex; flex-direction: column; gap: .75rem; background: #fff; border: 1px solid #E3DCD4; border-radius: 1rem;
     padding: 1.5rem; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
   .guide-card:hover { border-color: #2C5F5A; transform: translateY(-2px); box-shadow: 0 12px 30px -12px rgba(18,25,27,.18); }
@@ -1107,6 +1108,12 @@
         <span class="guide-tag">Weight loss &amp; loose skin</span>
         <h3>Lost weight on Ozempic or Wegovy and left with loose skin?</h3>
         <p class="text-sm text-slatey leading-relaxed">How long to keep your weight stable, GLP-1 medications before surgery, which lifts remove skin, and recovery.</p>
+        <span class="guide-more">Read the guide <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+      </a>
+      <a href="guides/jp-drain-fluid-colours-after-surgery.html" class="guide-card">
+        <span class="guide-tag">Surgical drains</span>
+        <h3>What do different JP drain fluid colours mean after surgery?</h3>
+        <p class="text-sm text-slatey leading-relaxed">Dark red, pink, clear, cloudy or green, how much drainage is normal, and when to call your surgeon.</p>
         <span class="guide-more">Read the guide <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
       </a>
       <a href="guides/first-72-hours-after-plastic-surgery.html" class="guide-card">
