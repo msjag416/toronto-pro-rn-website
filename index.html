@@ -155,6 +155,69 @@
   }
   /* space for the sticky mobile call bar */
   @media (max-width: 767px) { body { padding-bottom: 68px; } }
+
+  /* ===== First night: scroll-driven night dial ===== */
+  .fn-panel { position: sticky; top: var(--fn-nav, 64px); z-index: 20; margin: 0 -1rem 2rem; padding: .7rem 1rem;
+    background: rgba(27,42,44,.98); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,.1); }
+  .fn-clock { position: relative; display: flex; align-items: center; gap: 1rem; }
+  .fn-dial { width: 72px; height: 72px; flex: none; }
+  .fn-dial svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .fn-readout { min-width: 0; }
+  .fn-top { font-family: 'JetBrains Mono', monospace; font-size: .65rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #E4CFC6; line-height: 1.2; }
+  .fn-main { font-family: Fraunces, Georgia, serif; font-size: 1.7rem; line-height: 1.1; color: #fff; }
+  .fn-sub { font-size: .8rem; line-height: 1.3; color: rgba(255,255,255,.7); }
+  .fn-readout.swap { animation: fnswap .45s ease; }
+  @keyframes fnswap { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .fn-icons, .fn-ecg, .fn-cap, .fn-cta { display: none; }
+  .fn-arc { transition: stroke-dashoffset .25s linear; }
+  .fn-glow { opacity: 0; transition: opacity .9s ease; }
+  .fn-moon, .fn-sun { color: #E4CFC6; }
+  .fn-sun { display: none !important; }
+  #first-night.is-morning .fn-glow { opacity: 1; }
+  #first-night.is-morning .fn-moon { display: none !important; }
+  #first-night.is-morning .fn-sun { display: block !important; }
+
+  /* the timeline: "rope" that fills as you read, nodes that light up */
+  .fn-list { position: relative; }
+  .fn-list::after { content: ""; position: absolute; left: 12px; top: 0; width: 1px; height: var(--fn-h, 0px); background: #E4CFC6; pointer-events: none; }
+  .fn-node { position: absolute; left: -12px; top: 0; z-index: 1; width: 24px; height: 24px; border-radius: 50%; background: #E4CFC6; transition: background .4s ease, box-shadow .4s ease, border-color .4s ease; }
+  .fn-step { transition: opacity .5s ease; }
+  .fn-js .fn-node { background: #1B2A2C; border: 2px solid rgba(228,207,198,.45); }
+  .fn-js .fn-step.is-past .fn-node { background: rgba(228,207,198,.7); border-color: transparent; }
+  .fn-js .fn-step.is-active .fn-node { background: #E4CFC6; border-color: transparent; box-shadow: 0 0 0 7px rgba(228,207,198,.16); }
+  @media (prefers-reduced-motion: no-preference) {
+    .fn-js .fn-step { opacity: .55; }
+    .fn-js .fn-step.is-active { opacity: 1; }
+  }
+
+  @media (min-width: 640px) {
+    .fn-panel { margin-left: -1.5rem; margin-right: -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .fn-grid { display: grid; grid-template-columns: 290px minmax(0,1fr); gap: 4.5rem; }
+    .fn-panel { top: calc(var(--fn-nav, 64px) + 32px); align-self: start; margin: 0; padding: 0; background: none; border: 0;
+      -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .fn-clock { display: block; width: 260px; height: 260px; margin: 0 auto; }
+    .fn-dial { width: 260px; height: 260px; }
+    .fn-readout { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 3.4rem; }
+    .fn-icons { display: block; width: 20px; height: 20px; margin-bottom: .6rem; }
+    .fn-moon, .fn-sun { width: 20px; height: 20px; }
+    .fn-top { font-size: .7rem; margin-bottom: .35rem; }
+    .fn-main { font-size: 3.2rem; }
+    .fn-main.is-word { font-size: 2rem; }
+    .fn-sub { font-size: .85rem; margin-top: .4rem; }
+    .fn-ecg { display: block; height: 44px; margin: 1.5rem auto 0; width: 260px; overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
+    .fn-ecg svg { display: block; width: 480px; height: 44px; animation: fnecg 3.2s linear infinite; }
+    @keyframes fnecg { to { transform: translateX(-120px); } }
+    .fn-cap { display: block; text-align: center; margin-top: .5rem; font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(228,207,198,.8); }
+    .fn-cta { display: flex; align-items: center; justify-content: center; margin-top: 2rem; padding: 1rem 1.75rem;
+      background: #E4CFC6; color: #12191B; font-weight: 700; border-radius: .5rem; transition: background .15s ease; }
+    .fn-cta:hover { background: #fff; }
+    .fn-cta-bottom { display: none; }
+  }
 </style>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -279,51 +342,89 @@
 
 <!-- ====================== SIGNATURE: THE FIRST NIGHT ====================== -->
 <section id="first-night" class="bg-night text-white py-24">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <p class="eyebrow text-blush mb-4">Hour by hour</p>
     <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight mb-4">What your first night with a recovery nurse looks like</h2>
     <p class="text-white/70 text-lg mb-14 max-w-2xl">This is the timeline your nurse follows from the moment you arrive at your recovery address until your surgeon's office opens the next morning.</p>
 
-    <ol class="space-y-0">
+    <div class="fn-grid">
 
-      <li class="relative pl-16 pb-12 border-l border-white/15 ml-3 reveal">
-        <span class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blush"></span>
+      <div class="fn-panel">
+        <div class="fn-clock">
+          <div class="fn-dial" aria-hidden="true">
+            <svg viewBox="0 0 240 240" focusable="false">
+              <defs>
+                <radialGradient id="fn-rg">
+                  <stop offset="0" stop-color="#E4CFC6" stop-opacity=".30"/>
+                  <stop offset="1" stop-color="#E4CFC6" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <circle class="fn-glow" cx="120" cy="120" r="126" fill="url(#fn-rg)"/>
+              <g id="fn-ticks"></g>
+              <circle cx="120" cy="120" r="100" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+              <circle id="fn-arc" class="fn-arc" cx="120" cy="120" r="100" fill="none" stroke="#E4CFC6" stroke-width="3" stroke-linecap="round" transform="rotate(-90 120 120)" stroke-dasharray="628.32" stroke-dashoffset="628.32"/>
+              <circle id="fn-halo" cx="120" cy="20" r="13" fill="#E4CFC6" opacity=".22"/>
+              <circle id="fn-dot" cx="120" cy="20" r="6" fill="#E4CFC6"/>
+            </svg>
+          </div>
+          <div class="fn-readout" id="fn-readout" aria-hidden="true">
+            <span class="fn-icons"><i data-lucide="moon" class="fn-moon"></i><i data-lucide="sun" class="fn-sun"></i></span>
+            <p class="fn-top" id="fn-top">Hour</p>
+            <p class="fn-main" id="fn-main">0</p>
+            <p class="fn-sub" id="fn-sub">Arrival</p>
+          </div>
+        </div>
+
+        <div class="fn-ecg" aria-hidden="true">
+          <svg viewBox="0 0 480 44" width="480" height="44" fill="none" stroke="#3E837B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <path d="M0 22 h28 l4 -5 l5 5 h13 l4 3 l5 -18 l6 30 l5 -15 h14 l5 -7 l8 7 h23 h28 l4 -5 l5 5 h13 l4 3 l5 -18 l6 30 l5 -15 h14 l5 -7 l8 7 h23 h28 l4 -5 l5 5 h13 l4 3 l5 -18 l6 30 l5 -15 h14 l5 -7 l8 7 h23 h28 l4 -5 l5 5 h13 l4 3 l5 -18 l6 30 l5 -15 h14 l5 -7 l8 7 h23"/>
+          </svg>
+        </div>
+        <p class="fn-cap" aria-hidden="true">Awake and watching</p>
+        <a href="#book" class="fn-cta">Reserve my surgery date</a>
+      </div>
+
+    <ol class="fn-list space-y-0">
+
+      <li class="fn-step relative pl-16 pb-12 border-l border-white/15 ml-3" data-top="Hour" data-main="0" data-sub="Arrival">
+        <span class="fn-node"></span>
         <p class="font-mono text-blush text-xs mb-2">HOUR 0 · ARRIVAL</p>
         <h3 class="font-display text-xl mb-2">Your nurse meets you at your recovery address</h3>
         <p class="text-white/70 leading-relaxed">Your nurse is at your home, hotel or recovery suite when you get there, goes through your surgeon's written post-op orders with you, confirms your medication list and drain count, and gets you settled into bed safely. No handoff gets lost.</p>
       </li>
 
-      <li class="relative pl-16 pb-12 border-l border-white/15 ml-3 reveal">
-        <span class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blush"></span>
+      <li class="fn-step relative pl-16 pb-12 border-l border-white/15 ml-3" data-top="Hours" data-main="1–4" data-sub="Highest risk">
+        <span class="fn-node"></span>
         <p class="font-mono text-blush text-xs mb-2">HOURS 1–4 · HIGHEST RISK</p>
         <h3 class="font-display text-xl mb-2">Vitals every 30 to 60 minutes</h3>
         <p class="text-white/70 leading-relaxed">Blood pressure, heart rate, oxygen saturation, temperature, pain score. This is when a hematoma announces itself and when anesthesia nausea peaks. Your nurse gets ahead of both instead of reacting to them.</p>
       </li>
 
-      <li class="relative pl-16 pb-12 border-l border-white/15 ml-3 reveal">
-        <span class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blush"></span>
+      <li class="fn-step relative pl-16 pb-12 border-l border-white/15 ml-3" data-top="Hours" data-main="4–8" data-sub="Settling in">
+        <span class="fn-node"></span>
         <p class="font-mono text-blush text-xs mb-2">HOURS 4–8 · SETTLING IN</p>
         <h3 class="font-display text-xl mb-2">First walk, first sips, first drain check</h3>
         <p class="text-white/70 leading-relaxed">Your nurse gets you up for the first time with hands on you, so you don't faint on a bathroom floor. Drains stripped and measured. Fluids started slowly. Anti-nausea medication timed before the pain medication, not after it.</p>
       </li>
 
-      <li class="relative pl-16 pb-12 border-l border-white/15 ml-3 reveal">
-        <span class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blush"></span>
+      <li class="fn-step relative pl-16 pb-12 border-l border-white/15 ml-3" data-top="Overnight" data-main="Awake" data-word="1" data-sub="You sleep, your nurse doesn't">
+        <span class="fn-node"></span>
         <p class="font-mono text-blush text-xs mb-2">OVERNIGHT · YOU SLEEP, YOUR NURSE DOESN'T</p>
         <h3 class="font-display text-xl mb-2">Awake and watching</h3>
         <p class="text-white/70 leading-relaxed">Medications land on schedule, which means you wake up comfortable instead of waking up in pain and chasing it. Your nurse checks your breathing, your garment, your position and your drains all night. Family members go to bed.</p>
       </li>
 
-      <li class="relative pl-16 ml-3 reveal">
-        <span class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-blush"></span>
+      <li class="fn-step relative pl-16 ml-3" data-top="Morning" data-main="Handover" data-word="1" data-sub="A written record">
+        <span class="fn-node"></span>
         <p class="font-mono text-blush text-xs mb-2">MORNING · HANDOVER</p>
         <h3 class="font-display text-xl mb-2">A written record for your surgeon</h3>
         <p class="text-white/70 leading-relaxed">You get a full chart of the night: vitals, drain volumes, medication times, intake and output. Your surgeon's office gets a clinical picture instead of "she said she felt okay." Whoever takes over from your nurse gets taught what to watch for.</p>
       </li>
 
     </ol>
+    </div>
 
-    <div class="mt-14">
+    <div class="mt-14 fn-cta-bottom">
       <a href="#book" class="inline-flex items-center px-7 py-4 bg-blush text-ink font-bold rounded-lg hover:bg-white transition">Reserve my surgery date</a>
     </div>
   </div>
@@ -960,6 +1061,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { lucide.createIcons(); } catch (e) { console.warn('Icons did not load:', e); }
   setYear();
   initReveal();
+  try { initNightDial(); } catch (e) { console.warn('Night dial did not start:', e); }
 });
 
 // If the icon library arrives late, draw the icons once it does.
@@ -1029,6 +1131,107 @@ function initReveal() {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
   items.forEach(i => io.observe(i));
+}
+
+// First night: the dial fills, the heartbeat runs and the current hour lights up as you scroll.
+// Without JavaScript the section just reads as a normal timeline.
+function initNightDial() {
+  const sec = document.getElementById('first-night');
+  if (!sec) return;
+  const steps = Array.from(sec.querySelectorAll('.fn-step'));
+  const list = sec.querySelector('.fn-list');
+  const arc = document.getElementById('fn-arc');
+  const dot = document.getElementById('fn-dot');
+  const halo = document.getElementById('fn-halo');
+  const ticks = document.getElementById('fn-ticks');
+  const readout = document.getElementById('fn-readout');
+  const nav = document.getElementById('navbar');
+  const elTop = document.getElementById('fn-top');
+  const elMain = document.getElementById('fn-main');
+  const elSub = document.getElementById('fn-sub');
+  if (!steps.length || !list || !arc || !dot || !readout) return;
+
+  const CX = 120, CY = 120, R = 100, C = 2 * Math.PI * R;
+  arc.style.strokeDasharray = C.toFixed(2);
+
+  // hour ticks around the dial
+  if (ticks) {
+    let t = '';
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * 2 * Math.PI - Math.PI / 2;
+      const r1 = i % 3 === 0 ? 108 : 111, r2 = 117;
+      t += '<line x1="' + (CX + r1 * Math.cos(a)).toFixed(1) + '" y1="' + (CY + r1 * Math.sin(a)).toFixed(1) +
+           '" x2="' + (CX + r2 * Math.cos(a)).toFixed(1) + '" y2="' + (CY + r2 * Math.sin(a)).toFixed(1) +
+           '" stroke="rgba(255,255,255,' + (i % 3 === 0 ? '.45' : '.2') + ')" stroke-width="1.5" stroke-linecap="round"/>';
+    }
+    ticks.innerHTML = t;
+  }
+
+  sec.classList.add('fn-js');
+  let current = -1, queued = false;
+
+  function setReadout(step) {
+    elTop.textContent = step.dataset.top || '';
+    elMain.textContent = step.dataset.main || '';
+    elMain.classList.toggle('is-word', step.dataset.word === '1');
+    elSub.textContent = step.dataset.sub || '';
+    readout.classList.remove('swap');
+    void readout.offsetWidth;
+    readout.classList.add('swap');
+  }
+
+  function update() {
+    queued = false;
+    // keep the pinned panel just below the menu bar, whatever height it is at this screen size
+    if (nav) sec.style.setProperty('--fn-nav', nav.offsetHeight + 'px');
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const secRect = sec.getBoundingClientRect();
+    if (secRect.bottom < -100 || secRect.top > vh + 100) return;
+
+    const ref = vh * 0.5;
+    let best = 0, bestDist = Infinity;
+    steps.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      const d = Math.abs((r.top + Math.min(r.height, 220) / 2) - ref);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+
+    const firstTop = steps[0].getBoundingClientRect().top;
+    const lastTop = steps[steps.length - 1].getBoundingClientRect().top;
+    const span = Math.max(lastTop - firstTop, 1);
+    const p = Math.min(Math.max((ref - firstTop) / span, 0), 1);
+    const frac = 0.03 + 0.97 * p;
+
+    arc.style.strokeDashoffset = (C * (1 - frac)).toFixed(2);
+    const ang = -Math.PI / 2 + frac * 2 * Math.PI;
+    const x = (CX + R * Math.cos(ang)).toFixed(1), y = (CY + R * Math.sin(ang)).toFixed(1);
+    dot.setAttribute('cx', x); dot.setAttribute('cy', y);
+    if (halo) { halo.setAttribute('cx', x); halo.setAttribute('cy', y); }
+
+    const listTop = list.getBoundingClientRect().top;
+    list.style.setProperty('--fn-h', Math.min(Math.max(ref - listTop, 0), list.offsetHeight) + 'px');
+
+    if (best !== current) {
+      current = best;
+      steps.forEach((s, i) => {
+        s.classList.toggle('is-active', i === best);
+        s.classList.toggle('is-past', i < best);
+        if (i === best) s.setAttribute('aria-current', 'step'); else s.removeAttribute('aria-current');
+      });
+      sec.classList.toggle('is-morning', best === steps.length - 1);
+      setReadout(steps[best]);
+    }
+  }
+
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  // the menu bar eases to its smaller size after the first scroll, so measure again once things settle
+  let idleT;
+  function onScroll() { queue(); clearTimeout(idleT); idleT = setTimeout(queue, 400); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', queue);
+  window.addEventListener('load', queue);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue);
+  update();
 }
 
 function postForm(form, btn, status, successMsg, failMsg, okClasses, failClasses) {

@@ -1,6 +1,6 @@
 # torontoprorn.com: how the site works
 
-Last updated: October 21, 2026
+Last updated: November 2, 2026
 
 ## The files
 
@@ -18,6 +18,16 @@ The site is plain HTML hosted on GitHub Pages, with the domain pointed there thr
 All three pages share one design file, **styles.css**, which must sit in the same folder as the pages. It holds every colour, size and layout rule the pages use, built ahead of time so phones load the site quickly. (Before October 2026 the pages built their design in the visitor's browser on every visit, which was slower.)
 
 Changing words, prices, phone numbers or links on a page is fine and needs nothing else. If new design styling is ever added to a page (for example a new colour or spacing class on a new section), styles.css has to be rebuilt to include it, so ask Claude to "rebuild styles.css" after that kind of change.
+
+## The first night section (the "night dial")
+
+On the main page, the "What your first night with a recovery nurse looks like" section reacts as the visitor scrolls. A clock ring fills from arrival to morning, a heartbeat line runs beside it, the hour being read lights up while the others dim, and a "Reserve my surgery date" button stays pinned next to it on computers. On phones the ring shrinks into a slim bar that stays under the top menu. At the final step the moon turns into a sun.
+
+**Changing the words:** edit the five steps in index.html as normal (search for "HOUR 0"). Each step also has small labels that feed the ring (`data-top`, `data-main`, `data-sub`), for example "Hours / 1–4 / Highest risk". If you change a step's wording, update its labels so they still match. Add or remove a step by copying one of the five blocks, and the ring adjusts on its own.
+
+**Where the code lives:** all of its styling is inside index.html (the block marked "First night: scroll-driven night dial"), and the scroll behaviour is the `initNightDial` function near the bottom. Because of that, styles.css does not need rebuilding for this section.
+
+**Safety nets:** if JavaScript doesn't run, the section reads as a normal timeline. If a visitor's device is set to reduce motion, nothing animates and every step stays fully bright.
 
 ## How the two pages connect
 
