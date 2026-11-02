@@ -218,6 +218,34 @@
     .fn-cta:hover { background: #fff; }
     .fn-cta-bottom { display: none; }
   }
+
+  /* ===== Trust badges, icon chips and cards ===== */
+  .icon-chip { width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: rgba(44,95,90,.1); color: #2C5F5A;
+    display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .icon-chip svg { width: 1.25rem; height: 1.25rem; }
+  .icon-chip--mb { margin-bottom: 1rem; }
+  .icon-chips { display: flex; gap: .4rem; margin-bottom: .8rem; }
+  .trust-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .trust-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem .45rem .5rem; background: #fff;
+    border: 1px solid #E3DCD4; border-radius: 9999px; font-size: .82rem; font-weight: 700; color: #12191B; line-height: 1.2;
+    box-shadow: 0 1px 2px rgba(18,25,27,.04); transition: border-color .2s ease; }
+  a.trust-badge:hover { border-color: #2C5F5A; }
+  .trust-badge .icon-chip { width: 1.9rem; height: 1.9rem; border-radius: 9999px; }
+  .trust-badge .icon-chip svg { width: 1rem; height: 1rem; }
+  .trust-badge small { display: block; font-weight: 400; font-size: .72rem; color: #4A5A5C; margin-top: .1rem; }
+  .rule-card { background: #FAF7F3; border: 1px solid #E3DCD4; border-radius: .9rem; padding: 1.25rem; transition: border-color .2s ease; }
+  .rule-card:hover { border-color: #2C5F5A; }
+  .rule-card .icon-chip { margin-bottom: .8rem; }
+  .rule-card .icon-chips .icon-chip { margin-bottom: 0; }
+  .rule-card p { color: #4A5A5C; font-size: 15px; line-height: 1.6; }
+  .rule-card strong { display: block; color: #12191B; margin-bottom: .25rem; }
+  .rule-card strong.inline { display: inline; margin: 0; }
+  .step-card { background: #FAF7F3; border: 1px solid #E3DCD4; border-radius: 1rem; padding: 1.5rem; }
+  .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .step-num { font-family: Fraunces, Georgia, serif; font-size: 2rem; line-height: 1; color: rgba(44,95,90,.35); }
+  .flight-pill { display: inline-flex; align-items: center; gap: .35rem; padding: .25rem .65rem; border-radius: 9999px;
+    background: rgba(44,95,90,.1); color: #2C5F5A; font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
+  .flight-pill svg { width: .85rem; height: .85rem; }
 </style>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -291,8 +319,13 @@
           </a>
         </div>
 
-        <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slatey">
-          <span class="inline-flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-teal"></i> Registered Nurses, verify at <a href="https://registry.cno.org" target="_blank" rel="noreferrer" class="text-teal font-semibold underline">CNO Registry</a></span>
+        <ul class="trust-row" aria-label="Credentials, privacy and payment security">
+          <li><a class="trust-badge" href="https://registry.cno.org" target="_blank" rel="noreferrer"><span class="icon-chip"><i data-lucide="shield-check"></i></span><span>CNO-registered nurses<small>Verify on the CNO Registry</small></span></a></li>
+          <li><span class="trust-badge"><span class="icon-chip"><i data-lucide="lock"></i></span><span>PHIPA compliant<small>Ontario health-privacy law</small></span></span></li>
+          <li><span class="trust-badge"><span class="icon-chip"><i data-lucide="credit-card"></i></span><span>Secure card payments<small>Stripe, or Interac e-Transfer</small></span></span></li>
+        </ul>
+
+        <div class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slatey">
           <span class="inline-flex items-center gap-2"><i data-lucide="moon" class="w-4 h-4 text-teal"></i> Awake all night, not sleeping over</span>
           <span class="inline-flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-teal"></i> Complete discretion</span>
           <span class="inline-flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-teal"></i> In person in Toronto and the GTA, Ontario, Canada only</span>
@@ -542,21 +575,23 @@
     <div class="bg-white rounded-2xl border border-line overflow-hidden">
       <div class="p-8 md:p-10 border-b border-line">
         <h3 class="font-display text-xl text-ink mb-5">Your hourly rate covers</h3>
-        <div class="space-y-3 text-[15px] text-slatey">
-          <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> The full overnight window at your home, hotel or recovery suite, through to morning</p>
-          <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> Vitals monitoring, drain care, medication timing and nausea management</p>
-          <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> A written record of the night for your surgeon</p>
-          <p class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal flex-shrink-0 mt-0.5"></i> Teaching for whoever takes over from your nurse the next day</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="moon"></i></span><p>The full overnight window at your home, hotel or recovery suite, through to morning</p></div>
+          <div class="rule-card"><span class="icon-chips"><span class="icon-chip"><i data-lucide="heart-pulse"></i></span><span class="icon-chip"><i data-lucide="droplets"></i></span><span class="icon-chip"><i data-lucide="pill"></i></span></span><p>Vitals monitoring, drain care, medication timing and nausea management</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="clipboard-list"></i></span><p>A written record of the night for your surgeon</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="graduation-cap"></i></span><p>Teaching for whoever takes over from your nurse the next day</p></div>
         </div>
       </div>
 
-      <div class="p-8 md:p-10 space-y-4 text-[15px]">
-        <p class="text-slatey"><strong class="text-ink">Matched by a nurse, not a dispatch desk.</strong> JoAnne pairs you with your nurse personally, based on your procedure and your surgeon's preferences.</p>
-        <p class="text-slatey"><strong class="text-ink">No supply fees and no hidden charges.</strong> You pay the hourly rate, plus the $30 transportation fee only if your address is outside the fee-free zone.</p>
-        <p class="text-slatey"><strong class="text-ink">Not covered by OHIP.</strong> Cosmetic recovery nursing is paid privately. Some extended health plans reimburse private duty nursing, so check your policy and we'll provide a receipt.</p>
-        <p class="text-slatey"><strong class="text-ink">Nothing is owed until the booking is confirmed</strong> and we've agreed on the hours. A 25% deposit confirms your booking, and the balance is due 48 hours before your first shift.</p>
-        <p class="text-slatey"><strong class="text-ink">Pay from anywhere.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link, sent to you once your booking is confirmed. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars.</p>
-        <p class="text-slatey"><strong class="text-ink">Cancellation.</strong> Your deposit is refunded in full if you cancel more than 14 days before your first shift. <a href="#" onclick="openModal('cancellation'); return false;" class="text-teal font-semibold underline">Read the full cancellation policy</a>.</p>
+      <div class="p-8 md:p-10">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="user-check"></i></span><p><strong>Matched by a nurse, not a dispatch desk.</strong> JoAnne pairs you with your nurse personally, based on your procedure and your surgeon's preferences.</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="receipt"></i></span><p><strong>No supply fees and no hidden charges.</strong> You pay the hourly rate, plus the $30 transportation fee only if your address is outside the fee-free zone.</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="file-text"></i></span><p><strong>Not covered by OHIP.</strong> Cosmetic recovery nursing is paid privately. Some extended health plans reimburse private duty nursing, so check your policy and we'll provide a receipt.</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="badge-check"></i></span><p><strong class="inline">Nothing is owed until the booking is confirmed</strong> and we've agreed on the hours. A 25% deposit confirms your booking, and the balance is due 48 hours before your first shift.</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="credit-card"></i></span><p><strong>Pay from anywhere.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link, sent to you once your booking is confirmed. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars.</p></div>
+          <div class="rule-card"><span class="icon-chip"><i data-lucide="calendar-x"></i></span><p><strong>Cancellation.</strong> Your deposit is refunded in full if you cancel more than 14 days before your first shift. <a href="#" onclick="openModal('cancellation'); return false;" class="text-teal font-semibold underline">Read the full cancellation policy</a>.</p></div>
+        </div>
       </div>
     </div>
 

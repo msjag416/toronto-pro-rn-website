@@ -115,6 +115,34 @@
   a:focus-visible, button:focus-visible { outline: 3px solid #3E837B; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   @media (max-width: 767px) { body { padding-bottom: 68px; } }
+
+  /* ===== Trust badges, icon chips and cards ===== */
+  .icon-chip { width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: rgba(44,95,90,.1); color: #2C5F5A;
+    display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .icon-chip svg { width: 1.25rem; height: 1.25rem; }
+  .icon-chip--mb { margin-bottom: 1rem; }
+  .icon-chips { display: flex; gap: .4rem; margin-bottom: .8rem; }
+  .trust-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .trust-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem .45rem .5rem; background: #fff;
+    border: 1px solid #E3DCD4; border-radius: 9999px; font-size: .82rem; font-weight: 700; color: #12191B; line-height: 1.2;
+    box-shadow: 0 1px 2px rgba(18,25,27,.04); transition: border-color .2s ease; }
+  a.trust-badge:hover { border-color: #2C5F5A; }
+  .trust-badge .icon-chip { width: 1.9rem; height: 1.9rem; border-radius: 9999px; }
+  .trust-badge .icon-chip svg { width: 1rem; height: 1rem; }
+  .trust-badge small { display: block; font-weight: 400; font-size: .72rem; color: #4A5A5C; margin-top: .1rem; }
+  .rule-card { background: #FAF7F3; border: 1px solid #E3DCD4; border-radius: .9rem; padding: 1.25rem; transition: border-color .2s ease; }
+  .rule-card:hover { border-color: #2C5F5A; }
+  .rule-card .icon-chip { margin-bottom: .8rem; }
+  .rule-card .icon-chips .icon-chip { margin-bottom: 0; }
+  .rule-card p { color: #4A5A5C; font-size: 15px; line-height: 1.6; }
+  .rule-card strong { display: block; color: #12191B; margin-bottom: .25rem; }
+  .rule-card strong.inline { display: inline; margin: 0; }
+  .step-card { background: #FAF7F3; border: 1px solid #E3DCD4; border-radius: 1rem; padding: 1.5rem; }
+  .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .step-num { font-family: Fraunces, Georgia, serif; font-size: 2rem; line-height: 1; color: rgba(44,95,90,.35); }
+  .flight-pill { display: inline-flex; align-items: center; gap: .35rem; padding: .25rem .65rem; border-radius: 9999px;
+    background: rgba(44,95,90,.1); color: #2C5F5A; font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
+  .flight-pill svg { width: .85rem; height: .85rem; }
 </style>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -147,13 +175,18 @@
     <p class="eyebrow text-teal mb-4">International patients · Toronto, Ontario, Canada</p>
     <h1 class="font-display text-4xl sm:text-5xl leading-[1.1] text-ink mb-6">Travelling to Toronto for plastic surgery? Recover in your hotel with an ICU nurse beside you.</h1>
     <p class="text-lg text-slatey leading-relaxed mb-8 max-w-3xl">Patients fly to Toronto from the United States, the Caribbean, the Gulf, the United Kingdom and across Canada for cosmetic surgery. Most recover far from home, in a hotel room with no one checking on them. Our ICU-trained Registered Nurses stay awake through your first nights after surgery, in your hotel, rental or family home, so you are never alone when it matters most.</p>
-    <div class="flex flex-col sm:flex-row gap-3 mb-10">
+    <div class="flex flex-col sm:flex-row gap-3 mb-2">
       <a href="intake.html" class="inline-flex justify-center items-center px-7 py-4 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition shadow-lg shadow-teal/25">Start my intake form</a>
       <a href="https://wa.me/13433015061?text=Hi%2C%20I%27m%20travelling%20to%20Toronto%20for%20surgery%20and%20need%20a%20recovery%20nurse." target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-7 py-4 bg-white text-ink border border-line font-semibold rounded-lg hover:border-teal transition">
         <i data-lucide="message-circle" class="w-5 h-5 mr-2 text-teal"></i> WhatsApp us from anywhere
       </a>
     </div>
-    <div class="flex flex-wrap gap-2 text-sm">
+    <ul class="trust-row" aria-label="Credentials, privacy and payment security">
+      <li><a class="trust-badge" href="https://registry.cno.org" target="_blank" rel="noreferrer"><span class="icon-chip"><i data-lucide="shield-check"></i></span><span>CNO-registered nurses<small>Verify on the CNO Registry</small></span></a></li>
+      <li><span class="trust-badge"><span class="icon-chip"><i data-lucide="lock"></i></span><span>PHIPA compliant<small>Ontario health-privacy law</small></span></span></li>
+      <li><span class="trust-badge"><span class="icon-chip"><i data-lucide="credit-card"></i></span><span>Secure card payments<small>Stripe, or Interac e-Transfer</small></span></span></li>
+    </ul>
+    <div class="flex flex-wrap gap-2 text-sm mt-6">
       <span class="px-3 py-1.5 rounded-full bg-white border border-line text-slatey">United States</span>
       <span class="px-3 py-1.5 rounded-full bg-white border border-line text-slatey">Cayman Islands</span>
       <span class="px-3 py-1.5 rounded-full bg-white border border-line text-slatey">Bermuda</span>
@@ -176,31 +209,31 @@
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <p class="eyebrow text-teal mb-4">How it works</p>
     <h2 class="font-display text-3xl md:text-[2.4rem] leading-tight text-ink mb-10">Planning your recovery nurse from another country</h2>
-    <ol class="space-y-8">
-      <li class="flex gap-5">
-        <span class="font-display text-2xl text-teal w-8 flex-shrink-0">1</span>
-        <div><h3 class="font-display text-xl text-ink mb-2">Book your surgeon, then fill out the intake form</h3>
-        <p class="text-slatey leading-relaxed">Once your surgery date is set, complete the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> from your phone or computer. It covers your surgery, discharge plan, hotel and nursing dates, and shows your cost estimate. Your answers save as you go, so you can finish it later.</p></div>
+    <ol class="grid md:grid-cols-2 gap-5">
+      <li class="step-card">
+        <div class="step-top"><span class="icon-chip"><i data-lucide="clipboard-list"></i></span><span class="step-num" aria-hidden="true">1</span></div>
+        <h3 class="font-display text-xl text-ink mb-2">Book your surgeon, then fill out the intake form</h3>
+        <p class="text-slatey leading-relaxed">Once your surgery date is set, complete the <a href="intake.html" class="text-teal font-semibold underline">intake form</a> from your phone or computer. It covers your surgery, discharge plan, hotel and nursing dates, and shows your cost estimate. Your answers save as you go, so you can finish it later.</p>
       </li>
-      <li class="flex gap-5">
-        <span class="font-display text-2xl text-teal w-8 flex-shrink-0">2</span>
-        <div><h3 class="font-display text-xl text-ink mb-2">Talk with us by WhatsApp or video call</h3>
-        <p class="text-slatey leading-relaxed">JoAnne Gomez, RN, the founder of Toronto ProRN, answers personally and matches you with your nurse. WhatsApp and video calls work from anywhere in the world, at no cost to you.</p></div>
+      <li class="step-card">
+        <div class="step-top"><span class="icon-chip"><i data-lucide="video"></i></span><span class="step-num" aria-hidden="true">2</span></div>
+        <h3 class="font-display text-xl text-ink mb-2">Talk with us by WhatsApp or video call</h3>
+        <p class="text-slatey leading-relaxed">JoAnne Gomez, RN, the founder of Toronto ProRN, answers personally and matches you with your nurse. WhatsApp and video calls work from anywhere in the world, at no cost to you.</p>
       </li>
-      <li class="flex gap-5">
-        <span class="font-display text-2xl text-teal w-8 flex-shrink-0">3</span>
-        <div><h3 class="font-display text-xl text-ink mb-2">Confirm with a deposit, paid by card from your country</h3>
-        <p class="text-slatey leading-relaxed">A 25% deposit confirms your booking, through a secure Stripe card payment link. The balance is due 48 hours before your first shift.</p></div>
+      <li class="step-card">
+        <div class="step-top"><span class="icon-chip"><i data-lucide="credit-card"></i></span><span class="step-num" aria-hidden="true">3</span></div>
+        <h3 class="font-display text-xl text-ink mb-2">Confirm with a deposit, paid by card from your country</h3>
+        <p class="text-slatey leading-relaxed">A 25% deposit confirms your booking, through a secure Stripe card payment link. The balance is due 48 hours before your first shift.</p>
       </li>
-      <li class="flex gap-5">
-        <span class="font-display text-2xl text-teal w-8 flex-shrink-0">4</span>
-        <div><h3 class="font-display text-xl text-ink mb-2">Your nurse meets you at your hotel after surgery</h3>
-        <p class="text-slatey leading-relaxed">When you are discharged, your nurse is waiting at your recovery address, goes through your surgeon's written orders with you, and stays awake all night monitoring your vital signs, drains, pain, breathing and first steps.</p></div>
+      <li class="step-card">
+        <div class="step-top"><span class="icon-chip"><i data-lucide="hotel"></i></span><span class="step-num" aria-hidden="true">4</span></div>
+        <h3 class="font-display text-xl text-ink mb-2">Your nurse meets you at your hotel after surgery</h3>
+        <p class="text-slatey leading-relaxed">When you are discharged, your nurse is waiting at your recovery address, goes through your surgeon's written orders with you, and stays awake all night monitoring your vital signs, drains, pain, breathing and first steps.</p>
       </li>
-      <li class="flex gap-5">
-        <span class="font-display text-2xl text-teal w-8 flex-shrink-0">5</span>
-        <div><h3 class="font-display text-xl text-ink mb-2">Fly home when your surgeon clears you</h3>
-        <p class="text-slatey leading-relaxed">You leave with a written record of every night of care for your surgeon and your doctor at home.</p></div>
+      <li class="step-card md:col-span-2">
+        <div class="step-top"><span class="icon-chip"><i data-lucide="plane"></i></span><span class="step-num" aria-hidden="true">5</span></div>
+        <h3 class="font-display text-xl text-ink mb-2">Fly home when your surgeon clears you</h3>
+        <p class="text-slatey leading-relaxed">You leave with a written record of every night of care for your surgeon and your doctor at home.</p>
       </li>
     </ol>
   </div>
@@ -232,31 +265,31 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <article class="bg-ivory rounded-2xl p-7 border border-line">
-        <i data-lucide="plane" class="w-7 h-7 text-teal mb-4"></i>
+        <div class="flex items-center justify-between mb-4"><i data-lucide="plane" class="w-7 h-7 text-teal"></i><span class="flight-pill"><i data-lucide="id-card"></i>US citizens: passport only</span></div>
         <h3 class="font-display text-xl text-ink mb-3">From the United States</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Toronto is a short flight from New York, Chicago, Boston, Detroit and most major US cities. US citizens need only a valid passport to visit Canada, and you pay in US dollars, so there is no currency conversion on your card. Our nurses follow your Toronto surgeon's orders and give you a written record for your doctor back home.</p>
       </article>
 
       <article class="bg-ivory rounded-2xl p-7 border border-line">
-        <i data-lucide="sun" class="w-7 h-7 text-teal mb-4"></i>
+        <div class="flex items-center justify-between mb-4"><i data-lucide="sun" class="w-7 h-7 text-teal"></i><span class="flight-pill"><i data-lucide="plane"></i>Nonstop flights</span></div>
         <h3 class="font-display text-xl text-ink mb-3">From the Caribbean and Bermuda</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Nonstop flights link Toronto with Grand Cayman, Bermuda and islands across the Caribbean, including the Bahamas, Jamaica, Trinidad and Tobago and Barbados. Many Caribbean patients have family in Toronto to stay with. JoAnne Gomez, RN, our founder, has worked as an ICU nurse in Grand Cayman.</p>
       </article>
 
       <article class="bg-ivory rounded-2xl p-7 border border-line">
-        <i data-lucide="building-2" class="w-7 h-7 text-teal mb-4"></i>
+        <div class="flex items-center justify-between mb-4"><i data-lucide="building-2" class="w-7 h-7 text-teal"></i><span class="flight-pill"><i data-lucide="plane"></i>Daily nonstop from Dubai</span></div>
         <h3 class="font-display text-xl text-ink mb-3">From the UAE and the Gulf</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Emirates and Air Canada fly nonstop between Dubai and Toronto every day, a flight of about 14 hours. Patients from the United Arab Emirates, Saudi Arabia, Qatar and Kuwait often recover in a hotel suite with family nearby. We provide female nurses by default, with complete privacy and discretion.</p>
       </article>
 
       <article class="bg-ivory rounded-2xl p-7 border border-line">
-        <i data-lucide="landmark" class="w-7 h-7 text-teal mb-4"></i>
+        <div class="flex items-center justify-between mb-4"><i data-lucide="landmark" class="w-7 h-7 text-teal"></i><span class="flight-pill"><i data-lucide="plane"></i>Nonstop flights</span></div>
         <h3 class="font-display text-xl text-ink mb-3">From the United Kingdom and Europe</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Toronto has nonstop flights from London and major European cities. If you are combining surgery with a visit to family in Toronto, your nurse can care for you in a relative's home, with written handover notes for whoever looks after you during the day.</p>
       </article>
 
       <article class="bg-ivory rounded-2xl p-7 border border-line">
-        <i data-lucide="map" class="w-7 h-7 text-teal mb-4"></i>
+        <div class="flex items-center justify-between mb-4"><i data-lucide="map" class="w-7 h-7 text-teal"></i><span class="flight-pill"><i data-lucide="id-card"></i>No passport needed</span></div>
         <h3 class="font-display text-xl text-ink mb-3">From elsewhere in Canada</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Patients fly in from Northern Ontario, the Atlantic provinces, the Prairies, British Columbia and the North because Toronto has more plastic surgeons. No passport needed. You pay in Canadian dollars, by Interac e-Transfer or credit card. Cosmetic recovery nursing is not covered by provincial health plans.</p>
       </article>
@@ -279,18 +312,22 @@
     <h2 class="font-display text-3xl md:text-[2.4rem] leading-tight text-ink mb-10">Planning your stay, entry to Canada and payment</h2>
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-white rounded-2xl p-7 border border-line">
+        <span class="icon-chip icon-chip--mb"><i data-lucide="calendar-clock"></i></span>
         <h3 class="font-display text-xl text-ink mb-3">How long to stay</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Your surgeon decides when it is safe to fly. Surgeons quoted by the American Society of Plastic Surgeons suggest waiting at least two weeks before long travel after surgery, because sitting still for hours raises the risk of blood clots. Book flights you can change, and plan around your follow-up appointments.</p>
       </div>
       <div class="bg-white rounded-2xl p-7 border border-line">
+        <span class="icon-chip icon-chip--mb"><i data-lucide="id-card"></i></span>
         <h3 class="font-display text-xl text-ink mb-3">Entering Canada</h3>
         <p class="text-slatey text-[15px] leading-relaxed">US citizens need a valid passport. Most other visitors flying to Canada need an electronic travel authorization (eTA) or a visitor visa, depending on citizenship. Check the <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/eligibility.html" target="_blank" rel="noopener noreferrer" class="text-teal font-semibold underline">Government of Canada website</a> well before you travel.</p>
       </div>
       <div class="bg-white rounded-2xl p-7 border border-line">
+        <span class="icon-chip icon-chip--mb"><i data-lucide="credit-card"></i></span>
         <h3 class="font-display text-xl text-ink mb-3">Paying from your country</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Pay by credit card from any country through a secure Stripe payment link, sent once your booking is confirmed. Clients outside Canada pay in US dollars: $85 USD an hour with an 8-hour minimum, plus $30 USD per shift outside the fee-free zone. Clients in Canada pay the same amounts in Canadian dollars.</p>
       </div>
       <div class="bg-white rounded-2xl p-7 border border-line">
+        <span class="icon-chip icon-chip--mb"><i data-lucide="calendar-x"></i></span>
         <h3 class="font-display text-xl text-ink mb-3">If your plans change</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Cancel more than 14 days before your first shift and your deposit is refunded in full. If your surgeon postpones your surgery for a medical reason, your deposit moves to the new date. <a href="index.html#cost" class="text-teal font-semibold underline">See the full cancellation policy</a>.</p>
       </div>

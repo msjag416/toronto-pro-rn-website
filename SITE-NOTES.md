@@ -29,6 +29,12 @@ On the main page, the "What your first night with a recovery nurse looks like" s
 
 **Safety nets:** if JavaScript doesn't run, the section reads as a normal timeline. If a visitor's device is set to reduce motion, nothing animates and every step stays fully bright.
 
+## Trust badges and card layouts
+
+The top of the main page and the international page show three trust badges under the buttons: CNO-registered nurses (links to the CNO Registry), PHIPA compliant, and secure card payments (Stripe, or Interac e-Transfer). They are plain text badges with icons, not the official CNO, Stripe or Interac logos, because those logos belong to those organizations and need their permission to use. To change a badge's wording, search for "trust-row" in index.html or international.html.
+
+On the main page, the "What it costs" section shows what the hourly rate covers and the booking rules as icon cards (search for "rule-card"). On the international page, the five "how it works" steps are step cards (search for "step-card"), the planning cards have icons, and each region card has a small badge such as "Nonstop flights" (search for "flight-pill"). Each badge only repeats a fact already written in its own card, so if you change a card's wording, change its badge too. All of this styling lives inside each page's own style block, so styles.css does not need rebuilding.
+
 ## How the two pages connect
 
 The main page links to the intake form from three places: the "Intake form" link in the top menu, the same link in the phone menu, and the "Start my intake form" box in the booking section. The intake page links back with "Back to main site" and the logo.
