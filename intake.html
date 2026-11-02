@@ -82,6 +82,29 @@
     div[class*="max-w-"][class*="px-4"], main[class*="max-w-"][class*="px-4"] { padding-left: 1.5rem; padding-right: 1.5rem; }
     p:not(.font-display):not([class*="fn-"]), li { line-height: 1.6 !important; }
   }
+
+  /* ===== Type hierarchy: heavier, larger, tighter headings against lighter body copy ===== */
+  h1.font-display { font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; font-size: 2.1rem; }
+  h2.font-display { font-weight: 500; letter-spacing: -0.018em; }
+  h2.font-display.leading-tight { font-size: 2.1rem; line-height: 1.1; }
+  h3.font-display { font-weight: 500; letter-spacing: -0.01em; }
+  .eyebrow { font-size: .72rem; }
+  @media (min-width: 640px) {
+    h1.font-display { font-size: 2.7rem; }
+    h2.font-display.leading-tight { font-size: 2.6rem; }
+  }
+  @media (min-width: 1024px) {
+    h1.font-display { font-size: 3.2rem; }
+    h2.font-display.leading-tight { font-size: 3.05rem; line-height: 1.06; }
+  }
+
+  /* ===== Icon bullets (replace plain browser dots) ===== */
+  .icon-list { list-style: none; padding-left: 0 !important; }
+  .icon-list > li { position: relative; padding-left: 1.85rem; }
+  .icon-list > li::before { content: ""; position: absolute; left: 0; top: .2em; width: 1.1rem; height: 1.1rem;
+    background: #2C5F5A; -webkit-mask: var(--li-icon) center / contain no-repeat; mask: var(--li-icon) center / contain no-repeat; }
+  .icon-list--time { --li-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 14v2.2l1.6 1'/%3E%3Cpath d='M16 2v3'/%3E%3Cpath d='M21 7.338V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2.338'/%3E%3Cpath d='M3 9h5.859'/%3E%3Cpath d='M8 2v3'/%3E%3Ccircle cx='16' cy='16' r='6'/%3E%3C/svg%3E"); }
+  .icon-list--check { --li-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
 </style>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -485,7 +508,7 @@
 <div class="q"><label class="box"><input type="checkbox" name="Ack: balance due 48 hours before" value="Yes" required><span>I understand the balance is due 48 hours before my first nursing shift.</span></label><p class="q-err" role="alert"></p></div>
 <div class="rounded-xl border bg-ivory border-line text-slatey p-5 mb-7 text-[15px] leading-relaxed"><strong class="text-ink">How to pay.</strong> Pay by Interac e-Transfer in Canada, or by credit card from any country through a secure Stripe payment link. The payment link is sent to you once your booking is confirmed. Clients in Canada pay in Canadian dollars, and clients outside Canada pay in US dollars.</div>
 <h3 class="font-display text-xl text-ink mt-10 mb-5 pt-6 border-t border-line">Cancellation and refund policy</h3>
-<ul class="list-disc pl-5 space-y-2 text-[15px] text-slatey mb-6">
+<ul class="icon-list icon-list--time space-y-2 text-[15px] text-slatey mb-6">
   <li><strong class="text-ink">More than 14 days before your first nursing shift:</strong> your deposit is refunded in full.</li>
   <li><strong class="text-ink">Between 14 days and 48 hours before:</strong> the 25% deposit is kept, and nothing else is owed.</li>
   <li><strong class="text-ink">Within 48 hours (balance already paid):</strong> no refund. Your nurse has turned down other work for those nights.</li>

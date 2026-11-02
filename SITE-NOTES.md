@@ -35,6 +35,12 @@ The top of the main page and the international page show three trust badges unde
 
 On the main page, the "What it costs" section shows what the hourly rate covers and the booking rules as icon cards (search for "rule-card"). On the international page, the five "how it works" steps are step cards (search for "step-card"), the planning cards have icons, and each region card has a small badge such as "Nonstop flights" (search for "flight-pill"). Each badge only repeats a fact already written in its own card, so if you change a card's wording, change its badge too. All of this styling lives inside each page's own style block, so styles.css does not need rebuilding.
 
+## Headings and bullet icons
+
+Big headings (the page title and each section title) use a heavier, larger, slightly tighter style than the body text so the eye moves from title to text. These rules sit in each page's own style block (search for "Type hierarchy"), so styles.css does not need rebuilding.
+
+Lists don't use plain browser dots. Add `icon-list icon-list--check` to a list for teal checkmarks (good for service features), or `icon-list icon-list--time` for a teal calendar-clock (used on the cancellation policy, where a checkmark next to "no refund" would be misleading).
+
 ## How the two pages connect
 
 The main page links to the intake form from three places: the "Intake form" link in the top menu, the same link in the phone menu, and the "Start my intake form" box in the booking section. The intake page links back with "Back to main site" and the logo.
