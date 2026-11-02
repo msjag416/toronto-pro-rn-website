@@ -1133,6 +1133,20 @@
         </div>
 
         <fieldset>
+          <legend class="block text-sm font-semibold text-ink mb-2">Where do you live? <span class="font-normal text-slatey">(tick one)</span></legend>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="flex items-center gap-2 cursor-pointer bg-white border border-line rounded-lg px-5 py-3 hover:border-teal transition">
+              <input type="radio" name="client_residence" value="I live in Canada" required class="w-4 h-4 accent-teal" />
+              <span class="text-ink">I live in Canada</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer bg-white border border-line rounded-lg px-5 py-3 hover:border-teal transition">
+              <input type="radio" name="client_residence" value="International client" required class="w-4 h-4 accent-teal" />
+              <span class="text-ink">International client</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
           <legend class="block text-sm font-semibold text-ink mb-2">Have you filled out the intake form?</legend>
           <div class="flex gap-3">
             <label class="flex items-center gap-2 cursor-pointer bg-white border border-line rounded-lg px-5 py-3 hover:border-teal transition">

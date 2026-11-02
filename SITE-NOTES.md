@@ -66,6 +66,8 @@ The service is for Toronto and the GTA, Ontario, Canada only. That is stated in 
 
 **Follow-up questions.** Some questions only appear when they apply. For example, "What kind of pets?" only shows if they answer Yes to pets. Hidden questions are never required and are never sent to you.
 
+**Canada or international.** Both forms ask "Where do you live?" with two choices, "I live in Canada" or "International client". One must be picked, and picking one clears the other. On the intake form it sits at the top of step 1, under the Toronto confirmation box, and arrives in your email as "Client residence". On the short booking form on the main page it arrives as "client_residence". It tells you which Stripe link to send (CAD or USD).
+
 **Saving.** Answers save on the client's own phone or computer as they type (in the browser's storage). If they close the page and come back on the same device, everything is still there. It's erased once they submit, or if they press "Start over". Nothing is stored on your website.
 
 **Health screening (step 8).** Yes or No questions only, on purpose. No boxes for typing medical details. You collect those by phone.
