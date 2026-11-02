@@ -805,7 +805,100 @@
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <p class="eyebrow text-teal mb-4">What it costs</p>
     <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight text-ink mb-4">$85 an hour, with an 8-hour minimum</h2>
-    <p class="text-slatey text-lg mb-10">An 8-hour night is $680 and a 12-hour night is $1,020. A $30 RN transportation fee applies to each shift outside the fee-free zone (south of Bloor, east of Dufferin, west of the Don Valley, north of Queens Quay), and Ontario statutory holidays may be charged at time and a half. The intake form shows your estimate as you fill it out, so you know the cost before you book.</p>
+    <p class="text-slatey text-lg mb-8">Price your recovery in ten seconds. Pick your nights, your hours and where you'll recover, and the number updates as you go. No phone call needed to know the cost.</p>
+
+    <!-- Cost planner: live estimate on the page (styles below, logic in initCostPlanner) -->
+    <style>
+      .planner { background: #1B2A2C; color: #fff; border-radius: 1.25rem; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(18,25,27,.55); margin-bottom: 2.5rem; }
+      .planner-grid { display: grid; grid-template-columns: 1fr; }
+      @media (min-width: 768px) { .planner-grid { grid-template-columns: 1.15fr 1fr; } }
+      .planner-controls { padding: 1.75rem; display: grid; gap: 1.4rem; }
+      @media (min-width: 768px) { .planner-controls { padding: 2.25rem; } }
+      .planner-label { display: flex; justify-content: space-between; align-items: baseline; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: #9FC4BF; margin-bottom: .6rem; }
+      .planner-label small { text-transform: none; letter-spacing: 0; font-weight: 500; color: #B9C6C7; font-size: .8rem; }
+      .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: .35rem; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: .8rem; padding: .3rem; }
+      .seg button { appearance: none; border: 0; background: transparent; color: #D7E1E0; font: inherit; font-weight: 600; font-size: .95rem; padding: .7rem .4rem; border-radius: .55rem; cursor: pointer; transition: background .15s ease, color .15s ease, transform .15s ease; }
+      .seg button:hover { background: rgba(255,255,255,.08); }
+      .seg button[aria-pressed="true"] { background: #FAF7F3; color: #12191B; box-shadow: 0 6px 18px -8px rgba(0,0,0,.6); }
+      .seg button:focus-visible { outline: 2px solid #9FC4BF; outline-offset: 2px; }
+      .seg--stack button { display: grid; gap: .15rem; line-height: 1.15; }
+      .seg--stack button span { font-weight: 500; font-size: .72rem; opacity: .75; }
+      .seg--stack button[aria-pressed="true"] span { opacity: .7; }
+      .stepper { display: flex; align-items: center; gap: .5rem; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: .8rem; padding: .3rem; }
+      .stepper button { appearance: none; border: 0; background: #FAF7F3; color: #12191B; width: 3rem; height: 3rem; border-radius: .55rem; font-size: 1.4rem; font-weight: 600; cursor: pointer; display: grid; place-items: center; transition: background .15s ease, opacity .15s ease; }
+      .stepper button:hover { background: #fff; }
+      .stepper button:disabled { opacity: .35; cursor: not-allowed; }
+      .stepper button:focus-visible { outline: 2px solid #9FC4BF; outline-offset: 2px; }
+      .stepper output { flex: 1; text-align: center; font-family: Fraunces, Georgia, serif; font-size: 1.6rem; line-height: 1; }
+      .stepper output small { display: block; font-family: inherit; font-size: .75rem; color: #B9C6C7; margin-top: .25rem; font-weight: 500; }
+      .planner-total { background: #FAF7F3; color: #12191B; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+      @media (min-width: 768px) { .planner-total { padding: 2.25rem; } }
+      .planner-total .eyebrow { color: #2C5F5A; }
+      .planner-amount { font-family: Fraunces, Georgia, serif; font-size: clamp(2.8rem, 7vw, 4rem); line-height: 1; letter-spacing: -.02em; color: #12191B; font-variant-numeric: tabular-nums; }
+      .planner-amount sup { font-size: .4em; vertical-align: .9em; margin-right: .05em; color: #2C5F5A; }
+      .planner-amount.bump { animation: plannerBump .35s ease; }
+      @keyframes plannerBump { 0% { transform: scale(1); } 40% { transform: scale(1.04); } 100% { transform: scale(1); } }
+      .planner-lines { display: grid; gap: .45rem; border-top: 1px solid #E3DCD4; padding-top: 1rem; font-size: .92rem; color: #4A5A5C; }
+      .planner-lines div { display: flex; justify-content: space-between; gap: 1rem; }
+      .planner-lines strong { color: #12191B; font-variant-numeric: tabular-nums; }
+      .planner-lines .deposit { padding-top: .5rem; border-top: 1px dashed #E3DCD4; margin-top: .3rem; }
+      .planner-lines .deposit strong { color: #2C5F5A; }
+      .planner-note { font-size: .78rem; color: #4A5A5C; line-height: 1.5; }
+      .planner-cta { display: inline-flex; justify-content: center; align-items: center; gap: .5rem; background: #2C5F5A; color: #fff; font-weight: 700; padding: 1rem 1.4rem; border-radius: .6rem; text-decoration: none; transition: background .15s ease; box-shadow: 0 10px 24px -10px rgba(44,95,90,.6); }
+      .planner-cta:hover { background: #3E837B; }
+      .planner-cta i { width: 18px; height: 18px; }
+      .planner-alt { font-size: .85rem; color: #4A5A5C; text-align: center; }
+      .planner-alt a { color: #2C5F5A; font-weight: 600; text-decoration: underline; }
+      @media (prefers-reduced-motion: reduce) { .planner-amount.bump { animation: none; } .seg button, .stepper button { transition: none; } }
+    </style>
+
+    <div class="planner" id="cost-planner" role="group" aria-labelledby="planner-title">
+      <div class="planner-grid">
+        <div class="planner-controls">
+          <p id="planner-title" class="eyebrow" style="color:#9FC4BF">Build your recovery plan</p>
+
+          <div>
+            <div class="planner-label"><span>Nights with a nurse</span><small>Up to 7</small></div>
+            <div class="stepper">
+              <button type="button" data-step="-1" aria-label="One fewer night">&minus;</button>
+              <output id="planner-nights-out" aria-live="polite">1<small>night</small></output>
+              <button type="button" data-step="1" aria-label="One more night">+</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="planner-label"><span>Hours each night</span><small>8-hour minimum</small></div>
+            <div class="seg seg--stack" data-field="hours" role="radiogroup" aria-label="Hours each night">
+              <button type="button" data-value="8" aria-pressed="true">8 hours<span>the minimum</span></button>
+              <button type="button" data-value="10" aria-pressed="false">10 hours<span>a longer night</span></button>
+              <button type="button" data-value="12" aria-pressed="false">12 hours<span>a full night</span></button>
+            </div>
+          </div>
+
+          <div>
+            <div class="planner-label"><span>Where you'll recover</span><small>Address checked on the intake form</small></div>
+            <div class="seg" data-field="zone" role="radiogroup" aria-label="Where you will recover">
+              <button type="button" data-value="in" aria-pressed="true">Downtown core</button>
+              <button type="button" data-value="out" aria-pressed="false">Rest of the GTA</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="planner-total">
+          <p class="eyebrow">Your estimate</p>
+          <div class="planner-amount" id="planner-amount"><sup>$</sup>680</div>
+          <div class="planner-lines" id="planner-lines">
+            <div><span>Nursing care</span><strong id="planner-nursing">$680</strong></div>
+            <div><span>RN transportation</span><strong id="planner-fee">$0</strong></div>
+            <div class="deposit"><span>Deposit to confirm your date</span><strong id="planner-deposit">$170</strong></div>
+            <div><span>Balance, 48 hours before your first shift</span><strong id="planner-balance">$510</strong></div>
+          </div>
+          <p class="planner-note">Canadian dollars for clients in Canada, US dollars for clients outside Canada. Ontario statutory holidays may be charged at time and a half. No supply fees, no hidden charges.</p>
+          <a href="intake.html" class="planner-cta" id="planner-cta"><i data-lucide="calendar-check"></i>Reserve my surgery date</a>
+          <p class="planner-alt">Prefer to talk first? <a href="https://wa.me/13433015061?text=Hi%20JoAnne%2C%20I%27m%20booking%20surgery%20and%20need%20an%20overnight%20recovery%20nurse.">WhatsApp JoAnne</a></p>
+        </div>
+      </div>
+    </div>
 
     <div class="mb-10">
       <h3 class="font-display text-xl text-ink mb-2">The fee-free zone</h3>
@@ -840,7 +933,7 @@
     </div>
 
     <div class="mt-8 text-center">
-      <a href="intake.html" class="inline-flex items-center px-7 py-4 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition shadow-lg shadow-teal/25">See my estimate on the intake form</a>
+      <a href="intake.html" class="inline-flex items-center px-7 py-4 bg-teal text-white font-bold rounded-lg hover:bg-teallt transition shadow-lg shadow-teal/25">Start my intake form</a>
       <p class="text-slatey text-sm mt-3">Questions about the form? Call or WhatsApp <a href="tel:+13433015061" class="text-teal font-semibold underline">(343) 301-5061</a>.</p>
     </div>
   </div>
@@ -1272,7 +1365,50 @@ document.addEventListener('DOMContentLoaded', () => {
   setYear();
   initReveal();
   try { initNightDial(); } catch (e) { console.warn('Night dial did not start:', e); }
+  try { initCostPlanner(); } catch (e) { console.warn('Cost planner did not start:', e); }
 });
+
+// Cost planner (What it costs section). Same numbers as the intake form: $85/hour, 8-hour minimum,
+// $30 RN transportation per shift outside the fee-free zone, 25% deposit.
+function initCostPlanner() {
+  const root = document.getElementById('cost-planner');
+  if (!root) return;
+  const RATE = 85, FEE = 30, DEPOSIT = 0.25, MAX_NIGHTS = 7;
+  const state = { nights: 1, hours: 8, zone: 'in' };
+  const money = n => '$' + n.toLocaleString('en-CA');
+  const el = id => document.getElementById(id);
+
+  function render() {
+    const nursing = state.nights * state.hours * RATE;
+    const fee = state.zone === 'out' ? FEE * state.nights : 0;
+    const total = nursing + fee;
+    const deposit = Math.round(total * DEPOSIT);
+    el('planner-nights-out').innerHTML = state.nights + '<small>' + (state.nights === 1 ? 'night' : 'nights') + '</small>';
+    root.querySelector('[data-step="-1"]').disabled = state.nights <= 1;
+    root.querySelector('[data-step="1"]').disabled = state.nights >= MAX_NIGHTS;
+    const amount = el('planner-amount');
+    amount.innerHTML = '<sup>$</sup>' + total.toLocaleString('en-CA');
+    amount.classList.remove('bump'); void amount.offsetWidth; amount.classList.add('bump');
+    el('planner-nursing').textContent = money(nursing) + ' · ' + state.nights + ' × ' + state.hours + ' h';
+    el('planner-fee').textContent = fee ? money(fee) : '$0';
+    el('planner-deposit').textContent = money(deposit);
+    el('planner-balance').textContent = money(total - deposit);
+  }
+
+  root.querySelectorAll('[data-step]').forEach(btn => btn.addEventListener('click', () => {
+    state.nights = Math.min(MAX_NIGHTS, Math.max(1, state.nights + parseInt(btn.dataset.step, 10)));
+    render();
+  }));
+  root.querySelectorAll('.seg').forEach(seg => {
+    const field = seg.dataset.field;
+    seg.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
+      seg.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      state[field] = field === 'hours' ? parseInt(btn.dataset.value, 10) : btn.dataset.value;
+      render();
+    }));
+  });
+  render();
+}
 
 // If the icon library arrives late, draw the icons once it does.
 window.addEventListener('load', () => {

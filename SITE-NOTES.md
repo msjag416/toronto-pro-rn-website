@@ -1,6 +1,6 @@
 # torontoprorn.com: how the site works
 
-Last updated: November 2, 2026
+Last updated: November 2, 2026 (cost planner added)
 
 ## The files
 
@@ -29,6 +29,12 @@ On the main page, the "What your first night with a recovery nurse looks like" s
 **Where the code lives:** all of its styling is inside index.html (the block marked "First night: scroll-driven night dial"), and the scroll behaviour is the `initNightDial` function near the bottom. Because of that, styles.css does not need rebuilding for this section.
 
 **Safety nets:** if JavaScript doesn't run, the section reads as a normal timeline. If a visitor's device is set to reduce motion, nothing animates and every step stays fully bright.
+
+## The cost planner (What it costs section)
+
+The "What it costs" section on the main page opens with a dark planner card. A visitor picks how many nights (1 to 7, with the minus and plus buttons), hours each night (8, 10 or 12) and whether they'll recover downtown or elsewhere in the GTA, and the estimate on the right updates instantly: nursing care, RN transportation, the 25% deposit and the balance. The green button leads to the intake form, where the address is checked for real.
+
+The numbers are the same as the intake form: $85 an hour, 8-hour minimum, $30 transportation per shift outside the fee-free zone, 25% deposit. If you change the rates in intake.html (see "Changing rates" below), also change them in index.html: search for "initCostPlanner" and update RATE, FEE and DEPOSIT, and the "$680" and "$170" starting figures in the planner HTML (search for "cost-planner"). Its styling lives inside index.html (search for "Cost planner"), so styles.css does not need rebuilding.
 
 ## Trust badges and card layouts
 
