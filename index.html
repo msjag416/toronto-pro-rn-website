@@ -309,7 +309,9 @@
   /* ===== Recovery guides hub ===== */
   .guide-grid { display: grid; gap: 1rem; }
   @media (min-width: 640px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 640px) and (max-width: 1023px) { .guide-grid > .guide-card:last-child:nth-child(odd) { grid-column: 1 / -1; } }
   @media (min-width: 1024px) { .guide-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .guide-grid > .guide-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; } }
   .guide-card { display: flex; flex-direction: column; gap: .75rem; background: #fff; border: 1px solid #E3DCD4; border-radius: 1rem;
     padding: 1.5rem; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
   .guide-card:hover { border-color: #2C5F5A; transform: translateY(-2px); box-shadow: 0 12px 30px -12px rgba(18,25,27,.18); }
@@ -1081,6 +1083,12 @@
         <span class="guide-tag">Fajas &amp; compression</span>
         <h3>How long should you wear a faja after a tummy tuck or liposuction?</h3>
         <p class="text-sm text-slatey leading-relaxed">When you can take it off to shower or sleep, Stage 1 vs Stage 2, and how tight is too tight.</p>
+        <span class="guide-more">Read the guide <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+      </a>
+      <a href="guides/how-to-sleep-after-bbl.html" class="guide-card">
+        <span class="guide-tag">BBL recovery</span>
+        <h3>How do you sleep after a Brazilian butt lift (BBL)?</h3>
+        <p class="text-sm text-slatey leading-relaxed">Back, stomach or side, how long to stay off your buttocks, and what to do if you roll over in your sleep.</p>
         <span class="guide-more">Read the guide <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
       </a>
       <a href="guides/hardest-plastic-surgery-to-recover-from.html" class="guide-card">
