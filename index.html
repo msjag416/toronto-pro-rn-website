@@ -1375,14 +1375,14 @@ function initCostPlanner() {
   if (!root) return;
   const RATE = 85, FEE = 30, DEPOSIT = 0.25, MAX_NIGHTS = 7;
   const state = { nights: 1, hours: 8, zone: 'in' };
-  const money = n => '$' + n.toLocaleString('en-CA');
+  const money = n => '$' + n.toLocaleString('en-CA', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
   const el = id => document.getElementById(id);
 
   function render() {
     const nursing = state.nights * state.hours * RATE;
     const fee = state.zone === 'out' ? FEE * state.nights : 0;
     const total = nursing + fee;
-    const deposit = Math.round(total * DEPOSIT);
+    const deposit = Math.round(total * DEPOSIT * 100) / 100;
     el('planner-nights-out').innerHTML = state.nights + '<small>' + (state.nights === 1 ? 'night' : 'nights') + '</small>';
     root.querySelector('[data-step="-1"]').disabled = state.nights <= 1;
     root.querySelector('[data-step="1"]').disabled = state.nights >= MAX_NIGHTS;
