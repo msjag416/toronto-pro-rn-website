@@ -10,6 +10,7 @@ The site is plain HTML hosted on GitHub Pages, with the domain pointed there thr
 - **international.html** is the page for patients travelling to Toronto from other countries or provinces (USA, Caribbean, Gulf, UK, elsewhere in Canada). It has its own Google search code: page details, the service, its FAQ and a breadcrumb.
 - **intake.html** is the full booking intake form. Its web address is torontoprorn.com/intake.html. You can text or email that link to clients directly.
 - **hero.jpg, logo-mark.png, favicon.svg** are the images both pages use.
+- **hero.avif, hero@2x.avif, hero.webp, hero@2x.webp** are smaller, faster copies of the hero photo (cropped to the 4:5 frame). The homepage shows these first and falls back to hero.jpg in older browsers. If you replace hero.jpg with a new photo, these four need to be remade too.
 - **sitemap.xml** lists all three pages for Google. Update the dates when pages change.
 - **SITE-NOTES.md** is this file.
 

@@ -367,10 +367,19 @@
       <div class="relative">
         <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-ink/15 bg-line aspect-[4/5] max-w-sm mx-auto">
           <div id="hero-skeleton" class="absolute inset-0 bg-line animate-pulse"></div>
-          <img id="hero-image" src="hero.jpg"
-               alt="JoAnne Gomez, RN, founder of Toronto ProRN private overnight plastic surgery recovery nursing in Toronto"
-               class="w-full h-full object-cover object-top opacity-0 transition-opacity duration-700 relative"
-               onload="handleImageLoad()" />
+          <picture class="block w-full h-full">
+            <source srcset="hero.avif 1x, hero@2x.avif 2x" type="image/avif">
+            <source srcset="hero.webp 1x, hero@2x.webp 2x" type="image/webp">
+            <img id="hero-image"
+                 src="hero.jpg"
+                 alt="JoAnne Gomez, RN, founder of Toronto ProRN private overnight plastic surgery recovery nursing in Toronto"
+                 width="384"
+                 height="480"
+                 fetchpriority="high"
+                 decoding="async"
+                 class="w-full h-full object-cover object-top opacity-0 transition-opacity duration-700 relative"
+                 onload="handleImageLoad()" />
+          </picture>
           <div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-ink/85 to-transparent">
             <p class="font-display text-white text-lg leading-tight">JoAnne Gomez, RN</p>
             <p class="text-white/80 text-xs mt-1">Founder · 27+ years ICU · 14+ years plastic surgery recovery</p>
