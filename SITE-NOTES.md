@@ -93,3 +93,6 @@ Change the number, save, and upload. If you change the rates, also update the ra
 2. Click "Add file", then "Upload files".
 3. Drag in the changed files (index.html, intake.html, international.html, and the first time: styles.css and toronto-fee-free-zone.jpg).
 4. Click "Commit changes". The live site updates within a minute or two.
+
+## Icon script security check
+The Lucide icon script (unpkg.com, version 1.61.0) on all three pages has an "integrity" code. The browser refuses to run the script if the file on unpkg is ever changed. If you change the Lucide version number, the integrity code must be recalculated at the same time, or every icon on the site will disappear.

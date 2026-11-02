@@ -96,6 +96,27 @@
         { "@type": "CollegeOrUniversity", "name": "George Brown College" },
         { "@type": "CollegeOrUniversity", "name": "University of Nebraska" }
       ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Registered Nurse (RN)",
+          "credentialCategory": "license",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "College of Nurses of Ontario",
+            "url": "https://registry.cno.org"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Critical Care Nursing Certificate",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "Humber College"
+          }
+        }
+      ],
       "knowsAbout": ["Plastic surgery recovery","Post-operative nursing","Drain care","Hematoma detection","Critical care nursing"],
       "sameAs": [
         "https://medium.com/@msjag416",
@@ -129,12 +150,19 @@
         { "@type": "Question", "name": "Will I be getting a female nurse?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. Many patients prefer a female nurse after a BBL or breast surgery. Tell us when you book if you'd prefer a male nurse. Otherwise, your nurse will be female. Privacy, modesty and discretion are part of every booking, and nothing about your surgery is discussed with anyone outside your care." } }
       ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.torontoprorn.com/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.torontoprorn.com/" }
+      ]
     }
   ]
 }
 </script>
 
-<script src="https://unpkg.com/lucide@1.61.0/dist/umd/lucide.min.js" defer></script>
+<script src="https://unpkg.com/lucide@1.61.0/dist/umd/lucide.min.js" integrity="sha384-wx1iBc8a89SnsJAxZPb9eNEoMn4t/Wg111+QJyasxB9Om4SDDtkJeBuXx4NiRwa8" crossorigin="anonymous" defer></script>
 <script src="https://web3forms.com/client/script.js" async defer></script>
 
 <style>
