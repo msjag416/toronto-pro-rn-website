@@ -38,6 +38,8 @@ The packages show four across on computers, two by two on tablets and one at a t
 
 **The consultation form** sends through Web3Forms to prorninc@gmail.com with the subject "Concierge consultation request: Toronto ProRN". It arrives with: package, who is making the request (patient, assistant or family office, hotel concierge, family member), name, phone/WhatsApp, email, surgery date, client residence (Canada/CAD or outside Canada/USD), recovery location, notes and whether an NDA is requested. It asks for no medical details. "Request this package" buttons pre-select the package in the form.
 
+**The one-page PDF summary (concierge-summary.pdf):** a printable one-page overview for assistants, family offices and hotel concierges, in the site's own fonts and colours. It's downloaded from two places on the Concierge page: a "Download One-Page Overview (PDF)" button in the top section, and "Download printable PDF summary" under the currency switch. Visitors' computers save it as "Toronto-ProRN-Recovery-Concierge.pdf". You can also send its direct link: torontoprorn.com/concierge-summary.pdf. The PDF doesn't update by itself, so if prices or packages change on the page, the PDF needs remaking too. To replace it, upload a new file with the exact same name, concierge-summary.pdf.
+
 **Styling:** the page has its own style block and doesn't use styles.css, so nothing needs rebuilding. It has a dynamic copyright year in the footer like every page.
 
 **Main page menu note:** the computer menu hides Reviews and FAQ on screens narrower than 1366 pixels, and "The First Night" below 1200 pixels, so nothing overlaps the logo. Both are still in the phone menu, and FAQ is in the footer. Search index.html for "desk-nav" to change this.

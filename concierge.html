@@ -206,6 +206,11 @@
     .stop-time { margin-top: .15rem; }
   }
 
+  /* ---- PDF summary link beside the currency switch ---- */
+  .pdf-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: .7rem; font-size: .82rem; font-weight: 600; color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+  .pdf-link svg { width: 1rem; height: 1rem; }
+  .pdf-link:hover { color: var(--teal-lt); }
+
   /* ---- Hotel strip under the route ---- */
   .where { margin-top: 3.2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.12); display: grid; grid-template-columns: 14rem 1fr; gap: .6rem 2.5rem; }
   .where .eyebrow { margin: .3rem 0 0; }
@@ -452,6 +457,7 @@
     <div class="hero-ctas">
       <a href="#consult" class="btn btn--light">Request a private consultation <i data-lucide="arrow-right"></i></a>
       <a href="#packages" class="btn btn--ghost">See the four packages</a>
+      <a href="concierge-summary.pdf" download="Toronto-ProRN-Recovery-Concierge.pdf" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><i data-lucide="file-down"></i> Download One-Page Overview (PDF)</a>
     </div>
     <div class="hero-meta">
       <div><strong>1 : 1</strong><span>One nurse with you, awake, the whole time</span></div>
@@ -532,6 +538,7 @@
           <button type="button" data-ccy="CAD" aria-pressed="false">I live in Canada · CAD</button>
         </div>
         <p class="cur-note">Prices are in US dollars. Clients living in Canada can pay the Canadian dollar amount instead.</p>
+        <a class="pdf-link" href="concierge-summary.pdf" download="Toronto-ProRN-Recovery-Concierge.pdf" target="_blank" rel="noopener noreferrer"><i data-lucide="download"></i> Download printable PDF summary</a>
       </div>
     </div>
 
