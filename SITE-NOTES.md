@@ -22,14 +22,15 @@ Changing words, prices, phone numbers or links on a page is fine and needs nothi
 
 ## The Recovery Concierge page (concierge.html, at torontoprorn.com/concierge)
 
-The VIP page for high net worth clients, international medical travellers, hotel concierges and family offices. It sells three fixed-fee, all-inclusive packages instead of the hourly rate. It's deliberately kept out of the main page's top menu and phone menu, so local clients see the $85/hour intake path first. The main page links to it quietly in three places: the footer ("Toronto Recovery Concierge (VIP)"), the Hotel Recovery for Out-of-Town Patients card ("View 12 to 72-hour Executive Concierge Packages"), and a small line under the cost planner (search for "concierge-note"). The international page links to it in its top menu and footer. For surgeons' coordinators, family offices and hotel concierges, send the direct link: torontoprorn.com/concierge
+The VIP page for high net worth clients, international medical travellers, hotel concierges and family offices. It sells three fixed-fee, all-inclusive packages instead of the hourly rate. It's deliberately kept out of the main page's top menu and phone menu, so local clients see the $85/hour intake path first. The main page links to it quietly in three places: the footer ("Toronto Recovery Concierge (VIP)"), the Hotel Recovery for Out-of-Town Patients card ("View 12 to 48-hour Executive Concierge Packages"), and a small line under the cost planner (search for "concierge-note"). The international page links to it in its top menu and footer. For surgeons' coordinators, family offices and hotel concierges, send the direct link: torontoprorn.com/concierge
 
-**The packages and prices** (CAD for clients in Canada, USD for clients outside Canada):
-- 12-Hour Executive Reset: $3,106.60 CAD / $2,220 USD
-- 48-Hour Complete Recovery: $4,200 CAD / $3,100 USD
-- 72-Hour VIP Continuity: $6,000 CAD / $4,425 USD
+**The packages and prices:** one flat concierge rate of $195 USD an hour across four lengths (CAD for clients in Canada, USD for clients outside Canada):
+- 12 hours, The First Night: $2,340 USD / $3,275 CAD
+- 24 hours, The Executive Reset: $4,680 USD / $6,550 CAD
+- 36 hours, The Extended Recovery: $7,020 USD / $9,820 CAD
+- 48 hours, The Complete Recovery: $9,360 USD / $13,100 CAD (also includes hotel stay coordination, preparation for drain removal and the flight-readiness report)
 
-Visitors switch between CAD and USD with the toggle above the packages; the page remembers their choice on that device. To change a price, search concierge.html for `data-cad=` and change both the `data-cad` and `data-usd` values and the number shown between the tags. Also change the matching "price" numbers in the Google search code at the top of the file (search for "Offer").
+The packages show four across on computers, two by two on tablets and one at a time on phones. Extra hours on any package are quoted at the same $195 USD an hour. Visitors switch between CAD and USD with the toggle above the packages; the page remembers their choice on that device. To change a price, search concierge.html for `data-cad=` and change both the `data-cad` and `data-usd` values and the number shown between the tags. Also change the matching "price" numbers in the Google search code at the top of the file (search for "Offer"), and the "$195 USD an hour" wording in the packages heading and the FAQ.
 
 **What's different from the hourly service:** concierge clients are met inside the surgical clinic at discharge, prescriptions are collected, the private transfer to the hotel is coordinated, and transportation is included. The hourly service on the main page still has no clinic pickup.
 

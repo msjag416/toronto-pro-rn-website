@@ -6,10 +6,10 @@
 <link rel="canonical" href="https://www.torontoprorn.com/concierge" />
 
 <title>Toronto Recovery Concierge | Private VIP Plastic Surgery Recovery Nursing</title>
-<meta name="description" content="All-inclusive private recovery nursing in Toronto for VIP and international plastic surgery patients. ICU Registered Nurse from clinic discharge to your hotel suite, NDA on request. 12, 48 and 72-hour packages.">
+<meta name="description" content="All-inclusive private recovery nursing in Toronto for VIP and international plastic surgery patients. ICU Registered Nurse from clinic discharge to your hotel suite, NDA on request. 12, 24, 36 and 48-hour packages at one flat rate.">
 
 <meta property="og:title" content="The Toronto Recovery Concierge | Toronto ProRN" />
-<meta property="og:description" content="Door to door private recovery nursing after plastic surgery in Toronto. An ICU Registered Nurse meets you at the clinic and stays with you in your suite. Fixed-fee 12, 48 and 72-hour packages." />
+<meta property="og:description" content="Door to door private recovery nursing after plastic surgery in Toronto. An ICU Registered Nurse meets you at the clinic and stays with you in your suite. 12, 24, 36 and 48-hour packages at one flat rate." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.torontoprorn.com/concierge" />
 <meta property="og:site_name" content="Toronto ProRN" />
@@ -47,12 +47,14 @@
       "provider": { "@type": "MedicalBusiness", "name": "Toronto ProRN", "url": "https://www.torontoprorn.com/", "telephone": "+1-343-301-5061" },
       "areaServed": { "@type": "City", "name": "Toronto, Ontario, Canada" },
       "offers": [
-        { "@type": "Offer", "name": "The 12-Hour Executive Reset", "price": "3106.60", "priceCurrency": "CAD" },
-        { "@type": "Offer", "name": "The 48-Hour Complete Recovery", "price": "4200", "priceCurrency": "CAD" },
-        { "@type": "Offer", "name": "The 72-Hour VIP Continuity Package", "price": "6000", "priceCurrency": "CAD" },
-        { "@type": "Offer", "name": "The 12-Hour Executive Reset", "price": "2220", "priceCurrency": "USD" },
-        { "@type": "Offer", "name": "The 48-Hour Complete Recovery", "price": "3100", "priceCurrency": "USD" },
-        { "@type": "Offer", "name": "The 72-Hour VIP Continuity Package", "price": "4425", "priceCurrency": "USD" }
+        { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "3275", "priceCurrency": "CAD" },
+        { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "2340", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "24-Hour Recovery Concierge", "price": "6550", "priceCurrency": "CAD" },
+        { "@type": "Offer", "name": "24-Hour Recovery Concierge", "price": "4680", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "36-Hour Recovery Concierge", "price": "9820", "priceCurrency": "CAD" },
+        { "@type": "Offer", "name": "36-Hour Recovery Concierge", "price": "7020", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "48-Hour Recovery Concierge", "price": "13100", "priceCurrency": "CAD" },
+        { "@type": "Offer", "name": "48-Hour Recovery Concierge", "price": "9360", "priceCurrency": "USD" }
       ]
     },
     {
@@ -64,7 +66,7 @@
         { "@type": "Question", "name": "Can you sign a non-disclosure agreement?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. On request, Toronto ProRN and your attending nurse sign a non-disclosure agreement before your first shift. Every concierge booking also follows a no-photo rule inside the recovery suite." } },
         { "@type": "Question", "name": "Do you clear me to fly home?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Clearance to fly comes from your surgeon. On the 72-hour package your nurse documents your flight readiness, including vital signs, drains, mobility and pain control, and sends it to your surgeon to support that decision." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "Clearance to fly comes from your surgeon. On the 48-hour package your nurse documents your flight readiness, including vital signs, drains, mobility and pain control, and sends it to your surgeon to support that decision." } },
         { "@type": "Question", "name": "Which currency do I pay in?",
           "acceptedAnswer": { "@type": "Answer", "text": "Clients living in Canada pay in Canadian dollars by Interac e-Transfer or card. Clients living outside Canada pay in US dollars by secure Stripe card payment link." } }
       ]
@@ -179,7 +181,9 @@
   .cur button { font: inherit; font-size: .82rem; font-weight: 700; border: 0; background: transparent; color: var(--slate); padding: .5rem 1rem; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
   .cur button[aria-pressed="true"] { background: var(--ink); color: #fff; }
   .cur-note { font-size: .8rem; color: var(--slate); margin-top: .6rem; }
-  .tiers { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.25rem; align-items: stretch; }
+  .tiers { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1rem; align-items: stretch; }
+  .tier { padding: 1.8rem 1.4rem 1.5rem; }
+  .tier-tag { left: 1.4rem; }
   .tier { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 1.4rem; padding: 2rem 1.8rem 1.8rem; display: flex; flex-direction: column; }
   .tier--feature { background: var(--ink); color: #fff; border-color: var(--ink); box-shadow: 0 30px 60px -30px rgba(18,25,27,.55); }
   .tier-hours { font-family: var(--serif); font-weight: 300; font-size: 4.2rem; line-height: .9; letter-spacing: -.04em; color: var(--teal); }
@@ -190,7 +194,7 @@
   .tier--feature .tier-scope { color: rgba(255,255,255,.7); }
   .tier-price { padding: 1.1rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 1.2rem; }
   .tier--feature .tier-price { border-color: rgba(255,255,255,.14); }
-  .tier-price .amt { font-family: var(--serif); font-size: 2.3rem; font-weight: 400; letter-spacing: -.02em; line-height: 1; }
+  .tier-price .amt { font-family: var(--serif); font-size: 2rem; font-weight: 400; letter-spacing: -.02em; line-height: 1; }
   .tier-price .ccy { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; margin-left: .35rem; color: var(--slate); }
   .tier--feature .tier-price .ccy { color: rgba(255,255,255,.6); }
   .tier-price .fixed { display: block; font-size: .8rem; color: var(--slate); margin-top: .4rem; }
@@ -201,13 +205,15 @@
   .tier li { display: flex; gap: .6rem; align-items: flex-start; }
   .tier li svg { flex: none; width: 1rem; height: 1rem; margin-top: .25rem; color: var(--teal); }
   .tier--feature li svg { color: var(--blush); }
-  .tier .btn { margin-top: auto; width: 100%; }
+  .tier .btn { margin-top: auto; width: 100%; white-space: nowrap; padding: .95rem 1rem; font-size: .9rem; }
   .tier:not(.tier--feature) .btn { background: transparent; border-color: var(--ink); color: var(--ink); }
   .tier:not(.tier--feature) .btn:hover { background: var(--ink); color: #fff; }
   .tier-tag { position: absolute; top: -.75rem; left: 1.8rem; background: var(--blush); color: var(--ink); font-size: .72rem; font-weight: 700; padding: .3rem .8rem; border-radius: 999px; }
   .hourly-note { margin-top: 1.8rem; font-size: .92rem; color: var(--slate); text-align: center; }
   .hourly-note a { color: var(--teal); font-weight: 700; }
-  @media (max-width: 899px) { .tiers { grid-template-columns: 1fr; gap: 1.6rem; } .packages { padding: 4rem 0 3.5rem; } }
+  @media (max-width: 1099px) { .tiers { grid-template-columns: 1fr 1fr; gap: 1.6rem 1rem; } }
+  @media (max-width: 899px) { .packages { padding: 4rem 0 3.5rem; } }
+  @media (max-width: 639px) { .tiers { grid-template-columns: 1fr; } .tier { padding: 2rem 1.6rem 1.6rem; } }
 
   /* ---- Inclusions ---- */
   .incl { background: #fff; padding: 6rem 0; border-top: 1px solid var(--line); }
@@ -351,7 +357,7 @@
     <p class="hero-lede">One fixed fee for everything after your surgery in Toronto. Your ICU Registered Nurse meets you inside the surgical clinic at discharge, coordinates your private transfer to your hotel suite, and manages your clinical care door to door. Built for international medical travellers, high-profile clients, and the hotel concierges and family offices who book for them.</p>
     <div class="hero-ctas">
       <a href="#consult" class="btn btn--light">Request a private consultation <i data-lucide="arrow-right"></i></a>
-      <a href="#packages" class="btn btn--ghost">See the three packages</a>
+      <a href="#packages" class="btn btn--ghost">See the four packages</a>
     </div>
     <div class="hero-meta">
       <div><strong>1 : 1</strong><span>One nurse with you, awake, the whole time</span></div>
@@ -418,7 +424,7 @@
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <p class="eyebrow">Three packages · One fixed fee each</p>
+        <p class="eyebrow">Four packages · One flat rate of $195 USD an hour</p>
         <h2 id="pk-h">Choose the length of care your surgery calls for.</h2>
       </div>
       <div>
@@ -433,10 +439,26 @@
     <div class="tiers">
       <article class="tier rv">
         <div class="tier-hours">12<small>hours</small></div>
-        <h3>The Executive Reset</h3>
-        <p class="tier-scope">Twelve hours of one-on-one care, from clinic discharge through your entire first night.</p>
+        <h3>The First Night</h3>
+        <p class="tier-scope">One 12-hour shift, from clinic discharge through your entire first night.</p>
         <div class="tier-price">
-          <span class="amt" data-cad="$3,106.60" data-usd="$2,220">$3,106.60</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="amt" data-cad="$3,275" data-usd="$2,340">$3,275</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
+        </div>
+        <p class="tier-best">Best for</p>
+        <ul>
+          <li><i data-lucide="check"></i>The night your surgeon worries about most</li>
+          <li><i data-lucide="check"></i>Single procedures</li>
+          <li><i data-lucide="check"></i>Family taking over the next morning</li>
+        </ul>
+        <a href="#consult" class="btn" data-pkg="12-Hour Concierge">Request this package</a>
+      </article>
+      <article class="tier rv">
+        <div class="tier-hours">24<small>hours</small></div>
+        <h3>The Executive Reset</h3>
+        <p class="tier-scope">From clinic discharge, through the first night, to 24 hours after surgery.</p>
+        <div class="tier-price">
+          <span class="amt" data-cad="$6,550" data-usd="$4,680">$6,550</span><span class="ccy" data-ccy-label>CAD</span>
           <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
         </div>
         <p class="tier-best">Best for</p>
@@ -445,42 +467,40 @@
           <li><i data-lucide="check"></i>Facelift</li>
           <li><i data-lucide="check"></i>Moderate 360 liposuction</li>
         </ul>
-        <a href="#consult" class="btn" data-pkg="12-Hour Executive Reset">Request this package</a>
+        <a href="#consult" class="btn" data-pkg="24-Hour Concierge">Request this package</a>
       </article>
-
+      <article class="tier rv">
+        <div class="tier-hours">36<small>hours</small></div>
+        <h3>The Extended Recovery</h3>
+        <p class="tier-scope">A day and a half of continuous care. From an evening discharge, that covers two full nights.</p>
+        <div class="tier-price">
+          <span class="amt" data-cad="$9,820" data-usd="$7,020">$9,820</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
+        </div>
+        <p class="tier-best">Best for</p>
+        <ul>
+          <li><i data-lucide="check"></i>Two nights covered after an evening discharge</li>
+          <li><i data-lucide="check"></i>Larger liposuction</li>
+          <li><i data-lucide="check"></i>Hotel recoveries without family nearby</li>
+        </ul>
+        <a href="#consult" class="btn" data-pkg="36-Hour Concierge">Request this package</a>
+      </article>
       <article class="tier tier--feature rv">
         <span class="tier-tag">For combination surgery</span>
         <div class="tier-hours">48<small>hours</small></div>
         <h3>The Complete Recovery</h3>
-        <p class="tier-scope">Two full days of continuous one-on-one nursing across the critical first 48 hours.</p>
+        <p class="tier-scope">Two full days of continuous care, with hotel stay coordination, preparation for drain removal and a flight-readiness report.</p>
         <div class="tier-price">
-          <span class="amt" data-cad="$4,200" data-usd="$3,100">$4,200</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="amt" data-cad="$13,100" data-usd="$9,360">$13,100</span><span class="ccy" data-ccy-label>CAD</span>
           <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
         </div>
         <p class="tier-best">Best for</p>
         <ul>
-          <li><i data-lucide="check"></i>Mommy makeover</li>
-          <li><i data-lucide="check"></i>Combination surgeries</li>
+          <li><i data-lucide="check"></i>Mommy makeover and combination surgeries</li>
           <li><i data-lucide="check"></i>Multi-area liposuction with heavy drainage</li>
-        </ul>
-        <a href="#consult" class="btn btn--light" data-pkg="48-Hour Complete Recovery">Request this package</a>
-      </article>
-
-      <article class="tier rv">
-        <div class="tier-hours">72<small>hours</small></div>
-        <h3>The VIP Continuity</h3>
-        <p class="tier-scope">Three days of continuous care, with hotel stay coordination, preparation for drain removal and a flight-readiness report.</p>
-        <div class="tier-price">
-          <span class="amt" data-cad="$6,000" data-usd="$4,425">$6,000</span><span class="ccy" data-ccy-label>CAD</span>
-          <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
-        </div>
-        <p class="tier-best">Best for</p>
-        <ul>
           <li><i data-lucide="check"></i>Flying home to the Caribbean, US, UK or Gulf</li>
-          <li><i data-lucide="check"></i>Patients who need flight readiness documented for their surgeon</li>
-          <li><i data-lucide="check"></i>Longer hotel recoveries</li>
         </ul>
-        <a href="#consult" class="btn" data-pkg="72-Hour VIP Continuity">Request this package</a>
+        <a href="#consult" class="btn btn--light" data-pkg="48-Hour Concierge">Request this package</a>
       </article>
     </div>
 
@@ -633,9 +653,10 @@
       <fieldset class="field">
         <legend>Package</legend>
         <div class="chips">
-          <label class="chip"><input type="radio" name="package" value="12-Hour Executive Reset"><span>12 hours</span></label>
-          <label class="chip"><input type="radio" name="package" value="48-Hour Complete Recovery"><span>48 hours</span></label>
-          <label class="chip"><input type="radio" name="package" value="72-Hour VIP Continuity"><span>72 hours</span></label>
+          <label class="chip"><input type="radio" name="package" value="12-Hour Concierge"><span>12 hours</span></label>
+          <label class="chip"><input type="radio" name="package" value="24-Hour Concierge"><span>24 hours</span></label>
+          <label class="chip"><input type="radio" name="package" value="36-Hour Concierge"><span>36 hours</span></label>
+          <label class="chip"><input type="radio" name="package" value="48-Hour Concierge"><span>48 hours</span></label>
           <label class="chip"><input type="radio" name="package" value="Not sure yet"><span>Not sure yet</span></label>
         </div>
       </fieldset>
@@ -687,10 +708,10 @@
     <div class="faq-list">
       <details class="rv"><summary>Can my assistant, family office or hotel concierge book for me?</summary><p>Yes. Many concierge bookings are arranged by a personal assistant, family office or hotel concierge. JoAnne still speaks with you before the booking is final, because your nurse needs to know your procedure and your surgeon.</p></details>
       <details class="rv"><summary>Can you sign a non-disclosure agreement?</summary><p>Yes. On request, Toronto ProRN and your attending nurse sign an NDA before your first shift. Every concierge booking also follows the no-photo rule inside your suite.</p></details>
-      <details class="rv"><summary>Do you clear me to fly home?</summary><p>Clearance to fly comes from your surgeon. On the 72-hour package your nurse documents your flight readiness, including vital signs, drains, walking and pain control, and sends it to your surgeon to support that decision.</p></details>
-      <details class="rv"><summary>Is one nurse with me for all 48 or 72 hours?</summary><p>You're never without a nurse. On the longer packages our nurses work planned shifts, so whoever is with you is awake and alert. JoAnne introduces each nurse to you before they arrive.</p></details>
+      <details class="rv"><summary>Do you clear me to fly home?</summary><p>Clearance to fly comes from your surgeon. On the 48-hour package your nurse documents your flight readiness, including vital signs, drains, walking and pain control, and sends it to your surgeon to support that decision.</p></details>
+      <details class="rv"><summary>Is one nurse with me for 36 or 48 hours?</summary><p>You're never without a nurse. On the longer packages our nurses work planned shifts, so whoever is with you is awake and alert. JoAnne introduces each nurse to you before they arrive.</p></details>
       <details class="rv"><summary>Which currency do I pay in?</summary><p>If you live in Canada, you pay in Canadian dollars by Interac e-Transfer or card. If you live outside Canada, you pay in US dollars through a secure Stripe card payment link sent once your booking is confirmed.</p></details>
-      <details class="rv"><summary>What if I need more time than my package?</summary><p>Extra hours can be added at our standard hourly rate, arranged with JoAnne ahead of time.</p></details>
+      <details class="rv"><summary>What if I need more time than my package?</summary><p>Extra hours can be added at the same flat concierge rate of $195 USD an hour, arranged with JoAnne ahead of time.</p></details>
     </div>
   </div>
 </section>
