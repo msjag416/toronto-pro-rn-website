@@ -39,12 +39,42 @@
       ]
     },
     {
+      "@type": "WebPage",
+      "@id": "https://www.torontoprorn.com/concierge#webpage",
+      "url": "https://www.torontoprorn.com/concierge",
+      "name": "The Toronto Recovery Concierge",
+      "breadcrumb": { "@id": "https://www.torontoprorn.com/concierge#breadcrumb" },
+      "mainEntity": { "@id": "https://www.torontoprorn.com/concierge#service" },
+      "reviewedBy": { "@id": "https://www.torontoprorn.com/#joanne" }
+    },
+    {
       "@type": "Service",
       "@id": "https://www.torontoprorn.com/concierge#service",
       "name": "The Toronto Recovery Concierge",
       "serviceType": "Private post-operative recovery nursing",
       "description": "All-inclusive private recovery nursing for VIP, high net worth and international plastic surgery patients in Toronto. An ICU Registered Nurse meets the patient at clinic discharge, coordinates the private transfer to the hotel suite or residence, and provides continuous one-on-one care.",
-      "provider": { "@type": "MedicalBusiness", "name": "Toronto ProRN", "url": "https://www.torontoprorn.com/", "telephone": "+1-343-301-5061" },
+      "provider": {
+        "@type": "MedicalBusiness",
+        "@id": "https://www.torontoprorn.com/#business",
+        "name": "Toronto ProRN",
+        "url": "https://www.torontoprorn.com/",
+        "telephone": "+1-343-301-5061",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://www.torontoprorn.com/#joanne",
+          "name": "JoAnne Gomez, RN",
+          "jobTitle": "Registered Nurse",
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "license",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "College of Nurses of Ontario",
+              "url": "https://registry.cno.org"
+            }
+          }
+        }
+      },
       "areaServed": { "@type": "City", "name": "Toronto, Ontario, Canada" },
       "offers": [
         { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "3275", "priceCurrency": "CAD" },
