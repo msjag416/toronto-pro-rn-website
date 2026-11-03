@@ -363,7 +363,7 @@
       <div><strong>1 : 1</strong><span>One nurse with you, awake, the whole time</span></div>
       <div><strong>ICU RN</strong><span>CNO-registered, plastic surgery recovery trained</span></div>
       <div><strong>NDA</strong><span>Signed before your first shift, on request</span></div>
-      <div><strong>CAD · USD</strong><span>One all-inclusive fee, no add-ons</span></div>
+      <div><strong>USD · CAD</strong><span>One all-inclusive fee, no add-ons</span></div>
     </div>
   </div>
 </header>
@@ -429,10 +429,10 @@
       </div>
       <div>
         <div class="cur" role="group" aria-label="Show prices in">
-          <button type="button" data-ccy="CAD" aria-pressed="true">I live in Canada · CAD</button>
-          <button type="button" data-ccy="USD" aria-pressed="false">Outside Canada · USD</button>
+          <button type="button" data-ccy="USD" aria-pressed="true">USD</button>
+          <button type="button" data-ccy="CAD" aria-pressed="false">I live in Canada · CAD</button>
         </div>
-        <p class="cur-note">Clients in Canada pay in Canadian dollars. Clients from outside Canada pay in US dollars.</p>
+        <p class="cur-note">Prices are in US dollars. Clients living in Canada can pay the Canadian dollar amount instead.</p>
       </div>
     </div>
 
@@ -442,7 +442,7 @@
         <h3>The First Night</h3>
         <p class="tier-scope">One 12-hour shift, from clinic discharge through your entire first night.</p>
         <div class="tier-price">
-          <span class="amt" data-cad="$3,275" data-usd="$2,340">$3,275</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="amt" data-cad="$3,275" data-usd="$2,340">$2,340</span><span class="ccy" data-ccy-label>USD</span>
           <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
         </div>
         <p class="tier-best">Best for</p>
@@ -458,7 +458,7 @@
         <h3>The Executive Reset</h3>
         <p class="tier-scope">From clinic discharge, through the first night, to 24 hours after surgery.</p>
         <div class="tier-price">
-          <span class="amt" data-cad="$6,550" data-usd="$4,680">$6,550</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="amt" data-cad="$6,550" data-usd="$4,680">$4,680</span><span class="ccy" data-ccy-label>USD</span>
           <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
         </div>
         <p class="tier-best">Best for</p>
@@ -474,7 +474,7 @@
         <h3>The Extended Recovery</h3>
         <p class="tier-scope">A day and a half of continuous care. From an evening discharge, that covers two full nights.</p>
         <div class="tier-price">
-          <span class="amt" data-cad="$9,820" data-usd="$7,020">$9,820</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="amt" data-cad="$9,820" data-usd="$7,020">$7,020</span><span class="ccy" data-ccy-label>USD</span>
           <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
         </div>
         <p class="tier-best">Best for</p>
@@ -491,7 +491,7 @@
         <h3>The Complete Recovery</h3>
         <p class="tier-scope">Two full days of continuous care, with hotel stay coordination, preparation for drain removal and a flight-readiness report.</p>
         <div class="tier-price">
-          <span class="amt" data-cad="$13,100" data-usd="$9,360">$13,100</span><span class="ccy" data-ccy-label>CAD</span>
+          <span class="amt" data-cad="$13,100" data-usd="$9,360">$9,360</span><span class="ccy" data-ccy-label>USD</span>
           <span class="fixed">All-inclusive. Transportation, supplies and reports included.</span>
         </div>
         <p class="tier-best">Best for</p>
@@ -758,11 +758,11 @@ document.addEventListener('DOMContentLoaded', () => { try { lucide.createIcons()
     btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ccy === ccy)));
     document.querySelectorAll('.tier-price .amt').forEach(a => a.textContent = a.dataset[ccy.toLowerCase()]);
     document.querySelectorAll('[data-ccy-label]').forEach(l => l.textContent = ccy);
-    try { localStorage.setItem('prorn-ccy', ccy); } catch (e) {}
+    try { localStorage.setItem('prorn-concierge-ccy', ccy); } catch (e) {}
   }
   btns.forEach(b => b.addEventListener('click', () => show(b.dataset.ccy)));
-  let saved = null; try { saved = localStorage.getItem('prorn-ccy'); } catch (e) {}
-  if (saved === 'USD') show('USD');
+  let saved = null; try { saved = localStorage.getItem('prorn-concierge-ccy'); } catch (e) {}
+  if (saved === 'CAD') show('CAD');
 })();
 
 /* "Request this package" buttons pre-select the package in the form */
