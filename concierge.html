@@ -215,6 +215,55 @@
   @media (max-width: 899px) { .packages { padding: 4rem 0 3.5rem; } }
   @media (max-width: 639px) { .tiers { grid-template-columns: 1fr; } .tier { padding: 2rem 1.6rem 1.6rem; } }
 
+  /* ---- Recovery Clock (dates in, package out) ---- */
+  .clock { background: #fff; border: 1px solid var(--line); border-radius: 1.6rem; padding: 2.2rem 2.2rem 2rem; margin-bottom: 3rem; box-shadow: 0 30px 60px -40px rgba(18,25,27,.35); }
+  .clock-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin-bottom: 1.6rem; }
+  .clock-head .eyebrow { color: var(--teal); }
+  .clock-head h3 { font-family: var(--serif); font-weight: 300; font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.15; letter-spacing: -.02em; margin: .5rem 0 0; max-width: 24ch; }
+  .clock-head p { margin: 0; color: var(--slate); font-size: .92rem; max-width: 26rem; }
+  .clock-in { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 1rem; }
+  .clock-in .field { margin: 0; }
+  .clock-in .chips { gap: .4rem; }
+  .clock-in .chip span { padding: .72rem .9rem; font-size: .84rem; }
+  .clock-out { margin-top: 1.8rem; border-top: 1px solid var(--line); padding-top: 1.6rem; }
+  .clock-empty { color: var(--slate); font-size: .95rem; margin: 0; display: flex; gap: .7rem; align-items: center; }
+  .clock-empty svg { width: 1.1rem; height: 1.1rem; color: var(--teal); flex: none; }
+  .tl { position: relative; margin: .4rem 0 .6rem; }
+  .tl-days { display: grid; }
+  .tl-day { position: relative; height: 3.4rem; border-left: 1px solid var(--line); }
+  .tl-day:last-child { border-right: 1px solid var(--line); }
+  .tl-day::before, .tl-day::after { content: ""; position: absolute; top: 0; bottom: 0; background: rgba(27,42,44,.07); }
+  .tl-day::before { left: 0; width: 29.17%; }   /* midnight to 7am */
+  .tl-day::after { right: 0; width: 16.67%; }   /* 8pm to midnight */
+  .tl-day span { position: absolute; top: -1.45rem; left: .4rem; font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); white-space: nowrap; }
+  .tl-moon { position: absolute; top: .55rem; width: 1.5rem; height: 1.5rem; margin-left: -.75rem; border-radius: 999px; background: var(--night); color: var(--blush); display: flex; align-items: center; justify-content: center; z-index: 2; }
+  .tl-moon svg { width: .8rem; height: .8rem; }
+  .tl-care { position: absolute; top: 1.05rem; height: 1.3rem; border-radius: 999px; background: linear-gradient(90deg, var(--teal), var(--teal-lt)); box-shadow: 0 8px 18px -8px rgba(44,95,90,.7); z-index: 1; transition: left .4s ease, width .4s ease; }
+  .tl-care--extra { background: repeating-linear-gradient(135deg, var(--sand) 0 6px, #D9C7B6 6px 12px); box-shadow: none; }
+  .tl-mark { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); z-index: 3; }
+  .tl-mark i { position: absolute; top: -.35rem; left: 50%; width: .7rem; height: .7rem; margin-left: -.35rem; border-radius: 999px; background: var(--ink); }
+  .tl-key { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; margin: .9rem 0 0; padding: 0; list-style: none; font-size: .82rem; color: var(--slate); }
+  .tl-key li { display: flex; gap: .45rem; align-items: center; }
+  .tl-key i { width: .9rem; height: .55rem; border-radius: 999px; display: inline-block; }
+  .tl-key .k-care { background: var(--teal); }
+  .tl-key .k-extra { background: repeating-linear-gradient(135deg, var(--sand) 0 3px, #D9C7B6 3px 6px); }
+  .tl-key .k-night { background: rgba(27,42,44,.12); border-radius: 2px; }
+  .tl-key .k-mark { width: 2px; height: .9rem; background: var(--ink); border-radius: 0; }
+  .plan { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem 2.5rem; align-items: center; margin-top: 1.6rem; padding: 1.5rem 1.6rem; border-radius: 1.2rem; background: var(--ink); color: #fff; }
+  .plan .eyebrow { color: var(--blush); }
+  .plan h4 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; margin: .45rem 0 .4rem; line-height: 1.15; }
+  .plan p { margin: 0; color: rgba(255,255,255,.7); font-size: .92rem; line-height: 1.6; }
+  .plan-side { text-align: left; }
+  .plan-price { font-family: var(--serif); font-size: 2.3rem; letter-spacing: -.02em; line-height: 1; }
+  .plan-price small { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; margin-left: .4rem; color: rgba(255,255,255,.6); }
+  .plan-fixed { display: block; font-size: .8rem; color: rgba(255,255,255,.6); margin: .5rem 0 1rem; }
+  .plan .btn { width: 100%; }
+  .plan-alt { margin: .8rem 0 0; font-size: .8rem; color: rgba(255,255,255,.6); text-align: center; }
+  .plan-alt a { color: var(--blush); }
+  .tier--pick { outline: 2px solid var(--teal); outline-offset: 3px; }
+  .tier--pick .tier-pick-tag { position: absolute; bottom: -.75rem; right: 1.4rem; background: var(--teal); color: #fff; font-size: .72rem; font-weight: 700; padding: .3rem .8rem; border-radius: 999px; }
+  @media (max-width: 899px) { .clock { padding: 1.6rem 1.3rem 1.5rem; margin-bottom: 2.4rem; } .clock-in { grid-template-columns: 1fr; } .plan { grid-template-columns: 1fr; } .tl-day span { font-size: .58rem; left: .25rem; } }
+
   /* ---- Inclusions ---- */
   .incl { background: #fff; padding: 6rem 0; border-top: 1px solid var(--line); }
   .incl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
@@ -433,6 +482,31 @@
           <button type="button" data-ccy="CAD" aria-pressed="false">I live in Canada · CAD</button>
         </div>
         <p class="cur-note">Prices are in US dollars. Clients living in Canada can pay the Canadian dollar amount instead.</p>
+      </div>
+    </div>
+
+    <div class="clock rv" id="clock" aria-labelledby="clock-h">
+      <div class="clock-head">
+        <div>
+          <p class="eyebrow">Recovery Clock</p>
+          <h3 id="clock-h">Give us three dates. We'll show you the package.</h3>
+        </div>
+        <p>Tell us when you're discharged and when someone takes over, and the clock draws the nights an ICU nurse would be beside you, names the package, and fills in the form below.</p>
+      </div>
+      <div class="clock-in">
+        <div class="field"><label for="ck-surgery">Surgery date</label><input type="date" id="ck-surgery"></div>
+        <fieldset class="field">
+          <legend>Discharge from the clinic</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="ck-dc" value="10"><span>Morning</span></label>
+            <label class="chip"><input type="radio" name="ck-dc" value="15"><span>Afternoon</span></label>
+            <label class="chip"><input type="radio" name="ck-dc" value="19" checked><span>Evening</span></label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="ck-end">Family takes over or you fly home <small>(day)</small></label><input type="date" id="ck-end"></div>
+      </div>
+      <div class="clock-out" id="ck-out" aria-live="polite">
+        <p class="clock-empty"><i data-lucide="clock"></i>Pick your surgery date and the day someone takes over. The clock does the rest.</p>
       </div>
     </div>
 
@@ -771,6 +845,109 @@ document.querySelectorAll('[data-pkg]').forEach(a => a.addEventListener('click',
   const r = document.querySelector('#concierge-form input[name="package"][value="' + a.dataset.pkg + '"]');
   if (r) r.checked = true;
 }));
+
+/* Recovery Clock: dates in, package out, form pre-filled */
+(function () {
+  const RATE = { USD: 195, CAD: 273 };
+  const PKG = {
+    12: { name: 'The First Night',       usd: 2340, cad: 3275,  id: '12-Hour Concierge' },
+    24: { name: 'The Executive Reset',   usd: 4680, cad: 6550,  id: '24-Hour Concierge' },
+    36: { name: 'The Extended Recovery', usd: 7020, cad: 9820,  id: '36-Hour Concierge' },
+    48: { name: 'The Complete Recovery', usd: 9360, cad: 13100, id: '48-Hour Concierge' }
+  };
+  const sIn = document.getElementById('ck-surgery'), eIn = document.getElementById('ck-end'), out = document.getElementById('ck-out');
+  if (!sIn || !eIn || !out) return;
+  const today = new Date(); const iso = d => d.toISOString().slice(0, 10);
+  sIn.min = iso(today);
+  const fmtDay = d => d.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' });
+  const fmtTime = d => { const h = d.getHours(); return h === 12 ? 'noon' : h === 0 ? 'midnight' : (h % 12) + (h < 12 ? ' am' : ' pm'); };
+  const fmtShort = d => d.toLocaleDateString('en-CA', { weekday: 'short' }) + ' ' + d.getDate();
+  const money = n => '$' + n.toLocaleString('en-CA');
+  const ccy = () => (document.querySelector('.cur button[aria-pressed="true"]') || {}).dataset ? document.querySelector('.cur button[aria-pressed="true"]').dataset.ccy : 'USD';
+  const moon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+  let last = null;
+
+  function parse(v) { const [y, m, d] = v.split('-').map(Number); return new Date(y, m - 1, d); }
+
+  function render() {
+    if (!sIn.value || !eIn.value) { out.innerHTML = '<p class="clock-empty"><i data-lucide="clock"></i>Pick your surgery date and the day someone takes over. The clock does the rest.</p>'; icons(); mark(null); last = null; return; }
+    const dcHour = Number((document.querySelector('input[name="ck-dc"]:checked') || {}).value || 19);
+    const dc = parse(sIn.value); dc.setHours(dcHour, 0, 0, 0);
+    const hand = parse(eIn.value); hand.setHours(12, 0, 0, 0);
+    if (eIn.value < sIn.value) { eIn.min = sIn.value; }
+    eIn.min = sIn.value;
+    const hours = Math.ceil((hand - dc) / 36e5);
+    if (hours <= 0) { out.innerHTML = '<p class="clock-empty"><i data-lucide="alert-circle"></i>The handover day is before your discharge. Please check the two dates.</p>'; icons(); mark(null); last = null; return; }
+    if (hours > 96) { out.innerHTML = '<p class="clock-empty"><i data-lucide="message-circle"></i>That\'s more than four days of care. JoAnne builds those as a custom plan. <a href="#consult" style="color:var(--teal);font-weight:700;margin-left:.3rem">Ask her directly</a></p>'; icons(); mark(null); last = { pkg: 'Not sure yet', note: 'Discharge ' + fmtDay(dc) + ' ' + fmtTime(dc) + '; care needed until ' + fmtDay(hand) + ' (about ' + hours + ' hours).' }; return; }
+
+    const base = hours <= 12 ? 12 : hours <= 24 ? 24 : hours <= 36 ? 36 : 48;
+    const extra = Math.max(0, hours - 48);
+    const p = PKG[base]; const c = ccy();
+    const price = (c === 'CAD' ? p.cad : p.usd) + extra * RATE[c];
+    const careEnd = new Date(dc.getTime() + (base + extra) * 36e5);
+
+    /* timeline geometry */
+    const day0 = new Date(dc); day0.setHours(0, 0, 0, 0);
+    const lastDay = new Date(Math.max(careEnd, hand)); lastDay.setHours(0, 0, 0, 0);
+    const nDays = Math.round((lastDay - day0) / 864e5) + 1;
+    const total = nDays * 24;
+    const pct = d => ((d - day0) / 36e5 / total * 100).toFixed(2) + '%';
+    const wid = h => (h / total * 100).toFixed(2) + '%';
+    let days = ''; for (let i = 0; i < nDays; i++) { const d = new Date(day0.getTime() + i * 864e5); days += '<div class="tl-day"><span>' + (window.innerWidth < 900 || nDays > 4 ? fmtShort(d) : fmtDay(d)) + '</span></div>'; }
+    let moons = '', nights = 0;
+    for (let i = 1; i < nDays; i++) { const m = new Date(day0.getTime() + i * 864e5); if (m > dc && m < careEnd) { nights++; moons += '<div class="tl-moon" style="left:' + pct(m) + '" title="Night ' + nights + '">' + moon + '</div>'; } }
+    const careW = wid(base); const extraBar = extra ? '<div class="tl-care tl-care--extra" style="left:' + pct(new Date(dc.getTime() + base * 36e5)) + ';width:' + wid(extra) + '"></div>' : '';
+
+    const nightWord = nights === 1 ? 'one night' : nights + ' nights';
+    const why = base === 12 ? 'That covers the first night, the one your surgeon worries about most, with family taking over in the morning.'
+      : base === 24 ? 'A full day of ICU nursing from the moment you leave the clinic to the same time tomorrow.'
+      : base === 36 ? (dcHour >= 19 ? 'An evening discharge means your first night starts late, so a day and a half covers both nights before the handover.' : 'A day and a half of continuous care, so you are never without a nurse before the handover.')
+      : (extra ? 'Two full days plus ' + extra + ' extra hours at the same flat rate, with drain preparation and a flight-readiness report.' : 'Two full days of continuous care, with drain preparation and a flight-readiness report for your surgeon.');
+
+    out.innerHTML =
+      '<div class="tl" role="img" aria-label="Timeline of nursing care from ' + fmtDay(dc) + ' ' + fmtTime(dc) + ' to ' + fmtDay(careEnd) + ' ' + fmtTime(careEnd) + '">' +
+        '<div class="tl-days" style="grid-template-columns:repeat(' + nDays + ',1fr)">' + days + '</div>' +
+        '<div class="tl-care" style="left:' + pct(dc) + ';width:' + careW + '"></div>' + extraBar + moons +
+        '<div class="tl-mark" style="left:' + pct(dc) + '"><i></i></div>' +
+        '<div class="tl-mark" style="left:' + pct(hand) + '"><i></i></div>' +
+      '</div>' +
+      '<ul class="tl-key">' +
+        '<li><i class="k-mark"></i>Discharged ' + fmtDay(dc) + ', ' + fmtTime(dc) + '</li>' +
+        '<li><i class="k-care"></i>ICU nurse with you, ' + nightWord + ' covered</li>' +
+        (extra ? '<li><i class="k-extra"></i>' + extra + ' extra hours</li>' : '') +
+        '<li><i class="k-night"></i>Night hours</li>' +
+        '<li><i class="k-mark"></i>Handover ' + fmtDay(hand) + ', by midday</li>' +
+      '</ul>' +
+      '<div class="plan">' +
+        '<div><p class="eyebrow">Your package</p><h4>' + p.name + ' · ' + base + (extra ? ' + ' + extra : '') + ' hours</h4><p>' + why + ' Nurse with you until ' + fmtDay(careEnd) + ' at ' + fmtTime(careEnd) + '.</p></div>' +
+        '<div class="plan-side"><div class="plan-price">' + money(price) + '<small>' + c + '</small></div><span class="plan-fixed">All-inclusive. Transportation, supplies and reports included.</span>' +
+          '<a href="#consult" class="btn btn--light" id="ck-go">Request this plan <i data-lucide="arrow-right"></i></a>' +
+          '<p class="plan-alt">Dates not firm yet? <a href="#consult">Ask JoAnne anyway</a></p></div>' +
+      '</div>';
+    icons(); mark(base);
+    last = { pkg: p.id, date: sIn.value, ccy: c, note: 'Recovery Clock: discharge ' + fmtDay(dc) + ' ' + fmtTime(dc) + ', handover ' + fmtDay(hand) + ' by midday (' + hours + ' hours). Suggested ' + p.name + (extra ? ' plus ' + extra + ' extra hours' : '') + '.' };
+    document.getElementById('ck-go').addEventListener('click', prefill);
+  }
+
+  function icons() { try { lucide.createIcons(); } catch (e) {} }
+  function mark(base) {
+    document.querySelectorAll('.tier').forEach(t => { t.classList.remove('tier--pick'); const tag = t.querySelector('.tier-pick-tag'); if (tag) tag.remove(); });
+    if (!base) return;
+    const t = document.querySelectorAll('.tier')[{ 12: 0, 24: 1, 36: 2, 48: 3 }[base]];
+    if (t) { t.classList.add('tier--pick'); const tag = document.createElement('span'); tag.className = 'tier-pick-tag'; tag.textContent = 'Your dates'; t.appendChild(tag); }
+  }
+  function prefill() {
+    if (!last) return;
+    const f = document.getElementById('concierge-form'); if (!f) return;
+    const r = f.querySelector('input[name="package"][value="' + last.pkg + '"]'); if (r) r.checked = true;
+    if (last.date) f.querySelector('#cf-date').value = last.date;
+    const home = f.querySelector('#cf-home'); if (home && last.ccy) home.value = last.ccy === 'CAD' ? 'In Canada (pay in CAD)' : 'Outside Canada (pay in USD)';
+    const note = f.querySelector('#cf-note'); if (note && !note.value.includes('Recovery Clock')) note.value = (note.value ? note.value + '\n' : '') + last.note;
+  }
+  [sIn, eIn].forEach(i => i.addEventListener('change', render));
+  document.querySelectorAll('input[name="ck-dc"]').forEach(i => i.addEventListener('change', render));
+  document.querySelectorAll('.cur button').forEach(b => b.addEventListener('click', () => setTimeout(render, 0)));
+})();
 
 /* Gentle reveal on scroll */
 (function () {
