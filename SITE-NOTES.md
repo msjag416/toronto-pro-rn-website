@@ -22,7 +22,7 @@ Changing words, prices, phone numbers or links on a page is fine and needs nothi
 
 ## The Recovery Concierge page (concierge.html, at torontoprorn.com/concierge)
 
-The VIP page for high net worth clients, international medical travellers, hotel concierges and family offices. It sells three fixed-fee, all-inclusive packages instead of the hourly rate. It's linked from "Concierge" in the main page's top menu, the phone menu and the footer, and from the international page's menu and footer.
+The VIP page for high net worth clients, international medical travellers, hotel concierges and family offices. It sells three fixed-fee, all-inclusive packages instead of the hourly rate. It's deliberately kept out of the main page's top menu and phone menu, so local clients see the $85/hour intake path first. The main page links to it quietly in three places: the footer ("Toronto Recovery Concierge (VIP)"), the Hotel Recovery for Out-of-Town Patients card ("View 12 to 72-hour Executive Concierge Packages"), and a small line under the cost planner (search for "concierge-note"). The international page links to it in its top menu and footer. For surgeons' coordinators, family offices and hotel concierges, send the direct link: torontoprorn.com/concierge
 
 **The packages and prices** (CAD for clients in Canada, USD for clients outside Canada):
 - 12-Hour Executive Reset: $3,106.60 CAD / $2,220 USD
@@ -39,7 +39,7 @@ Visitors switch between CAD and USD with the toggle above the packages; the page
 
 **Styling:** the page has its own style block and doesn't use styles.css, so nothing needs rebuilding. It has a dynamic copyright year in the footer like every page.
 
-**Main page menu note:** to make room for "Concierge", the main page's top menu on computers no longer shows Reviews and FAQ (both still in the phone menu, and FAQ in the footer). On smaller laptops it also hides "The First Night". Search index.html for "desk-nav" to change this.
+**Main page menu note:** the computer menu hides Reviews and FAQ on screens narrower than 1366 pixels, and "The First Night" below 1200 pixels, so nothing overlaps the logo. Both are still in the phone menu, and FAQ is in the footer. Search index.html for "desk-nav" to change this.
 
 ## The "Reserve your night" card (top of the main page)
 

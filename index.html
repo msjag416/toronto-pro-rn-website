@@ -266,9 +266,14 @@
 
   /* ===== Desktop menu: keep it on one line on smaller laptops and tablets ===== */
   #desk-nav a { white-space: nowrap; }
-  #desk-nav { gap: 1.4rem; } #desk-nav a[href="#reviews"], #desk-nav a[href="#faq"] { display: none; }
+  #desk-nav { gap: 1.4rem; }
+  @media (max-width: 1365px) { #desk-nav a[href="#reviews"], #desk-nav a[href="#faq"] { display: none; } }
   @media (max-width: 1199px) { #desk-nav a[href="#first-night"] { display: none; } }
   @media (max-width: 1023px) { #desk-nav a[href="#first-night"], #desk-nav a[href="#procedures"], #desk-nav a[href="international.html"] { display: none; } }
+
+  /* ===== Quiet link to the Concierge page under the cost planner ===== */
+  .concierge-note { max-width: 40rem; margin: -1.25rem auto 2.5rem; text-align: center; font-size: .82rem; line-height: 1.6; color: #4A5A5C; }
+  .concierge-note a { color: #2C5F5A; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
   /* ===== Reserve-your-night card (hero, date-first booking) ===== */
   .rsv { background: #fff; border: 1px solid #E3DCD4; border-radius: 1.1rem; padding: 1.25rem 1.25rem 1.1rem;
@@ -402,7 +407,6 @@
       <a href="#cost" class="text-sm font-medium text-slatey hover:text-teal transition">What it costs</a>
       <a href="#faq" class="text-sm font-medium text-slatey hover:text-teal transition">FAQ</a>
       <a href="international.html" class="text-sm font-medium text-slatey hover:text-teal transition">International</a>
-      <a href="concierge" class="text-sm font-medium text-slatey hover:text-teal transition">Concierge</a>
       <a href="intake.html" class="text-sm font-bold text-teal hover:text-teallt transition">Intake form</a>
       <a href="tel:+13433015061" class="bg-teal hover:bg-teallt text-white px-5 py-2.5 rounded-full text-sm font-bold transition shadow-lg shadow-teal/25">Call (343) 301-5061</a>
     </div>
@@ -421,7 +425,6 @@
       <a href="#cost" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">What it costs</a>
       <a href="#faq" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">FAQ</a>
       <a href="international.html" class="block py-3 border-b border-line text-lg font-medium text-slatey">International patients</a>
-      <a href="concierge" class="block py-3 border-b border-line text-lg font-medium text-slatey">Recovery Concierge (VIP)</a>
       <a href="intake.html" class="block py-3 border-b border-line text-lg font-bold text-teal">Intake form</a>
       <a href="tel:+13433015061" class="block py-3 border-b border-line text-lg font-medium text-slatey">Call (343) 301-5061</a>
       <a href="#book" onclick="toggleMenu()" class="block text-center bg-teal text-white py-3.5 rounded-lg font-bold mt-4">Book my recovery nurse</a>
@@ -699,6 +702,7 @@
         <h3 class="font-display text-xl text-ink mb-3">Hotel Recovery for Out-of-Town Patients</h3>
         <p class="text-slatey text-[15px] leading-relaxed">Travelling to Toronto for surgery means recovering away from home, often without experienced medical support nearby. Your ICU-trained and post-operative care registered nurse provides overnight postoperative monitoring, manages prescribed compression garments and surgical drains, assesses peripheral IV saline locks when present, and administers prescribed medications within authorized nursing orders. Your nurse also monitors for complications and communicates concerning changes to your surgical team.</p>
         <a href="international.html" class="inline-block mt-4 text-teal font-bold text-sm underline">Travelling from another country? Plan your recovery</a>
+        <a href="concierge" class="block mt-3 text-teal font-bold text-sm underline">View 12 to 72-hour Executive Concierge Packages &rarr;</a>
       </article>
 
     </div>
@@ -979,6 +983,7 @@
         </div>
       </div>
     </div>
+    <p class="concierge-note">Recovering at a luxury hotel or travelling from abroad? <a href="concierge">Explore our turn-key Executive Recovery Concierge Packages</a> (includes clinic discharge escort, formal NDAs on request, and continuous 1-on-1 care).</p>
 
     <div class="mb-10">
       <h3 class="font-display text-xl text-ink mb-2">The fee-free zone</h3>
@@ -1351,7 +1356,7 @@
           <li><a href="#about" class="hover:text-blush transition">About JoAnne</a></li>
           <li><a href="#faq" class="hover:text-blush transition">FAQ</a></li>
           <li><a href="international.html" class="hover:text-blush transition">International patients</a></li>
-          <li><a href="concierge" class="hover:text-blush transition">Recovery Concierge</a></li>
+          <li><a href="concierge" class="hover:text-blush transition">Toronto Recovery Concierge (VIP)</a></li>
         </ul>
       </div>
 
