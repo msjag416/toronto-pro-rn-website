@@ -222,6 +222,15 @@
   @media (min-width: 640px) {
     .fn-panel { margin-left: -1.5rem; margin-right: -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
   }
+  /* Phones and tablets: the hour sits inside the ring, label and description beside it */
+  @media (max-width: 1023px) {
+    .fn-dial { width: 88px; height: 88px; }
+    .fn-main { position: absolute; left: 0; top: 50%; width: 88px; transform: translateY(-50%); text-align: center;
+      font-size: 1.45rem; line-height: 1; letter-spacing: -.01em; white-space: nowrap; }
+    .fn-main.is-word { font-size: .74rem; letter-spacing: 0; }
+    .fn-top { margin-bottom: .2rem; }
+    .fn-sub { font-size: .95rem; color: rgba(255,255,255,.85); }
+  }
   @media (min-width: 1024px) {
     .fn-grid { display: grid; grid-template-columns: 290px minmax(0,1fr); gap: 4.5rem; }
     .fn-panel { top: calc(var(--fn-nav, 64px) + 32px); align-self: start; margin: 0; padding: 0; background: none; border: 0;
