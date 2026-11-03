@@ -75,7 +75,12 @@
           }
         }
       },
-      "areaServed": { "@type": "City", "name": "Toronto, Ontario, Canada" },
+      "areaServed": [
+        { "@type": "City", "name": "Toronto, Ontario, Canada" },
+        { "@type": "Place", "name": "Yorkville, Toronto" },
+        { "@type": "Place", "name": "Downtown Toronto" }
+      ],
+      "audience": { "@type": "Audience", "audienceType": "International medical travellers from Grand Cayman, Bermuda, the Bahamas, the United Kingdom, the United Arab Emirates and the United States" },
       "offers": [
         { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "3275", "priceCurrency": "CAD" },
         { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "2340", "priceCurrency": "USD" },
@@ -200,6 +205,14 @@
     .stop-dot { grid-row: span 3; }
     .stop-time { margin-top: .15rem; }
   }
+
+  /* ---- Hotel strip under the route ---- */
+  .where { margin-top: 3.2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.12); display: grid; grid-template-columns: 14rem 1fr; gap: .6rem 2.5rem; }
+  .where .eyebrow { margin: .3rem 0 0; }
+  .where-text { margin: 0; font-family: var(--serif); font-weight: 300; font-size: 1.3rem; line-height: 1.5; color: rgba(255,255,255,.85); }
+  .where-text strong { font-weight: 400; color: #fff; }
+  .where-note { grid-column: 2; margin: .2rem 0 0; font-size: .76rem; color: rgba(255,255,255,.45); }
+  @media (max-width: 899px) { .where { grid-template-columns: 1fr; margin-top: 2.6rem; } .where-note { grid-column: 1; } .where-text { font-size: 1.12rem; } }
 
   /* ---- Packages ---- */
   .packages { padding: 6rem 0 5rem; background: var(--ivory); }
@@ -495,6 +508,11 @@
         <p>A written record for your Toronto surgeon and a summary for your doctor at home.</p>
       </li>
     </ol>
+    <div class="where rv">
+      <p class="eyebrow">Where your nurse meets you</p>
+      <p class="where-text">Your nurse comes to you at Yorkville and downtown Toronto hotels such as <strong>The Hazelton Hotel</strong>, <strong>Four Seasons Hotel Toronto</strong> in Yorkville, <strong>The Ritz-Carlton Toronto</strong>, <strong>The St. Regis Toronto</strong> and <strong>Park Hyatt Toronto</strong>, as well as private residences and recovery suites across the GTA.</p>
+      <p class="where-note">Toronto ProRN is an independent nursing service and isn't affiliated with or endorsed by any hotel named here.</p>
+    </div>
   </div>
 </section>
 
@@ -603,7 +621,7 @@
         <ul>
           <li><i data-lucide="check"></i>Mommy makeover and combination surgeries</li>
           <li><i data-lucide="check"></i>Multi-area liposuction with heavy drainage</li>
-          <li><i data-lucide="check"></i>Flying home to the Caribbean, US, UK or Gulf</li>
+          <li><i data-lucide="check"></i>Flying home to Grand Cayman, Bermuda, the Bahamas, the UK, the Gulf or the US</li>
         </ul>
         <a href="#consult" class="btn btn--light" data-pkg="48-Hour Concierge">Request this package</a>
       </article>
@@ -669,7 +687,7 @@
           <h3>Your surgeon, your doctor and your family</h3>
           <dl>
             <div><dt>Daily notes for your Toronto surgeon</dt><dd>A written clinical log sent to your plastic surgeon's office each day.</dd></div>
-            <div><dt>A report for your doctor at home</dt><dd>A discharge summary prepared for your family doctor or specialist in Grand Cayman, London, Dubai, Miami or wherever home is.</dd></div>
+            <div><dt>A report for your doctor at home</dt><dd>A discharge summary prepared for your family doctor or specialist in Grand Cayman, Bermuda, the Bahamas, London, Dubai, Miami or wherever home is.</dd></div>
             <div><dt>Updates for the people you choose</dt><dd>Family members, a personal assistant or your family office manager can receive updates by encrypted WhatsApp or phone, only with your permission.</dd></div>
           </dl>
         </div>
@@ -713,7 +731,7 @@
       <p>Bookings can come from anyone you trust with your plans. JoAnne still speaks with you before your booking is final, because your nurse needs to know your procedure and your surgeon.</p>
     </div>
     <div class="bookers-grid">
-      <div class="booker rv"><i data-lucide="plane-landing"></i><h3>International patients</h3><p>Flying in from the US, the Caribbean, the UK or the Gulf for surgery with a Toronto surgeon.</p></div>
+      <div class="booker rv"><i data-lucide="plane-landing"></i><h3>International patients</h3><p>Flying in from Grand Cayman, Bermuda, the Bahamas, London, Dubai or across the US for surgery with a Toronto surgeon.</p></div>
       <div class="booker rv"><i data-lucide="concierge-bell"></i><h3>Hotel concierges</h3><p>Arranging nursing care for a guest recovering in a Toronto hotel suite.</p></div>
       <div class="booker rv"><i data-lucide="briefcase"></i><h3>Family offices and assistants</h3><p>Booking, billing and receiving updates on behalf of a principal.</p></div>
       <div class="booker rv"><i data-lucide="stethoscope"></i><h3>Surgeons and coordinators</h3><p>Referring patients who need more than a single overnight shift.</p></div>
