@@ -1,6 +1,6 @@
 # torontoprorn.com: how the site works
 
-Last updated: November 2, 2026 (Reserve your night card added to the hero)
+Last updated: November 2, 2026 (Recovery Concierge page added)
 
 ## The files
 
@@ -19,6 +19,27 @@ The site is plain HTML hosted on GitHub Pages, with the domain pointed there thr
 All three pages share one design file, **styles.css**, which must sit in the same folder as the pages. It holds every colour, size and layout rule the pages use, built ahead of time so phones load the site quickly. (Before October 2026 the pages built their design in the visitor's browser on every visit, which was slower.)
 
 Changing words, prices, phone numbers or links on a page is fine and needs nothing else. If new design styling is ever added to a page (for example a new colour or spacing class on a new section), styles.css has to be rebuilt to include it, so ask Claude to "rebuild styles.css" after that kind of change.
+
+## The Recovery Concierge page (concierge.html, at torontoprorn.com/concierge)
+
+The VIP page for high net worth clients, international medical travellers, hotel concierges and family offices. It sells three fixed-fee, all-inclusive packages instead of the hourly rate. It's linked from "Concierge" in the main page's top menu, the phone menu and the footer, and from the international page's menu and footer.
+
+**The packages and prices** (CAD for clients in Canada, USD for clients outside Canada):
+- 24-Hour Executive Reset: $2,554 CAD / $1,825 USD
+- 48-Hour Complete Recovery: $4,200 CAD / $3,100 USD
+- 72-Hour VIP Continuity: $6,000 CAD / $4,425 USD
+
+Visitors switch between CAD and USD with the toggle above the packages; the page remembers their choice on that device. To change a price, search concierge.html for `data-cad=` and change both the `data-cad` and `data-usd` values and the number shown between the tags. Also change the matching "price" numbers in the Google search code at the top of the file (search for "Offer").
+
+**What's different from the hourly service:** concierge clients are met inside the surgical clinic at discharge, prescriptions are collected, the private transfer to the hotel is coordinated, and transportation is included. The hourly service on the main page still has no clinic pickup.
+
+**Wording choices on purpose:** clearance to fly is described as the surgeon's decision; the nurse documents flight readiness and sends it to the surgeon. The NDA is "signed by Toronto ProRN and your attending nurse". Longer packages say nurses work planned shifts so the nurse with you is always awake.
+
+**The consultation form** sends through Web3Forms to prorninc@gmail.com with the subject "Concierge consultation request: Toronto ProRN". It arrives with: package, who is making the request (patient, assistant or family office, hotel concierge, family member), name, phone/WhatsApp, email, surgery date, client residence (Canada/CAD or outside Canada/USD), recovery location, notes and whether an NDA is requested. It asks for no medical details. "Request this package" buttons pre-select the package in the form.
+
+**Styling:** the page has its own style block and doesn't use styles.css, so nothing needs rebuilding. It has a dynamic copyright year in the footer like every page.
+
+**Main page menu note:** to make room for "Concierge", the main page's top menu on computers no longer shows Reviews and FAQ (both still in the phone menu, and FAQ in the footer). On smaller laptops it also hides "The First Night". Search index.html for "desk-nav" to change this.
 
 ## The "Reserve your night" card (top of the main page)
 

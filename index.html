@@ -264,6 +264,12 @@
     .fn-list .fn-step { padding-left: 2.5rem; }
   }
 
+  /* ===== Desktop menu: keep it on one line on smaller laptops and tablets ===== */
+  #desk-nav a { white-space: nowrap; }
+  #desk-nav { gap: 1.4rem; } #desk-nav a[href="#reviews"], #desk-nav a[href="#faq"] { display: none; }
+  @media (max-width: 1199px) { #desk-nav a[href="#first-night"] { display: none; } }
+  @media (max-width: 1023px) { #desk-nav a[href="#first-night"], #desk-nav a[href="#procedures"], #desk-nav a[href="international.html"] { display: none; } }
+
   /* ===== Reserve-your-night card (hero, date-first booking) ===== */
   .rsv { background: #fff; border: 1px solid #E3DCD4; border-radius: 1.1rem; padding: 1.25rem 1.25rem 1.1rem;
     box-shadow: 0 24px 48px -28px rgba(18,25,27,.35), 0 1px 2px rgba(18,25,27,.04); max-width: 36rem; }
@@ -389,13 +395,14 @@
       <span class="font-display text-xl text-ink">Toronto<span class="text-teal">ProRN</span></span>
     </a>
 
-    <div class="hidden md:flex items-center gap-7">
+    <div id="desk-nav" class="hidden md:flex items-center gap-7">
       <a href="#first-night" class="text-sm font-medium text-slatey hover:text-teal transition">The First Night</a>
       <a href="#procedures" class="text-sm font-medium text-slatey hover:text-teal transition">Procedures</a>
       <a href="#reviews" class="text-sm font-medium text-slatey hover:text-teal transition">Reviews</a>
       <a href="#cost" class="text-sm font-medium text-slatey hover:text-teal transition">What it costs</a>
       <a href="#faq" class="text-sm font-medium text-slatey hover:text-teal transition">FAQ</a>
       <a href="international.html" class="text-sm font-medium text-slatey hover:text-teal transition">International</a>
+      <a href="concierge" class="text-sm font-medium text-slatey hover:text-teal transition">Concierge</a>
       <a href="intake.html" class="text-sm font-bold text-teal hover:text-teallt transition">Intake form</a>
       <a href="tel:+13433015061" class="bg-teal hover:bg-teallt text-white px-5 py-2.5 rounded-full text-sm font-bold transition shadow-lg shadow-teal/25">Call (343) 301-5061</a>
     </div>
@@ -414,6 +421,7 @@
       <a href="#cost" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">What it costs</a>
       <a href="#faq" onclick="toggleMenu()" class="block py-3 border-b border-line text-lg font-medium text-slatey">FAQ</a>
       <a href="international.html" class="block py-3 border-b border-line text-lg font-medium text-slatey">International patients</a>
+      <a href="concierge" class="block py-3 border-b border-line text-lg font-medium text-slatey">Recovery Concierge (VIP)</a>
       <a href="intake.html" class="block py-3 border-b border-line text-lg font-bold text-teal">Intake form</a>
       <a href="tel:+13433015061" class="block py-3 border-b border-line text-lg font-medium text-slatey">Call (343) 301-5061</a>
       <a href="#book" onclick="toggleMenu()" class="block text-center bg-teal text-white py-3.5 rounded-lg font-bold mt-4">Book my recovery nurse</a>
@@ -1343,6 +1351,7 @@
           <li><a href="#about" class="hover:text-blush transition">About JoAnne</a></li>
           <li><a href="#faq" class="hover:text-blush transition">FAQ</a></li>
           <li><a href="international.html" class="hover:text-blush transition">International patients</a></li>
+          <li><a href="concierge" class="hover:text-blush transition">Recovery Concierge</a></li>
         </ul>
       </div>
 
