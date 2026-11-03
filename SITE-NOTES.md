@@ -25,7 +25,7 @@ Changing words, prices, phone numbers or links on a page is fine and needs nothi
 The VIP page for high net worth clients, international medical travellers, hotel concierges and family offices. It sells three fixed-fee, all-inclusive packages instead of the hourly rate. It's linked from "Concierge" in the main page's top menu, the phone menu and the footer, and from the international page's menu and footer.
 
 **The packages and prices** (CAD for clients in Canada, USD for clients outside Canada):
-- 24-Hour Executive Reset: $2,554 CAD / $1,825 USD
+- 12-Hour Executive Reset: $3,106.60 CAD / $2,220 USD
 - 48-Hour Complete Recovery: $4,200 CAD / $3,100 USD
 - 72-Hour VIP Continuity: $6,000 CAD / $4,425 USD
 
