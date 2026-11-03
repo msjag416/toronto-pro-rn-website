@@ -264,6 +264,52 @@
     .fn-list .fn-step { padding-left: 2.5rem; }
   }
 
+  /* ===== Reserve-your-night card (hero, date-first booking) ===== */
+  .rsv { background: #fff; border: 1px solid #E3DCD4; border-radius: 1.1rem; padding: 1.25rem 1.25rem 1.1rem;
+    box-shadow: 0 24px 48px -28px rgba(18,25,27,.35), 0 1px 2px rgba(18,25,27,.04); max-width: 36rem; }
+  .rsv-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .85rem; }
+  .rsv-head .eyebrow { margin: 0; }
+  .rsv-head small { font-size: .74rem; color: #4A5A5C; }
+  .rsv-row { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: stretch; }
+  .rsv-field { position: relative; display: flex; align-items: center; gap: .6rem; padding: 0 .9rem; background: #FAF7F3;
+    border: 1px solid #E3DCD4; border-radius: .8rem; transition: border-color .2s ease, box-shadow .2s ease; }
+  .rsv-field:focus-within { border-color: #2C5F5A; box-shadow: 0 0 0 3px rgba(44,95,90,.14); }
+  .rsv-field svg { width: 1.1rem; height: 1.1rem; color: #2C5F5A; flex: none; }
+  .rsv-field label { position: absolute; left: 2.6rem; top: .45rem; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: #4A5A5C; font-weight: 700; pointer-events: none; }
+  .rsv-field input { width: 100%; background: transparent; border: 0; outline: 0; font: inherit; font-size: 1.05rem; font-weight: 600; color: #12191B;
+    padding: 1.35rem 0 .55rem; min-height: 3.6rem; }
+  .rsv-field input::-webkit-calendar-picker-indicator { opacity: .55; cursor: pointer; }
+  .rsv-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: 0 1.4rem; min-height: 3.6rem; background: #12191B; color: #fff;
+    font-weight: 700; border-radius: .8rem; box-shadow: 0 10px 24px -12px rgba(18,25,27,.6); transition: background .2s ease, transform .2s ease; white-space: nowrap; }
+  .rsv-btn:hover { background: #1F2A2E; transform: translateY(-1px); }
+  .rsv-btn svg { width: 1.1rem; height: 1.1rem; }
+  .rsv-out { display: none; margin-top: .9rem; padding-top: .9rem; border-top: 1px dashed #E3DCD4; }
+  .rsv-out.is-on { display: block; animation: rsvIn .35s ease both; }
+  @keyframes rsvIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .rsv-pill { display: inline-flex; align-items: center; gap: .45rem; padding: .32rem .75rem .32rem .55rem; border-radius: 9999px; font-size: .78rem; font-weight: 700; }
+  .rsv-pill::before { content: ""; width: .5rem; height: .5rem; border-radius: 9999px; background: currentColor; }
+  .rsv-pill--ok { background: rgba(44,95,90,.1); color: #2C5F5A; }
+  .rsv-pill--soon { background: rgba(196,120,70,.12); color: #9A5A2E; }
+  .rsv-pill--early { background: rgba(18,25,27,.06); color: #12191B; }
+  .rsv-pill--past { background: rgba(120,60,60,.1); color: #7A3B3B; }
+  .rsv-msg { margin-top: .55rem; font-size: .95rem; color: #4A5A5C; line-height: 1.55; }
+  .rsv-msg strong { color: #12191B; }
+  .rsv-alt { margin-top: .8rem; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.1rem; font-size: .85rem; color: #4A5A5C; }
+  .rsv-alt a { font-weight: 700; color: #2C5F5A; text-decoration: underline; text-underline-offset: 3px; }
+  .rsv-alt a.rsv-wa { display: inline-flex; align-items: center; gap: .35rem; text-decoration: none; padding: .35rem .8rem; border-radius: 9999px; background: #25D366; color: #12191B; }
+  .rsv-alt a.rsv-wa svg { width: .95rem; height: .95rem; }
+  @media (min-width: 1024px) {
+    #top { padding-top: 7.5rem; }
+    #top h1 { margin-bottom: 1.1rem; }
+    #top .hero-lede { margin-bottom: 1.6rem; }
+  }
+  @media (max-width: 639px) {
+    .rsv { padding: 1rem; border-radius: .95rem; }
+    .rsv-head { flex-direction: column; align-items: flex-start; gap: .3rem; }
+    .rsv-row { grid-template-columns: 1fr; }
+    .rsv-btn { width: 100%; }
+  }
+
   /* ===== Trust badges, icon chips and cards ===== */
   .icon-chip { width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: rgba(44,95,90,.1); color: #2C5F5A;
     display: inline-flex; align-items: center; justify-content: center; flex: none; }
@@ -389,18 +435,35 @@
           You shouldn't spend the first night after surgery <em class="text-teal not-italic italic">alone</em>.
         </h1>
 
-        <p class="text-lg text-slatey leading-relaxed mb-8 max-w-xl">
+        <p class="hero-lede text-lg text-slatey leading-relaxed mb-8 max-w-xl">
           Our ICU-trained Registered Nurses stay awake beside you through the night your surgeon worries about most, so you can sleep. Every nurse has plastic surgery recovery experience, and every booking is matched personally by founder JoAnne Gomez, RN, with 27 years in the ICU and 14 years recovering plastic surgery patients in Toronto.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a href="intake.html" class="inline-flex justify-center items-center px-7 py-4 bg-ink text-white font-bold rounded-lg hover:bg-night transition shadow-xl shadow-ink/15">
-            Start my intake form <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
-          </a>
-          <a href="https://wa.me/13433015061?text=Hi%20JoAnne%2C%20I%27m%20booking%20surgery%20and%20need%20an%20overnight%20recovery%20nurse." target="_blank" rel="noopener noreferrer"
-             class="inline-flex justify-center items-center px-7 py-4 bg-[#25D366] text-ink font-bold rounded-lg hover:brightness-95 transition shadow-lg">
-            <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i> WhatsApp me
-          </a>
+        <div class="rsv" id="reserve-card">
+          <div class="rsv-head">
+            <p class="eyebrow text-teal">Reserve your night</p>
+            <small>Nothing is booked until you've spoken with JoAnne</small>
+          </div>
+          <form class="rsv-row" id="rsv-form" novalidate>
+            <div class="rsv-field">
+              <i data-lucide="calendar-days"></i>
+              <label for="rsv-date">When is your surgery?</label>
+              <input type="date" id="rsv-date" name="surgery_date" autocomplete="off" aria-describedby="rsv-out">
+            </div>
+            <a href="intake.html" id="rsv-cta" class="rsv-btn">
+              <span id="rsv-cta-text">Start my intake form</span> <i data-lucide="arrow-right"></i>
+            </a>
+          </form>
+          <div class="rsv-out" id="rsv-out" aria-live="polite">
+            <span class="rsv-pill rsv-pill--ok" id="rsv-pill">Ideal booking window</span>
+            <p class="rsv-msg" id="rsv-msg"></p>
+          </div>
+          <div class="rsv-alt">
+            <span>Don't have a date yet?</span>
+            <a href="https://wa.me/13433015061?text=Hi%20JoAnne%2C%20I%27m%20booking%20surgery%20and%20need%20an%20overnight%20recovery%20nurse." target="_blank" rel="noopener noreferrer" class="rsv-wa" id="rsv-wa">
+              <i data-lucide="message-circle"></i> WhatsApp JoAnne
+            </a>
+          </div>
         </div>
 
         <ul class="trust-row" aria-label="Credentials, privacy and payment security">
@@ -1389,10 +1452,85 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   try { initNightDial(); } catch (e) { console.warn('Night dial did not start:', e); }
   try { initCostPlanner(); } catch (e) { console.warn('Cost planner did not start:', e); }
+  try { initReserveCard(); } catch (e) { console.warn('Reserve card did not start:', e); }
 });
 
 // Cost planner (What it costs section). Same numbers as the intake form: $85/hour, 8-hour minimum,
 // $30 RN transportation per shift outside the fee-free zone, 25% deposit.
+/* ===== Reserve your night: date-first booking card in the hero =====
+   The visitor types a surgery date. The card tells them where that date sits in the
+   booking window (ideally 2 to 8 weeks out), spells out the first night in plain dates,
+   and the button becomes "Reserve <date>", which opens the intake form with the surgery
+   date already filled in (intake.html?date=YYYY-MM-DD). */
+function initReserveCard() {
+  const input = document.getElementById('rsv-date');
+  const out = document.getElementById('rsv-out');
+  const pill = document.getElementById('rsv-pill');
+  const msg = document.getElementById('rsv-msg');
+  const cta = document.getElementById('rsv-cta');
+  const ctaText = document.getElementById('rsv-cta-text');
+  const form = document.getElementById('rsv-form');
+  if (!input || !out || !cta) return;
+
+  const WA = 'https://wa.me/13433015061?text=';
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const iso = d => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  input.min = iso(today);
+  const fmt = (d, o) => d.toLocaleDateString('en-CA', Object.assign({ weekday: 'long', month: 'long', day: 'numeric' }, o || {}));
+  const short = d => d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+
+  function render() {
+    const v = input.value;
+    if (!v) {
+      out.classList.remove('is-on');
+      cta.href = 'intake.html';
+      ctaText.textContent = 'Start my intake form';
+      return;
+    }
+    const parts = v.split('-').map(Number);
+    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    if (isNaN(d.getTime())) return;
+    const next = new Date(d); next.setDate(d.getDate() + 1);
+    const days = Math.round((d - today) / 86400000);
+    const night = `Your nurse would arrive on <strong>${fmt(d)}</strong> in the evening and stay awake beside you until <strong>${fmt(next, { weekday: 'long' })}</strong> morning.`;
+    let cls, label, text, href = 'intake.html?date=' + v, btn = 'Reserve ' + short(d);
+
+    if (days < 0) {
+      cls = 'past'; label = 'That date has passed';
+      text = 'If you’re already home and need a nurse tonight or tomorrow, message JoAnne directly and she’ll tell you what’s possible.';
+      href = WA + encodeURIComponent('Hi JoAnne, my surgery was on ' + short(d) + ' and I need an overnight recovery nurse as soon as possible.');
+      btn = 'Message JoAnne';
+    } else if (days < 7) {
+      cls = 'soon'; label = days === 0 ? 'Surgery is today' : 'Less than a week away';
+      text = 'Short notice, but same-week nights are sometimes possible. ' + night + ' Message JoAnne first so she can check which nurse is free.';
+      href = WA + encodeURIComponent('Hi JoAnne, my surgery is on ' + short(d) + ' and I need an overnight recovery nurse. Is a nurse available?');
+      btn = 'Check availability';
+    } else if (days < 14) {
+      cls = 'soon'; label = 'Inside two weeks';
+      text = 'Start your intake now so JoAnne can confirm your nurse quickly. ' + night;
+    } else if (days <= 56) {
+      cls = 'ok'; label = 'Ideal booking window';
+      text = 'Two to eight weeks out is exactly when most clients book, and most dates in this range are open. ' + night;
+    } else {
+      cls = 'early'; label = 'Early, and that’s a good thing';
+      text = 'Book now and your nurse is confirmed long before your pre-op appointment. ' + night;
+    }
+    pill.className = 'rsv-pill rsv-pill--' + cls;
+    pill.textContent = label;
+    msg.innerHTML = text;
+    cta.href = href;
+    if (href.indexOf('wa.me') === 0 || href.indexOf('https://wa.me') === 0) { cta.target = '_blank'; cta.rel = 'noopener noreferrer'; }
+    else { cta.removeAttribute('target'); cta.removeAttribute('rel'); }
+    ctaText.textContent = btn;
+    out.classList.add('is-on');
+  }
+
+  input.addEventListener('input', render);
+  input.addEventListener('change', render);
+  form.addEventListener('submit', e => { e.preventDefault(); if (input.value) cta.click(); else input.focus(); });
+  render();
+}
+
 function initCostPlanner() {
   const root = document.getElementById('cost-planner');
   if (!root) return;

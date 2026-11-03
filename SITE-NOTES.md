@@ -1,6 +1,6 @@
 # torontoprorn.com: how the site works
 
-Last updated: November 2, 2026 (cost planner added)
+Last updated: November 2, 2026 (Reserve your night card added to the hero)
 
 ## The files
 
@@ -19,6 +19,14 @@ The site is plain HTML hosted on GitHub Pages, with the domain pointed there thr
 All three pages share one design file, **styles.css**, which must sit in the same folder as the pages. It holds every colour, size and layout rule the pages use, built ahead of time so phones load the site quickly. (Before October 2026 the pages built their design in the visitor's browser on every visit, which was slower.)
 
 Changing words, prices, phone numbers or links on a page is fine and needs nothing else. If new design styling is ever added to a page (for example a new colour or spacing class on a new section), styles.css has to be rebuilt to include it, so ask Claude to "rebuild styles.css" after that kind of change.
+
+## The "Reserve your night" card (top of the main page)
+
+The two plain buttons under the headline were replaced by a white card with one question: "When is your surgery?" The visitor picks a date and the card answers right away. A coloured pill says where that date sits in the booking window (less than a week: amber, inside two weeks: amber, 2 to 8 weeks: green "Ideal booking window", further out: grey "Early, and that's a good thing", a past date: red). Under it, the first night is spelled out in plain dates ("Your nurse would arrive on Thursday, December 10 in the evening and stay awake beside you until Friday, December 11 morning"). The black button changes from "Start my intake form" to "Reserve Dec 10" and opens the intake form with the surgery date and first nursing date already filled in (the link looks like intake.html?date=2026-12-10). For dates less than a week away, or already past, the button becomes a WhatsApp message to JoAnne instead, with the date written into the message. "Don't have a date yet? WhatsApp JoAnne" sits at the bottom for everyone else.
+
+If JavaScript doesn't run, the card is still a date box and a working "Start my intake form" button.
+
+**Changing the wording or the windows:** search index.html for "initReserveCard". The day counts (7, 14 and 56 days) and every sentence live in that one function. The card's styling is in the block marked "Reserve-your-night card", so styles.css does not need rebuilding. The intake form reads the date from the link in the block marked "Surgery date handed over" near the bottom of intake.html.
 
 ## The first night section (the "night dial")
 

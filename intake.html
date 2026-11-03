@@ -1187,6 +1187,16 @@ function init() {
   form.querySelectorAll('[data-max-today]').forEach(el => el.max = iso);
 
   const startAt = loadSaved();
+  // Surgery date handed over from the "Reserve your night" card on the main page (intake.html?date=YYYY-MM-DD)
+  try {
+    const d = new URLSearchParams(location.search).get('date');
+    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+      const sd = document.getElementById('f23'), nd = document.getElementById('f57');
+      if (sd && !sd.value) sd.value = d;
+      if (nd && !nd.value) nd.value = d;
+      save();
+    }
+  } catch (e) {}
   renderExtraDates();
   updateConditionals();
   renderMini();
