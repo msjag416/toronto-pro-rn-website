@@ -144,3 +144,5 @@ The Lucide icon script (unpkg.com, version 1.61.0) on all three pages has an "in
 - Because guides sit one folder down, their links to the main site start with "../" (for example ../index.html, ../styles.css).
 - The homepage has a **Recovery guides** section (id "guides") just above the footer, with one card per guide. To add a guide: copy the faja page as a starting point, swap in the new article, add a card to that section, and add the page to sitemap.xml.
 
+
+**Public email.** Every page shows contact@torontoprorn.com (Porkbun email forwarding sends it to prorninc@gmail.com). The Gmail address is no longer shown anywhere on the site; Web3Forms still delivers form submissions to the Gmail inbox.
