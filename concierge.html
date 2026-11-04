@@ -98,7 +98,7 @@
         { "@type": "Place", "name": "Rosedale, Toronto" },
         { "@type": "City", "name": "Oakville, Ontario" }
       ],
-      "audience": { "@type": "Audience", "audienceType": "High net worth and VIP plastic surgery patients, their personal assistants, executive assistants and family offices, and international medical travellers from Grand Cayman, Bermuda, the Bahamas, the United Kingdom, the United Arab Emirates and the United States" },
+      "audience": { "@type": "Audience", "audienceType": "High net worth and VIP plastic surgery patients flying to Toronto from the Caribbean, the United States, the Persian Gulf (Dubai, Abu Dhabi, Qatar, Saudi Arabia, Kuwait), the United Kingdom, Europe and Australia, and the personal assistants, family offices and hotel concierges who book for them", "geographicArea": [{ "@type": "Place", "name": "Cayman Islands" }, { "@type": "Place", "name": "Bermuda" }, { "@type": "Place", "name": "The Bahamas" }, { "@type": "Place", "name": "Jamaica" }, { "@type": "Place", "name": "Trinidad and Tobago" }, { "@type": "Place", "name": "Barbados" }, { "@type": "Place", "name": "United States" }, { "@type": "Place", "name": "United Arab Emirates" }, { "@type": "Place", "name": "Qatar" }, { "@type": "Place", "name": "Saudi Arabia" }, { "@type": "Place", "name": "Kuwait" }, { "@type": "Place", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }, { "@type": "Place", "name": "Australia" }, { "@type": "Place", "name": "Canada" }] },
       "offers": [
         { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "3275", "priceCurrency": "CAD" },
         { "@type": "Offer", "name": "12-Hour Recovery Concierge", "price": "2340", "priceCurrency": "USD" },
@@ -120,6 +120,8 @@
           "acceptedAnswer": { "@type": "Answer", "text": "Send JoAnne the surgery date, the surgeon's clinic and where your employer will recover, using the form on this page or WhatsApp at +1 (343) 301-5061. She confirms nurse coverage, arranges an NDA if you'd like one, and speaks with your employer privately before the booking is final. A 25% deposit confirms the dates." } },
         { "@type": "Question", "name": "Do you care for high net worth and international clients recovering in Toronto hotels?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Recovery Concierge is built for VIP and high net worth patients, including clients flying in from the US, the Caribbean, the UK and the Gulf. Your nurse comes to Yorkville and downtown Toronto hotel suites, private residences and recovery suites across the GTA, Ontario, Canada." } },
+        { "@type": "Question", "name": "I'm flying to Toronto from overseas for plastic surgery. Can I book a private recovery nurse?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Clients fly in from the Caribbean, the United States, Dubai, Qatar, Saudi Arabia, Kuwait, the UK, Europe and Australia. Send JoAnne your surgery date and where you'll recover in Toronto, and she arranges a private Registered Nurse to meet you at the clinic and stay with you in your hotel suite. Clients living outside Canada pay in US dollars by secure card link." } },
         { "@type": "Question", "name": "Which Toronto neighbourhoods do you serve?",
           "acceptedAnswer": { "@type": "Answer", "text": "Our private post op nurses come to hotels and homes across Toronto, including Yorkville, Forest Hill, Rosedale and downtown, and to Oakville and the rest of the GTA, Ontario, Canada. Every concierge package includes round-the-clock, one-on-one care from a Registered Nurse." } },
         { "@type": "Question", "name": "Can you sign a non-disclosure agreement?",
@@ -379,6 +381,11 @@
   @media (max-width: 559px) { .bookers-grid { grid-template-columns: 1fr; } }
 
   /* ---- Terms strip ---- */
+  .intl { padding: 0 0 5rem; background: var(--ivory); }
+  .intl .sec-head p a { color: var(--teal); font-weight: 600; }
+  .intl-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1rem; }
+  @media (max-width: 1099px) { .intl-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+  @media (max-width: 767px) { .intl-grid { grid-template-columns: 1fr; } }
   .pa { padding: 0 0 5rem; background: var(--ivory); }
   .pa-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
   @media (max-width: 767px) { .pa-grid { grid-template-columns: 1fr; } }
@@ -780,6 +787,26 @@
   </div>
 </section>
 
+<!-- ============================== INTERNATIONAL ============================== -->
+<section class="intl" id="international" aria-labelledby="intl-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">International clients</p>
+        <h2 id="intl-h">Flying to Toronto for plastic surgery from abroad.</h2>
+      </div>
+      <p>High net worth clients fly to Toronto, Canada for plastic surgery from the Caribbean, the United States, the Persian Gulf, the UK, Europe and Australia. The Recovery Concierge gives you a private recovery nurse in Toronto from the moment you leave the clinic, with one-on-one care in your hotel suite until family takes over or you fly home. Planning flights, hotels and entry to Canada? Read our <a href="international.html">guide for international patients</a>.</p>
+    </div>
+    <div class="intl-grid">
+      <div class="booker rv"><i data-lucide="sun"></i><h3>The Caribbean</h3><p>Grand Cayman, Bermuda, the Bahamas, Jamaica, Trinidad and Tobago and Barbados. Your nurse prepares a discharge summary for your doctor back home, and you pay in US dollars by secure card link.</p></div>
+      <div class="booker rv"><i data-lucide="building-2"></i><h3>The United States</h3><p>New York, Miami, Los Angeles and across the US. Toronto runs on Eastern Time, so updates to your family or assistant on the East Coast arrive during their working day. Billing is in US dollars.</p></div>
+      <div class="booker rv"><i data-lucide="compass"></i><h3>The Persian Gulf</h3><p>Dubai, Abu Dhabi, Qatar, Saudi Arabia and Kuwait. Your nurse is female unless you ask otherwise, an NDA can be signed before arrival, and updates reach your family by encrypted WhatsApp.</p></div>
+      <div class="booker rv"><i data-lucide="landmark"></i><h3>The UK and Europe</h3><p>London, Paris, Geneva, Milan and across Europe. You get a written summary for your surgeon or GP at home, and your clinical notes are kept under Ontario's PHIPA privacy law.</p></div>
+      <div class="booker rv"><i data-lucide="plane-takeoff"></i><h3>Australia</h3><p>Sydney, Melbourne and Perth. For the longest flight home, the 48-hour package includes a flight-readiness report sent to your Toronto surgeon, who decides when you're cleared to fly.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================== FOR ASSISTANTS ============================== -->
 <section class="pa" id="assistants" aria-labelledby="pa-h">
   <div class="wrap">
@@ -891,6 +918,7 @@
       <details class="rv"><summary>Can my assistant, family office or hotel concierge book for me?</summary><p>Yes. Many concierge bookings are arranged by a personal assistant, family office or hotel concierge. JoAnne still speaks with you before the booking is final, because your nurse needs to know your procedure and your surgeon.</p></details>
       <details class="rv"><summary>How do I hire a private nurse in Toronto for my employer's plastic surgery recovery?</summary><p>Send JoAnne the surgery date, the surgeon's clinic and where your employer will recover, using the form on this page or WhatsApp at +1 (343) 301-5061. She confirms nurse coverage, arranges an NDA if you'd like one, and speaks with your employer privately before the booking is final. A 25% deposit confirms the dates.</p></details>
       <details class="rv"><summary>Do you care for high net worth and international clients recovering in Toronto hotels?</summary><p>Yes. The Recovery Concierge is built for VIP and high net worth patients, including clients flying in from the US, the Caribbean, the UK and the Gulf. Your nurse comes to Yorkville and downtown Toronto hotel suites, private residences and recovery suites across the GTA, Ontario, Canada.</p></details>
+      <details class="rv"><summary>I'm flying to Toronto from overseas for plastic surgery. Can I book a private recovery nurse?</summary><p>Yes. Clients fly in from the Caribbean, the United States, Dubai, Qatar, Saudi Arabia, Kuwait, the UK, Europe and Australia. Send JoAnne your surgery date and where you'll recover in Toronto, and she arranges a private Registered Nurse to meet you at the clinic and stay with you in your hotel suite. Clients living outside Canada pay in US dollars by secure card link.</p></details>
       <details class="rv"><summary>Which Toronto neighbourhoods do you serve?</summary><p>Our private post op nurses come to hotels and homes across Toronto, including Yorkville, Forest Hill, Rosedale and downtown, and to Oakville and the rest of the GTA, Ontario, Canada. Every concierge package includes round-the-clock, one-on-one care from a Registered Nurse.</p></details>
       <details class="rv"><summary>Can you sign a non-disclosure agreement?</summary><p>Yes. On request, Toronto ProRN and your attending nurse sign an NDA before your first shift. Every concierge booking also follows the no-photo rule inside your suite.</p></details>
       <details class="rv"><summary>Do you clear me to fly home?</summary><p>Clearance to fly comes from your surgeon. On the 48-hour package your nurse documents your flight readiness, including vital signs, drains, walking and pain control, and sends it to your surgeon to support that decision.</p></details>
