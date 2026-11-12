@@ -146,3 +146,6 @@ The Lucide icon script (unpkg.com, version 1.61.0) on all three pages has an "in
 
 
 **Public email.** Every page shows contact@torontoprorn.com (Porkbun email forwarding sends it to prorninc@gmail.com). The Gmail address is no longer shown anywhere on the site; Web3Forms still delivers form submissions to the Gmail inbox.
+
+## Visitor analytics (Microsoft Clarity)
+Microsoft Clarity records how visitors use the site (heatmaps, scroll depth, session replays). The tracking script sits just above `</head>` on every public page, including intake.html, clinic_request and all guides. Project ID: `zcm54sdtuk` (Clarity project "Toronto ProRN"). It is left off the Google verification file and toronto_prorn_august_schedule.html. Masking is set to Strict in Clarity so typed form answers aren't recorded. When adding a new page, copy the Clarity block from index.html into its head.
