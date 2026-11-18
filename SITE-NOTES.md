@@ -1,6 +1,6 @@
 # torontoprorn.com: how the site works
 
-Last updated: November 4, 2026 (Concierge page search wording for high net worth clients and assistants)
+Last updated: November 17, 2026 (new seroma recovery guide)
 
 ## The files
 
@@ -144,6 +144,7 @@ The Lucide icon script (unpkg.com, version 1.61.0) on all three pages has an "in
 - Because guides sit one folder down, their links to the main site start with "../" (for example ../index.html, ../styles.css).
 - The homepage has a **Recovery guides** section (id "guides") just above the footer, with one card per guide. To add a guide: copy the faja page as a starting point, swap in the new article, add a card to that section, and add the page to sitemap.xml.
 - November 12, 2026: added **guides/most-regretted-plastic-surgery.html** (JoAnne's "What Is the Most Regretted Plastic Surgery?" article). Her text is unchanged except for one added paragraph at the end of the recovery care section saying not to plan to recover alone after major plastic surgery, which every guide includes.
+- November 17, 2026: added **guides/seroma-after-tummy-tuck.html** (JoAnne's "Seroma After a Tummy Tuck: Symptoms, Treatment, and Recovery" article), with its card last in the Recovery guides section. Her text is unchanged except for one added paragraph in the nursing care section saying not to plan to recover alone after a tummy tuck. The faja guide mention and TorontoProRN.com are now links, and the four medical references link to their sources.
 
 
 **Public email.** Every page shows contact@torontoprorn.com (Porkbun email forwarding sends it to prorninc@gmail.com). The Gmail address is no longer shown anywhere on the site; Web3Forms still delivers form submissions to the Gmail inbox.
