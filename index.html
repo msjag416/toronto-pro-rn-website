@@ -372,6 +372,23 @@
   .icon-list--time { --li-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 14v2.2l1.6 1'/%3E%3Cpath d='M16 2v3'/%3E%3Cpath d='M21 7.338V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2.338'/%3E%3Cpath d='M3 9h5.859'/%3E%3Cpath d='M8 2v3'/%3E%3Ccircle cx='16' cy='16' r='6'/%3E%3C/svg%3E"); }
   .icon-list--check { --li-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
 
+  /* ===== Recovery planner (Etsy) ===== */
+  .rp-grid { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 1024px) { .rp-grid { grid-template-columns: 7fr 5fr; gap: 3.5rem; } }
+  .rp-media { position: relative; }
+  .rp-video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 1.25rem; border: 1px solid #E3DCD4;
+    background: #F6EEE9; box-shadow: 0 30px 60px -30px rgba(18,25,27,.35); cursor: pointer; }
+  .rp-badge { position: absolute; top: 1rem; left: 1rem; background: #12191B; color: #fff; font-size: .72rem; font-weight: 700;
+    letter-spacing: .06em; padding: .4rem .8rem; border-radius: 9999px; }
+  .rp-buy { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
+  .rp-btn { display: inline-flex; align-items: center; gap: .75rem; background: #2C5F5A; color: #fff; font-weight: 700;
+    padding: .95rem 1.4rem; border-radius: 9999px; box-shadow: 0 12px 24px -10px rgba(44,95,90,.55); transition: background .2s ease, transform .2s ease; }
+  .rp-btn:hover { background: #23504B; transform: translateY(-1px); }
+  .rp-price { background: rgba(255,255,255,.16); border-radius: 9999px; padding: .2rem .6rem; font-size: .9rem; }
+  .rp-link { color: #2C5F5A; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .rp-note { margin-top: 1rem; font-size: .85rem; color: #4A5A5C; }
+  @media (prefers-reduced-motion: reduce) { .rp-btn:hover { transform: none; } }
+
   /* ===== Recovery guides hub ===== */
   .guide-grid { display: grid; gap: 1rem; }
   @media (min-width: 640px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -713,6 +730,39 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         <a href="concierge" class="block mt-3 text-teal font-bold text-sm underline">View 12 to 48-hour Executive Concierge Packages &rarr;</a>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RECOVERY PLANNER (sold on Etsy) ====================== -->
+<section id="recovery-planner" class="py-24 bg-white border-t border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="rp-grid">
+      <div class="rp-media">
+        <video class="rp-video" id="rp-video" muted loop playsinline preload="none" width="1200" height="900"
+          poster="media/plastic-surgery-recovery-planner.webp"
+          aria-label="Flip-through of the Plastic Surgery Recovery Planner showing the procedure checklist and the swelling, bruising and drainage log">
+          <source src="media/plastic-surgery-recovery-planner.mp4" type="video/mp4">
+        </video>
+        <span class="rp-badge">Fillable PDF &middot; Letter and A4</span>
+      </div>
+      <div>
+        <p class="eyebrow text-teal mb-4">Plastic surgery recovery planner</p>
+        <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight text-ink mb-5">Write down what your nurse would chart</h2>
+        <p class="text-slatey text-lg leading-relaxed mb-6">On your first night, your nurse keeps a written record of your drains, swelling, pain medication and temperature for your surgeon. This planner, made by JoAnne Gomez, RN, gives you the same record for the weeks after, when you're recovering at home.</p>
+        <ul class="icon-list icon-list--check space-y-3 text-ink mb-8">
+          <li>Procedure checklist for breast, body, BBL, face and more</li>
+          <li>Drain output log with 24-hour totals, plus a swelling and bruising log</li>
+          <li>Medication record, so you know when the next dose is due</li>
+          <li>When to call your surgeon or 911</li>
+          <li>What to pack, and what to wear home after surgery</li>
+        </ul>
+        <div class="rp-buy">
+          <a href="https://www.etsy.com/listing/4625943931/plastic-surgery-recovery-planner" target="_blank" rel="noopener" class="rp-btn">Get the planner on Etsy <span class="rp-price">CA$9.99</span></a>
+          <a href="plastic-surgery-recovery-planner.html" class="rp-link">See all 11 parts &rarr;</a>
+        </div>
+        <p class="rp-note">23 pages &middot; Instant download &middot; Works for recovery anywhere, not only in Toronto</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1377,6 +1427,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           <li><a href="#faq" class="hover:text-blush transition">FAQ</a></li>
           <li><a href="international.html" class="hover:text-blush transition">International patients</a></li>
           <li><a href="concierge" class="hover:text-blush transition">Toronto Recovery Concierge (VIP)</a></li>
+          <li><a href="plastic-surgery-recovery-planner.html" class="hover:text-blush transition">Plastic Surgery Recovery Planner</a></li>
         </ul>
       </div>
 
@@ -1827,6 +1878,24 @@ function handleTestimonialSubmit(e) {
   );
 }
 
+</script>
+<script>
+// Recovery planner video: plays (muted, looping) only while it's on screen.
+// Tapping it pauses or plays. If the device is set to reduce motion, it stays still with normal controls.
+(function () {
+  const v = document.getElementById('rp-video');
+  if (!v) return;
+  const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still || !('IntersectionObserver' in window)) { v.controls = true; v.preload = 'metadata'; return; }
+  let userPaused = false;
+  v.addEventListener('click', () => { if (v.paused) { userPaused = false; v.play().catch(() => {}); } else { userPaused = true; v.pause(); } });
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !userPaused) { v.play().catch(() => { v.controls = true; }); }
+      else if (!e.isIntersecting) { v.pause(); }
+    });
+  }, { threshold: 0.4 }).observe(v);
+})();
 </script>
 </body>
 </html>

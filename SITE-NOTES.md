@@ -1,6 +1,6 @@
 # torontoprorn.com: how the site works
 
-Last updated: November 17, 2026 (new seroma recovery guide)
+Last updated: November 26, 2026 (Plastic Surgery Recovery Planner page and homepage section)
 
 ## The files
 
@@ -151,3 +151,11 @@ The Lucide icon script (unpkg.com, version 1.61.0) on all three pages has an "in
 
 ## Visitor analytics (Microsoft Clarity)
 Microsoft Clarity records how visitors use the site (heatmaps, scroll depth, session replays). The tracking script sits just above `</head>` on every public page, including intake.html, clinic_request and all guides. Project ID: `zcm54sdtuk` (Clarity project "Toronto ProRN"). It is left off the Google verification file and toronto_prorn_august_schedule.html. Masking is set to Strict in Clarity so typed form answers aren't recorded. When adding a new page, copy the Clarity block from index.html into its head.
+
+## Plastic Surgery Recovery Planner (sold on Etsy)
+- JoAnne's planner is sold on Etsy (NurseMadeWorkbooks, CA$9.99): https://www.etsy.com/listing/4625943931/plastic-surgery-recovery-planner
+- **plastic-surgery-recovery-planner.html** is its own page (torontoprorn.com/plastic-surgery-recovery-planner.html), written so Google shows it to people searching "plastic surgery recovery planner". It has the flip-through video at the top, the buy button, all 11 parts, who it's for, what you get, an FAQ, and a box pointing to the nursing service. Its Google search code describes the product (price, Etsy link, pictures), the video, the FAQ and a breadcrumb. If you change an FAQ, change it in the visible FAQ and in the Google search code at the top.
+- The homepage has a planner section (search index.html for id="recovery-planner") right after "Recovery care for the procedures Toronto surgeons do most", with the video, five checkmarks, the Etsy button and a "See all 11 parts" link to the planner page. The footer "Pages" list links to the planner page too.
+- The video and its still picture live in the **media/** folder: plastic-surgery-recovery-planner.mp4 (a lighter web copy, about 1 MB, no sound), plus .webp and .jpg pictures shown before it plays. The video plays silently on a loop only while it's on screen, and a tap pauses it. If a visitor's device is set to reduce motion, it stays still with play controls.
+- If the price changes on Etsy, change "CA$9.99" on both pages and "9.99" in the planner page's Google search code (search for "price").
+- The planner page and the homepage section have their own styles, so styles.css does not need rebuilding.
